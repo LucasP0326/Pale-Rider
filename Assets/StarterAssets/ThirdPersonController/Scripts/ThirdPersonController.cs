@@ -81,7 +81,10 @@ namespace StarterAssets
 
         //Click Movement
         private Vector3 _targetPosition;
-        private bool _isMovingToClick = false;
+        public bool _isMovingToClick = false;
+        private float _lastClickTime = 0f;
+        private float _doubleClickThreshold = 0.3f;
+        private bool _isSprintingToClick = false;
         
         // player
         private float _speed;
@@ -218,94 +221,94 @@ namespace StarterAssets
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
+            // set target speed based on move speed, sprint speed, and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
-
-            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is no input, set the target speed to 0
-            if (_isMovingToClick == false)
+            // If no movement input, set target speed to 0
+            if (!_isMovingToClick && _input.move == Vector2.zero)
             {
-                if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+                targetSpeed = 0.0f;
             }
 
-            // If moving to a clicked position
+            if (_isMovingToClick && _input.move != Vector2.zero)
+            {
+                _isMovingToClick = false;
+                _isSprintingToClick = false;
+            }
+
+            // Current horizontal speed
+            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            float speedOffset = 0.1f;
+            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+
+            // Accelerate/decelerate smoothly
+            if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+            {
+                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                _speed = Mathf.Round(_speed * 1000f) / 1000f; // Round to 3 decimal places
+            }
+            else
+            {
+                _speed = targetSpeed;
+            }
+
+            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            if (_animationBlend < 0.01f) _animationBlend = 0f;
+
+            // Normalize input direction
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+            // Apply gravity independently of movement
+            if (!_controller.isGrounded)
+            {
+                _verticalVelocity += Gravity * Time.deltaTime;
+            }
+            else
+            {
+                _verticalVelocity = 0f; // Reset when on the ground
+            }
+
+            Vector3 moveDirection = new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime; // Always apply vertical movement
+
+            // Movement when clicking to move
             if (_isMovingToClick)
             {
+                targetSpeed = _isSprintingToClick ? SprintSpeed : MoveSpeed;
+
                 Vector3 direction = (_targetPosition - transform.position).normalized;
                 direction.y = 0;
 
                 if (Vector3.Distance(transform.position, _targetPosition) > 0.1f)
                 {
-                    _controller.Move(direction * targetSpeed * Time.deltaTime);
+                    moveDirection += direction * targetSpeed * Time.deltaTime;
 
-                    // Smoothly rotate to face direction
+                    // Smooth rotation
                     float targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, targetRotation, 0), RotationSmoothTime);
 
-                    // Update animations
                     _animator.SetFloat(_animIDSpeed, targetSpeed);
                     _animator.SetFloat(_animIDMotionSpeed, 1f);
                 }
                 else
                 {
                     _isMovingToClick = false;
+                    _isSprintingToClick = false;
                 }
             }
+            // Movement using WASD
             else if (_input.move != Vector2.zero)
             {
-                // a reference to the players current horizontal velocity
-                float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+                targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-                float speedOffset = 0.1f;
-                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
-                // accelerate or decelerate to target speed
-                if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                    currentHorizontalSpeed > targetSpeed + speedOffset)
-                {
-                    // creates curved result rather than a linear one giving a more organic speed change
-                    // note T in Lerp is clamped, so we don't need to clamp our speed
-                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                        Time.deltaTime * SpeedChangeRate);
-
-                    // round speed to 3 decimal places
-                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
-                }
-                else
-                {
-                    _speed = targetSpeed;
-                }
-
-                _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-                if (_animationBlend < 0.01f) _animationBlend = 0f;
-
-                // normalise input direction
-                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
-                // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-                // if there is a move input rotate player when the player is moving
-                
-                if (_input.move != Vector2.zero)
-                {
-                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                    _mainCamera.transform.eulerAngles.y;
-                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                        RotationSmoothTime);
-
-                    // rotate to face input direction relative to camera position
-                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                }
-
+                // Rotate player
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+                moveDirection += targetDirection.normalized * (_speed * Time.deltaTime);
 
-                // move the player
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
-                // update animator if using character
                 if (_hasAnimator)
                 {
                     _animator.SetFloat(_animIDSpeed, _animationBlend);
@@ -318,7 +321,11 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, 0f);
                 _animator.SetFloat(_animIDMotionSpeed, 0f);
             }
+
+            // Apply movement (both horizontal and vertical)
+            _controller.Move(moveDirection);
         }
+
 
         private void JumpAndGravity()
         {
@@ -343,6 +350,12 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
+                    // Cancel click-to-move if any movement key is pressed
+                    if (_isMovingToClick)
+                    {
+                        _isMovingToClick = false;
+                        _isSprintingToClick = false;
+                    }
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
@@ -434,13 +447,34 @@ namespace StarterAssets
         {
             if (Input.GetMouseButtonDown(0)) // Left mouse button
             {
+                float timeSinceLastClick = Time.time - _lastClickTime;
+
+                if (timeSinceLastClick <= _doubleClickThreshold)
+                {
+                    // Double click detected
+                    _isSprintingToClick = true;
+                }
+                else
+                {
+                    _isSprintingToClick = false;
+                }
+
+                _lastClickTime = Time.time;
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, GroundLayers)) // Ensure we hit the ground
                 {
-                    _targetPosition = hit.point;
-                    _isMovingToClick = true;
+                    if (hit.collider.CompareTag("Ground"))
+                    {
+                        _targetPosition = hit.point;
+                        _isMovingToClick = true;
+                    }
+                    else
+                    {
+                        _isMovingToClick = false; // Ignore movement if not on Ground
+                    }
                 }
             }
         }
