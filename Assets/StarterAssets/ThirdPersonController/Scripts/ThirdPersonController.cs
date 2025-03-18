@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -14,6 +14,10 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        [Header("UI")]
+        public bool paused = false;
+        public GameObject pauseMenu;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -59,6 +63,12 @@ namespace StarterAssets
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
 
+        [Header("Interactables")]
+        [Tooltip("What Interactable Object Player Currently Heads To")]
+        public GameObject tempInteractableObject;
+        public float interactionRange = 2f; // Maximum distance for interaction
+        //public LayerMask InteractableLayers;
+
         [Header("Cinemachine")]
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         public GameObject CinemachineCameraTarget;
@@ -81,10 +91,11 @@ namespace StarterAssets
 
         //Click Movement
         private Vector3 _targetPosition;
-        public bool _isMovingToClick = false;
+        private bool _isMovingToClick = false;
         private float _lastClickTime = 0f;
         private float _doubleClickThreshold = 0.3f;
         private bool _isSprintingToClick = false;
+        [SerializeField] private GameObject clickIndicatorPrefab; // Assign in Inspector
         
         // player
         private float _speed;
@@ -161,12 +172,38 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (tempInteractableObject != null)
+                interactionRange = tempInteractableObject.GetComponent<Interactable>().interactionRange;
             _hasAnimator = TryGetComponent(out _animator);
 
             HandleClickMovement(); // New function for handling click movement
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            if (tempInteractableObject != null)
+            {
+                float distance = Vector3.Distance(transform.position, tempInteractableObject.transform.position);
+                
+                if (distance <= interactionRange) // Ensure interactionRange is defined
+                {
+                    _isMovingToClick = false;
+                    _isSprintingToClick = false;
+                    tempInteractableObject.GetComponent<Interactable>().OnInteract();
+                    tempInteractableObject = null; // Clear after interaction
+                }
+            }
+
+            //Open Pause Menu
+            if (_input.pause)
+            {
+                paused = !paused;
+            }
+
+            if (paused)
+                pauseMenu.SetActive(false);
+            else if (!paused)
+                pauseMenu.SetActive(false);
         }
 
         private void LateUpdate()
@@ -298,6 +335,7 @@ namespace StarterAssets
             // Movement using WASD
             else if (_input.move != Vector2.zero)
             {
+                tempInteractableObject = null;
                 targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
@@ -466,10 +504,15 @@ namespace StarterAssets
                 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, GroundLayers)) // Ensure we hit the ground
                 {
-                    if (hit.collider.CompareTag("Ground"))
+                    if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Interactable"))
                     {
+                        if (!hit.collider.CompareTag("Interactable"))
+                            tempInteractableObject = null;
                         _targetPosition = hit.point;
                         _isMovingToClick = true;
+
+                        // Spawn click indicator with correct rotation
+                        GameObject indicator = Instantiate(clickIndicatorPrefab, hit.point + Vector3.up * 0.01f, Quaternion.Euler(90, 0, 0));
                     }
                     else
                     {
