@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7e01c799fc5c03a4b8670cccab7ef096
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 269542
+  packageName: articy:draft X Importer
+  packageVersion: 1.1.0
+  assetPath: Assets/ArticyImporter/Content/Generated/ArticyEditorSettings.asset
+  uploadId: 684609
