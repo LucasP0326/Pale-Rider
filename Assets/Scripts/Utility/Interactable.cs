@@ -100,6 +100,11 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public void BeginDialogue()
+    {
+        Debug.Log("Dialogue Begins");
+    }
+
     private IEnumerator TeleportRoutine(Transform player)
     {
         isTeleporting = true;

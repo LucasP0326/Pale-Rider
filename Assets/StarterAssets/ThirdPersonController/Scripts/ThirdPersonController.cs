@@ -180,6 +180,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Pause();
 
             if (tempInteractableObject != null)
             {
@@ -194,16 +195,16 @@ namespace StarterAssets
                 }
             }
 
-            //Open Pause Menu
-            if (_input.pause)
-            {
-                paused = !paused;
-            }
-
             if (paused)
-                pauseMenu.SetActive(false);
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
             else if (!paused)
+            {
                 pauseMenu.SetActive(false);
+                Time.timeScale = 1.0f;
+            }
         }
 
         private void LateUpdate()
@@ -333,7 +334,7 @@ namespace StarterAssets
                 }
             }
             // Movement using WASD
-            else if (_input.move != Vector2.zero)
+            else if (_input.move != Vector2.zero && !paused)
             {
                 tempInteractableObject = null;
                 targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -367,7 +368,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (Grounded)
+            if (Grounded && !paused)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
@@ -440,6 +441,25 @@ namespace StarterAssets
             }
         }
 
+        private void Pause()
+        {
+            //Open Pause Menu
+            if (_input.pause)
+            {
+                Pause2();
+            }
+        }
+
+        public void Pause2()
+        {
+            paused = !paused;
+            _input.pause = false; // Reset input so it doesn't continuously trigger
+            if (pauseMenu.activeSelf)
+            {
+                pauseMenu.GetComponent<PauseMenu>().Intro();
+            }
+        }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -483,7 +503,7 @@ namespace StarterAssets
 
         private void HandleClickMovement()
         {
-            if (Input.GetMouseButtonDown(0)) // Left mouse button
+            if (Input.GetMouseButtonDown(0) && !paused) // Left mouse button
             {
                 float timeSinceLastClick = Time.time - _lastClickTime;
 

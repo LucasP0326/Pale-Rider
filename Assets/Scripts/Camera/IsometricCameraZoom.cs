@@ -16,7 +16,7 @@ public class IsometricCameraZoom : MonoBehaviour
     void Update()
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");  // Get mouse scroll input
-        if (scrollInput != 0)
+        if (scrollInput != 0 && Time.timeScale != 0)
         {
             cam.orthographicSize -= scrollInput * zoomSpeed;  // Adjust zoom
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);  // Clamp zoom limits
