@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using Articy.Unity;
 using StarterAssets;
 using DoorScript;
 
@@ -9,6 +10,8 @@ public class Interactable : MonoBehaviour
 {
     private Transform player; // Reference to the player
     public GameObject playerController;
+    public DialogueManager dialogueManager;
+    public ArticyObject availableDialogue;
     
     [Header("Event Manager")]
     public UnityEvent onInteract; // Assignable event in the Inspector
@@ -25,6 +28,9 @@ public class Interactable : MonoBehaviour
     [Header("Door")]
     public GameObject door;
 
+    [Header("Dialogue")]
+    public bool hasDialogue;
+
     [Header("Object Outline")]
     private Outline _outline;
 
@@ -39,6 +45,9 @@ public class Interactable : MonoBehaviour
             _outline = gameObject.AddComponent<Outline>();
         }
         _outline.enabled = false; // Disable by default
+
+        if (hasDialogue)
+            availableDialogue = gameObject.GetComponent<ArticyReference>().reference.GetObject();
     }
 
     // Update is called once per frame
@@ -102,7 +111,12 @@ public class Interactable : MonoBehaviour
 
     public void BeginDialogue()
     {
-        Debug.Log("Dialogue Begins");
+        Debug.Log("I am on Interactable");
+        if (availableDialogue)
+        {
+            dialogueManager.StartDialogue(availableDialogue);
+            //availableDialogue = null;
+        }
     }
 
     private IEnumerator TeleportRoutine(Transform player)

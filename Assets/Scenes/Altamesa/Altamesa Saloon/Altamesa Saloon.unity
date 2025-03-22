@@ -23170,6 +23170,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: dialogueMenu
+      value: 
+      objectReference: {fileID: 1771915938}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 72
       objectReference: {fileID: 0}
@@ -25045,6 +25049,11 @@ PrefabInstance:
 --- !u!1 &1771915937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5094898947399609378, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+  m_PrefabInstance: {fileID: 1771915936}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1771915938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 658605700089996427, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
   m_PrefabInstance: {fileID: 1771915936}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1774697135

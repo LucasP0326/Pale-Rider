@@ -16,7 +16,9 @@ namespace StarterAssets
     {
         [Header("UI")]
         public bool paused = false;
+        public bool inDialogue = false;
         public GameObject pauseMenu;
+        public GameObject dialogueManager;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -172,6 +174,12 @@ namespace StarterAssets
 
         private void Update()
         {
+            inDialogue = dialogueManager.GetComponent<DialogueManager>().DialogueActive;
+            /*if (!inDialogue)
+                dialogueMenu.SetActive(false);
+            if (inDialogue)
+                dialogueMenu.SetActive(true);*/
+
             if (tempInteractableObject != null)
                 interactionRange = tempInteractableObject.GetComponent<Interactable>().interactionRange;
             _hasAnimator = TryGetComponent(out _animator);
@@ -334,7 +342,7 @@ namespace StarterAssets
                 }
             }
             // Movement using WASD
-            else if (_input.move != Vector2.zero && !paused)
+            else if (_input.move != Vector2.zero && !paused && !inDialogue)
             {
                 tempInteractableObject = null;
                 targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -368,7 +376,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (Grounded && !paused)
+            if (Grounded && !paused && !inDialogue)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
@@ -444,7 +452,8 @@ namespace StarterAssets
         private void Pause()
         {
             //Open Pause Menu
-            if (_input.pause)
+            //Currently has pause activate right when dialogue ends
+            if (_input.pause && !inDialogue)
             {
                 Pause2();
             }
@@ -503,7 +512,7 @@ namespace StarterAssets
 
         private void HandleClickMovement()
         {
-            if (Input.GetMouseButtonDown(0) && !paused) // Left mouse button
+            if (Input.GetMouseButtonDown(0) && !paused && !inDialogue) // Left mouse button
             {
                 float timeSinceLastClick = Time.time - _lastClickTime;
 
@@ -541,5 +550,10 @@ namespace StarterAssets
                 }
             }
         }
+
+        /*public void EnterDialogue()
+        {
+            inDialogue = true;
+        }*/
     }
 }
