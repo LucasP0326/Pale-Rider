@@ -175,10 +175,6 @@ namespace StarterAssets
         private void Update()
         {
             inDialogue = dialogueManager.GetComponent<DialogueManager>().DialogueActive;
-            /*if (!inDialogue)
-                dialogueMenu.SetActive(false);
-            if (inDialogue)
-                dialogueMenu.SetActive(true);*/
 
             if (tempInteractableObject != null)
                 interactionRange = tempInteractableObject.GetComponent<Interactable>().interactionRange;
@@ -376,7 +372,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (Grounded && !paused && !inDialogue)
+            if (Grounded && !paused)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
@@ -395,7 +391,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !inDialogue)
                 {
                     // Cancel click-to-move if any movement key is pressed
                     if (_isMovingToClick)

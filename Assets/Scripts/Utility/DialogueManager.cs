@@ -4,6 +4,7 @@ using Articy.Unity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using Articy.Pale_Rider;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
@@ -14,10 +15,10 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     GameObject dialogueWidget;
     //Reference to dialogue text
     [SerializeField]
-    Text dialogueText;
+    TMP_Text dialogueText;
     //Reference to speaker
     [SerializeField]
-    Text dialogueSpeaker;
+    TMP_Text dialogueSpeaker;
     [SerializeField]
     RectTransform branchLayoutPanel;
     [SerializeField]
