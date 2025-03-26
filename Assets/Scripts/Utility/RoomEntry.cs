@@ -19,20 +19,43 @@ public class RoomEntry : MonoBehaviour
     void Update()
     {
         if (firstEntry)
-            blackBox.SetActive(true);
+            if (blackBox != null)
+                blackBox.SetActive(true);
+        if (inRoom)
+        {
+            if (roomWalls != null)
+                roomWalls.SetActive(false);
+            if (roomInvisibleWalls != null)
+                roomInvisibleWalls.SetActive(true);
+        }
+        else if (!inRoom)
+        {
+            if (roomWalls != null)
+                roomWalls.SetActive(true);
+            if (roomInvisibleWalls != null)
+                roomInvisibleWalls.SetActive(false); 
+        }
+        else
+        {
+            Debug.Log("Man, I don't fucking know.");
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            inRoom = true;
             if (firstEntry)
             {
-                blackBox.SetActive(false);
+                if (blackBox != null)
+                    blackBox.SetActive(false);
                 firstEntry = false;
             }
-            roomWalls.SetActive(false);
-            roomInvisibleWalls.SetActive(true);
+            /*if (roomWalls != null)
+                roomWalls.SetActive(false);
+            if (roomInvisibleWalls != null)
+                roomInvisibleWalls.SetActive(true);*/
         }
     }
 
@@ -40,8 +63,11 @@ public class RoomEntry : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            roomWalls.SetActive(true);
-            roomInvisibleWalls.SetActive(false);
+            inRoom = false;
+            /*if (roomWalls != null)
+                roomWalls.SetActive(true);
+            if (roomInvisibleWalls != null)
+                roomInvisibleWalls.SetActive(false);*/
         }
     }
 

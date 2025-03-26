@@ -1254,9 +1254,9 @@ GameObject:
   - component: {fileID: 25401100}
   - component: {fileID: 25401099}
   - component: {fileID: 25401098}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (72)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4077,9 +4077,9 @@ GameObject:
   - component: {fileID: 82963190}
   - component: {fileID: 82963189}
   - component: {fileID: 82963188}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (69)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4185,9 +4185,9 @@ GameObject:
   - component: {fileID: 84142821}
   - component: {fileID: 84142820}
   - component: {fileID: 84142819}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (65)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9468,9 +9468,9 @@ GameObject:
   - component: {fileID: 175706120}
   - component: {fileID: 175706119}
   - component: {fileID: 175706118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (60)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12592,6 +12592,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1472102996}
   - {fileID: 921305686}
+  - {fileID: 1413047899}
 --- !u!4 &225435441
 Transform:
   m_ObjectHideFlags: 0
@@ -16775,6 +16776,7 @@ Transform:
   m_Children:
   - {fileID: 921305685}
   - {fileID: 1472102995}
+  - {fileID: 1413047898}
   m_Father: {fileID: 525323847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303532088
@@ -20999,6 +21001,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: sceneName
+      value: Altamesa Saloon 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: changeScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: spawnPointID
+      value: UpstairsEntrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryTeleport
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21009,6 +21027,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4651603642805868, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
   m_PrefabInstance: {fileID: 414275502}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &414275504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+  m_PrefabInstance: {fileID: 414275502}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &414865890
 GameObject:
   m_ObjectHideFlags: 0
@@ -21345,9 +21374,9 @@ GameObject:
   - component: {fileID: 417892634}
   - component: {fileID: 417892633}
   - component: {fileID: 417892632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (64)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23895,6 +23924,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   dialogueManager: {fileID: 0}
   availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -23917,6 +23947,7 @@ MonoBehaviour:
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 3a01e2b29ed34de479f047a97d31a765, type: 3}
   hasDialogue: 0
 --- !u!114 &464913694
 MonoBehaviour:
@@ -23936,6 +23967,103 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!82 &464913701
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109861986}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6800583091792525412, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &472988647
 GameObject:
   m_ObjectHideFlags: 0
@@ -23952,7 +24080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &472988648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26699,6 +26827,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   dialogueManager: {fileID: 0}
   availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -26721,6 +26850,7 @@ MonoBehaviour:
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 3a01e2b29ed34de479f047a97d31a765, type: 3}
   hasDialogue: 0
 --- !u!114 &543603732
 MonoBehaviour:
@@ -26740,6 +26870,103 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!82 &543603739
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543603725}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6800583091792525412, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &543995618
 GameObject:
   m_ObjectHideFlags: 0
@@ -32545,9 +32772,9 @@ GameObject:
   - component: {fileID: 673784271}
   - component: {fileID: 673784270}
   - component: {fileID: 673784269}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (56)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38723,6 +38950,26 @@ PrefabInstance:
     - target: {fileID: 4651603642805868, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: sceneName
+      value: Altamesa Saloon 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: changeScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: spawnPointID
+      value: UpstairsEntrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 414275504}
+    - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryTeleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46524,9 +46771,9 @@ GameObject:
   - component: {fileID: 957322501}
   - component: {fileID: 957322500}
   - component: {fileID: 957322499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (68)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47719,9 +47966,9 @@ GameObject:
   - component: {fileID: 971703903}
   - component: {fileID: 971703902}
   - component: {fileID: 971703901}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (62)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56028,9 +56275,9 @@ GameObject:
   - component: {fileID: 1139056282}
   - component: {fileID: 1139056281}
   - component: {fileID: 1139056280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (67)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60861,9 +61108,9 @@ GameObject:
   - component: {fileID: 1261577588}
   - component: {fileID: 1261577587}
   - component: {fileID: 1261577586}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (71)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69355,9 +69602,9 @@ GameObject:
   - component: {fileID: 1399651349}
   - component: {fileID: 1399651348}
   - component: {fileID: 1399651347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (58)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69882,6 +70129,106 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411857602}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1413047897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413047898}
+  - component: {fileID: 1413047901}
+  - component: {fileID: 1413047900}
+  - component: {fileID: 1413047899}
+  m_Layer: 0
+  m_Name: Saloon 2nd Floor Exit Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1413047898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413047897}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.221, y: -3.3852973, z: 7.669}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 303257110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1413047899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413047897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d15ba1697df4646bb4d4ad4d56f1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnID: SaloonExit2nd
+--- !u!23 &1413047900
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413047897}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1413047901
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413047897}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1413775421
 GameObject:
@@ -75921,9 +76268,9 @@ GameObject:
   - component: {fileID: 1519233964}
   - component: {fileID: 1519233963}
   - component: {fileID: 1519233962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (55)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77277,6 +77624,7 @@ MonoBehaviour:
   playerController: {fileID: 959832439}
   dialogueManager: {fileID: 1858662112}
   availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -77299,6 +77647,7 @@ MonoBehaviour:
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 0}
+  soundEffect: {fileID: 0}
   hasDialogue: 1
 --- !u!65 &1561271415
 BoxCollider:
@@ -88078,6 +88427,7 @@ MonoBehaviour:
   playerController: {fileID: 959832439}
   dialogueManager: {fileID: 1858662112}
   availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -88100,6 +88450,7 @@ MonoBehaviour:
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 0}
+  soundEffect: {fileID: 0}
   hasDialogue: 1
 --- !u!114 &1744631134
 MonoBehaviour:
@@ -91005,9 +91356,9 @@ GameObject:
   - component: {fileID: 1811806984}
   - component: {fileID: 1811806983}
   - component: {fileID: 1811806982}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (70)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91871,9 +92222,9 @@ GameObject:
   - component: {fileID: 1825479249}
   - component: {fileID: 1825479248}
   - component: {fileID: 1825479247}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (61)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93493,9 +93844,9 @@ GameObject:
   - component: {fileID: 1849778947}
   - component: {fileID: 1849778946}
   - component: {fileID: 1849778945}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (63)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94217,9 +94568,9 @@ GameObject:
   - component: {fileID: 1864627891}
   - component: {fileID: 1864627890}
   - component: {fileID: 1864627889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (66)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102986,9 +103337,9 @@ GameObject:
   - component: {fileID: 2056877016}
   - component: {fileID: 2056877015}
   - component: {fileID: 2056877014}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (59)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107196,9 +107547,9 @@ GameObject:
   - component: {fileID: 2147049319}
   - component: {fileID: 2147049318}
   - component: {fileID: 2147049317}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_01 (57)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107821,12 +108172,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8247959313628021088, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 464913694}
+    - targetCorrespondingSourceObject: {fileID: 8247959313628021088, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 464913701}
     - targetCorrespondingSourceObject: {fileID: 4668645986191357697, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 543603731}
     - targetCorrespondingSourceObject: {fileID: 4668645986191357697, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 543603732}
+    - targetCorrespondingSourceObject: {fileID: 4668645986191357697, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 543603739}
   m_SourcePrefab: {fileID: 100100000, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
 --- !u!1001 &8345070700268369567
 PrefabInstance:
@@ -108003,6 +108360,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 225435441}
   - {fileID: 1858662113}
+  - {fileID: 472988649}
   - {fileID: 4157681237878282808}
   - {fileID: 1221041499}
   - {fileID: 1762682258}
@@ -108013,4 +108371,3 @@ SceneRoots:
   - {fileID: 525323847}
   - {fileID: 1744631131}
   - {fileID: 1561271418}
-  - {fileID: 472988649}

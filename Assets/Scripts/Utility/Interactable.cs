@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour
     public GameObject playerController;
     public DialogueManager dialogueManager;
     public ArticyObject availableDialogue;
+    public AudioSource aSource;
     
     [Header("Event Manager")]
     public UnityEvent onInteract; // Assignable event in the Inspector
@@ -27,6 +28,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Door")]
     public GameObject door;
+    public AudioClip soundEffect;
 
     [Header("Dialogue")]
     public bool hasDialogue;
@@ -38,6 +40,8 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        aSource = GetComponent<AudioSource> ();
+
         // Add or get the Outline component
         _outline = GetComponent<Outline>();
         if (_outline == null)
@@ -90,6 +94,11 @@ public class Interactable : MonoBehaviour
 
     public void OnInteract()
     {
+        if (soundEffect != null)
+        {
+            aSource.clip = soundEffect;
+            aSource.Play();
+        }
         onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
     }
 

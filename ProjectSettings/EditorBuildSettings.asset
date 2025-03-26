@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: ee53629e03044524a90b5ba0212869eb
+  - enabled: 1
+    path: Assets/Scenes/Abyss.unity
+    guid: c9a72b8fce2f9ce4ca1767f3284e37a8
+  - enabled: 1
     path: Assets/Scenes/Altamesa/Altamesa.unity
     guid: a443bb48f858d58469bbf4d1f8f8cef5
   - enabled: 1
@@ -17,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Altamesa/Altamesa Saloon/Altamesa Saloon 2.unity
     guid: 699916ed725c0cc40ad5d9c68c525945
-  - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
-    guid: ee53629e03044524a90b5ba0212869eb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -264,7 +264,7 @@ AudioSource:
   m_GameObject: {fileID: 1889589370831100}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6800583091792525412, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -383,6 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -405,6 +408,8 @@ MonoBehaviour:
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 1889589370831100}
+  soundEffect: {fileID: 0}
+  hasDialogue: 0
 --- !u!114 &3005395355043151181
 MonoBehaviour:
   m_ObjectHideFlags: 0

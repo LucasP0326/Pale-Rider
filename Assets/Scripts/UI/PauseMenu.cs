@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using StarterAssets;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject player;
+    public string mainMenuName;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,5 +28,10 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         player.GetComponent<ThirdPersonController>().Pause2();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(mainMenuName);
     }
 }

@@ -1303,6 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  mainMenuName: Main Menu
 --- !u!1 &5421752649347345172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,7 +2098,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3997497015978146524}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
