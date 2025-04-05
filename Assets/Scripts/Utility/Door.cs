@@ -13,7 +13,7 @@ public class Door : MonoBehaviour{
 	float DoorOpenAngle = -90.0f;
     float DoorCloseAngle = 0.0f;
 	public AudioSource asource;
-	public AudioClip openDoor,closeDoor;
+	public AudioClip openDoor,closeDoor, lockedDoor;
 	// Use this for initialization
 	void Start () {
 		asource = GetComponent<AudioSource> ();
@@ -43,7 +43,11 @@ public class Door : MonoBehaviour{
 			asource.Play ();
 		}
 		else
+		{
 			Debug.Log("Door is Locked");
+			asource.clip = lockedDoor;
+			asource.Play ();
+		}
 	}
 
 	private IEnumerator DoorColliderSwitch()

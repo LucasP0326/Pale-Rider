@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Articy.Pale_Rider;
 using TMPro;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
@@ -13,6 +15,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     //Reference to Dialogue UI
     [SerializeField]
     GameObject dialogueWidget;
+    //Character Portrait
+    [SerializeField]
+    public Image speakerPortrait;
     //Reference to dialogue text
     [SerializeField]
     TMP_Text dialogueText;
@@ -25,6 +30,24 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     GameObject branchPrefab;
     [SerializeField]
     GameObject closePrefab;
+    [SerializeField]
+    RectTransform scrollContent;
+    [SerializeField]
+    public ScrollRect scrollRect;
+    [SerializeField]
+    TMP_Text speakerPrefab;
+    [SerializeField]
+    TMP_Text dialoguePrefab;
+
+    [Header("Audio")]
+    [SerializeField]
+    AudioClip voiceOver;
+    [SerializeField]
+    AudioSource aSource;
+
+    [Header("Events")]
+    [SerializeField]
+    private UnityEvent onDialogueClosed;
 
     public bool DialogueActive { get; set; }
 
@@ -33,6 +56,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     void Start()
     {
         flowPlayer = GetComponent<ArticyFlowPlayer>();
+        aSource = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -43,6 +67,10 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void StartDialogue(IArticyObject aObject)
     {
+        foreach(Transform child in scrollContent)
+        {
+            Destroy(child.gameObject);
+        }
         Debug.Log("I got to Dialogue Manager");
         DialogueActive = true;
         dialogueWidget.SetActive(DialogueActive);
@@ -54,20 +82,30 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         DialogueActive = false;
         dialogueWidget.SetActive(DialogueActive);
         flowPlayer.FinishCurrentPausedObject();
+        foreach(Transform child in scrollContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Trigger the custom event
+        onDialogueClosed?.Invoke();
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         //throw new System.NotImplementedException();
-        dialogueText.text = string.Empty;
-        dialogueSpeaker.text = string.Empty;
+        //Remove existing Text
+        //dialogueText.text = string.Empty;
+        //dialogueSpeaker.text = string.Empty;
         
+        //Add Dialogue Text
         var objectWithText = aObject as IObjectWithLocalizableText;
         if (objectWithText != null)
         {
             dialogueText.text = objectWithText.Text;
         }
 
+        //Add Speaker Text
         var objectWithSpeaker = aObject as IObjectWithSpeaker;
         if (objectWithSpeaker != null)
         {
@@ -76,11 +114,33 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             {
                 dialogueSpeaker.text = speakerEntity.DisplayName;
             }
+            //Add Character Portrait
+            var speaker = objectWithSpeaker.Speaker;
+            var speakerAsset = ((speaker as IObjectWithPreviewImage).PreviewImage.Asset as Asset);
+            if (speakerAsset != null)
+            {
+                speakerPortrait.sprite = speakerAsset.LoadAssetAsSprite();
+            }
+            
+            //Play Audio
+            var modelWithText = aObject as IObjectWithLocalizableText;
+            if (modelWithText.Text.VOAssetRef != null)
+            {
+                aSource.clip = modelWithText.Text.LoadVOAssetAsAudioClip();
+                aSource.Play();
+            }   
         }
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
+        TMP_Text chara = Instantiate(speakerPrefab, scrollContent);
+        TMP_Text dial = Instantiate(dialoguePrefab, scrollContent);
+        chara.text = dialogueSpeaker.text;
+        dial.text = dialogueText.text;
+        // Auto-scroll to the bottom
+        StartCoroutine(ScrollToBottom());
+
         ClearAllBranches();
 
         //throw new System.NotImplementedException();
@@ -115,5 +175,11 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private IEnumerator ScrollToBottom()
+    {
+        yield return null; // Wait one frame
+        scrollRect.verticalNormalizedPosition = 0f;
     }
 }

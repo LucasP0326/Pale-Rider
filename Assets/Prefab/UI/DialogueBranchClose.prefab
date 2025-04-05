@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 598442469562178165}
   - component: {fileID: 6574517752240675375}
   - component: {fileID: 5407036016793548427}
+  - component: {fileID: 2522866340461358568}
   m_Layer: 0
   m_Name: DialogueBranchClose
   m_TagString: Untagged
@@ -38,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 59.876892, y: 0}
-  m_SizeDelta: {x: 279.7538, y: 30}
+  m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8548151240145158740
 CanvasRenderer:
@@ -149,6 +150,26 @@ MonoBehaviour:
   buttonText: {fileID: 5246241622663590221}
   normalColor: {r: 1, g: 0.45490196, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.79818785, b: 0, a: 1}
+--- !u!114 &2522866340461358568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571351233704508727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 30
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: 0
+  m_LayoutPriority: 1
 --- !u!1 &8687132593742724412
 GameObject:
   m_ObjectHideFlags: 0

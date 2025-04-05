@@ -8,14 +8,23 @@ using DoorScript;
 
 public class Interactable : MonoBehaviour
 {
+    public bool eventOnStart = false;
+    
     private Transform player; // Reference to the player
     public GameObject playerController;
     public DialogueManager dialogueManager;
     public ArticyObject availableDialogue;
     public AudioSource aSource;
+
+    [Header("One-Time Interaction")]
+    public bool oneTimeInteraction = false; // If true, the object can only be interacted with once
+    public bool hasBeenInteracted = false; // Tracks if the object has been interacted with
+    public GameObject oneTimeInteractionBubble; // The prefab bubble to show when object can be interacted with once.
+    public float interactionBubbleRange = 5f;
     
     [Header("Event Manager")]
     public UnityEvent onInteract; // Assignable event in the Inspector
+    private GameObject interactionBubbleInstance;
 
     [Header("Teleporting")]
     public Transform targetPoint;
@@ -52,12 +61,57 @@ public class Interactable : MonoBehaviour
 
         if (hasDialogue)
             availableDialogue = gameObject.GetComponent<ArticyReference>().reference.GetObject();
+
+        if (oneTimeInteraction && !hasBeenInteracted)
+        {
+            ShowInteractionBubble();
+        }
+        OnLateStart();
+    }
+
+    void OnLateStart()
+    {
+        //Interact on Enter Scene
+        if (eventOnStart)
+        {
+            OnInteract();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float distance = Vector3.Distance(transform.position, player.position);
+        if (oneTimeInteraction && !hasBeenInteracted && distance <= interactionBubbleRange)
+        {
+            interactionBubbleInstance.SetActive(true); // Show the interaction bubble when in range
+        }
+        else if (oneTimeInteraction && hasBeenInteracted)
+        {
+            interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when already interacted
+        }
+        else if (oneTimeInteraction && distance > interactionBubbleRange)
+        {
+            interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when out of range
+        }
+    }
+
+    private void ShowInteractionBubble()
+    {
+        if (oneTimeInteractionBubble != null)
+        {
+            // Instantiate the interaction bubble slightly above the object
+            interactionBubbleInstance = Instantiate(oneTimeInteractionBubble, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+
+            // Parent the bubble to this object for better organization
+            interactionBubbleInstance.transform.SetParent(transform);
+
+            // Ensure the bubble always faces the camera
+            //interactionBubbleInstance.AddComponent<Billboard>();
+
+            // Set up the interaction logic
+            interactionBubbleInstance.GetComponent<InteractionBubble>().Setup(this);
+        }
     }
 
     private void OnMouseEnter()
@@ -126,6 +180,11 @@ public class Interactable : MonoBehaviour
             dialogueManager.StartDialogue(availableDialogue);
             //availableDialogue = null;
         }
+    }
+
+    public void SpeechBubble()
+    {
+        Debug.Log("Speech Bubble is working");
     }
 
     private IEnumerator TeleportRoutine(Transform player)

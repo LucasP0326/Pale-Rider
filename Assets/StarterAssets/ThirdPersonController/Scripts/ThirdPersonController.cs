@@ -17,8 +17,10 @@ namespace StarterAssets
         [Header("UI")]
         public bool paused = false;
         public bool inDialogue = false;
+        public bool hasThought = false;
         public GameObject pauseMenu;
         public GameObject dialogueManager;
+        public GameObject thoughtCircle;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -208,6 +210,15 @@ namespace StarterAssets
             {
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1.0f;
+            }
+
+            if (hasThought)
+            {
+                thoughtCircle.SetActive(true);
+            }
+            else
+            {
+                thoughtCircle.SetActive(false);
             }
         }
 
@@ -449,7 +460,7 @@ namespace StarterAssets
         {
             //Open Pause Menu
             //Currently has pause activate right when dialogue ends
-            if (_input.pause && !inDialogue)
+            if (_input.pause)
             {
                 Pause2();
             }
