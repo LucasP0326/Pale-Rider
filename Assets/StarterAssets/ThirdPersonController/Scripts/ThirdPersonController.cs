@@ -17,10 +17,16 @@ namespace StarterAssets
         [Header("UI")]
         public bool paused = false;
         public bool inDialogue = false;
-        public bool hasThought = false;
         public GameObject pauseMenu;
         public GameObject dialogueManager;
         public GameObject thoughtCircle;
+        [Header("Thought")]
+        public bool hasThought = false;
+        public GameObject tempThoughtTrigger;
+        public GameObject reptilianThoughtBubble;
+        public GameObject paleomammalianThoughtBubble;
+        public GameObject neomammalianThoughtBubble;
+        public GameObject paleThoughtBubble;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -188,6 +194,16 @@ namespace StarterAssets
             Move();
             Pause();
 
+            // Check if the Investigate key is being held down
+            /*if (_input.investigate) // Assuming "investigate" is the action name in your input system
+            {
+                hasThought = true;
+            }
+            else
+            {
+                hasThought = false;
+            }*/
+
             if (tempInteractableObject != null)
             {
                 float distance = Vector3.Distance(transform.position, tempInteractableObject.transform.position);
@@ -215,6 +231,13 @@ namespace StarterAssets
             if (hasThought)
             {
                 thoughtCircle.SetActive(true);
+                if (tempThoughtTrigger != null)
+                {
+                    reptilianThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().reptilianThought);
+                    paleomammalianThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().paleomammalianThought);
+                    neomammalianThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().neomammalianThought);
+                    paleThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().paleThought);
+                }
             }
             else
             {
@@ -558,9 +581,25 @@ namespace StarterAssets
             }
         }
 
-        /*public void EnterDialogue()
+        //Set the tempInteractableObject to the object the player entered
+        private void OnTriggerEnter(Collider other)
         {
-            inDialogue = true;
-        }*/
+            // Check if the object has the "ThoughtTrigger" script
+            if (other.GetComponent<ThoughtTrigger>() != null)
+            {
+                // Set tempThoughtTrigger to the object the player entered
+                tempThoughtTrigger = other.gameObject;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Check if the object has the "ThoughtTrigger" script
+            if (other.GetComponent<ThoughtTrigger>() != null)
+            {
+                // Reset tempThoughtTrigger when the player exits the trigger
+                tempThoughtTrigger = null;
+            }
+        }
     }
 }

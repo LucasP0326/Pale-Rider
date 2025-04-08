@@ -13,6 +13,9 @@ public class MainMenu : MonoBehaviour
     private AudioSource audioSource; // Reference to the AudioSource
     [SerializeField]
     private AudioClip clickSound; // Reference to the click sound effect
+
+    [Header("Panels")]
+    public GameObject optionsPanel;
     void Start()
     {
         // Ensure the AudioSource is assigned
@@ -60,6 +63,10 @@ public class MainMenu : MonoBehaviour
         PlayClickSound();
         // Implement your options logic here
         Debug.Log("Options called - implement your options logic here.");
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(!optionsPanel.activeSelf); // Toggle the options panel visibility
+        }
     }
 
     public void PlayClickSound()

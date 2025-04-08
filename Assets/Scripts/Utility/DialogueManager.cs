@@ -87,6 +87,8 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             Destroy(child.gameObject);
         }
 
+        aSource.Stop();
+
         // Trigger the custom event
         onDialogueClosed?.Invoke();
     }

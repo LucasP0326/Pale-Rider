@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 1060734906016463809}
   - component: {fileID: 8515535955900913869}
   - component: {fileID: 7393044951806155223}
-  m_Layer: 8
+  - component: {fileID: 316391503774750807}
+  m_Layer: 6
   m_Name: Neo Thought
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7354159710851556899
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5620164733796412702}
@@ -108,6 +109,44 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &316391503774750807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113062616290283118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  playerController: {fileID: 4416926081852918481}
+  dialogueManager: {fileID: 0}
+  availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
 --- !u!1 &122036865199361367
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,13 +284,14 @@ GameObject:
   - component: {fileID: 5772955401574502006}
   - component: {fileID: 8008910227116215906}
   - component: {fileID: 1739363571349913215}
-  m_Layer: 8
+  - component: {fileID: 4751983979687345856}
+  m_Layer: 6
   m_Name: Reptile Thought
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1230105378552338653
 Transform:
   m_ObjectHideFlags: 0
@@ -262,7 +302,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: -0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5620164733796412702}
@@ -341,6 +381,44 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4751983979687345856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480566029579740151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  playerController: {fileID: 4416926081852918481}
+  dialogueManager: {fileID: 0}
+  availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
 --- !u!1 &537844051952069026
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,13 +625,14 @@ GameObject:
   - component: {fileID: 5390788167183449795}
   - component: {fileID: 4620206208920892049}
   - component: {fileID: 6510173109331051869}
-  m_Layer: 8
+  - component: {fileID: 8787718027633245489}
+  m_Layer: 6
   m_Name: Pale Thought
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &216428392370224661
 Transform:
   m_ObjectHideFlags: 0
@@ -564,7 +643,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5620164733796412702}
@@ -643,6 +722,44 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8787718027633245489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443154812174086686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  playerController: {fileID: 4416926081852918481}
+  dialogueManager: {fileID: 0}
+  availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
 --- !u!1 &1528771118847088261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,10 +1683,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: 0
   inDialogue: 0
-  hasThought: 0
   pauseMenu: {fileID: 0}
   dialogueManager: {fileID: 0}
   thoughtCircle: {fileID: 2704706129748351962}
+  hasThought: 0
+  tempThoughtTrigger: {fileID: 0}
+  reptilianThoughtBubble: {fileID: 480566029579740151}
+  paleomammalianThoughtBubble: {fileID: 5475678514961446281}
+  neomammalianThoughtBubble: {fileID: 113062616290283118}
+  paleThoughtBubble: {fileID: 1443154812174086686}
   MoveSpeed: 2
   SprintSpeed: 5
   RotationSmoothTime: 0.12
@@ -1639,6 +1761,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   pause: 0
+  investigate: 0
   analogMovement: 0
   cursorLocked: 0
   cursorInputForLook: 0
@@ -1946,13 +2069,14 @@ GameObject:
   - component: {fileID: 3722413075099041465}
   - component: {fileID: 5209123152320537155}
   - component: {fileID: 2007966047444743759}
-  m_Layer: 8
+  - component: {fileID: 4483322484778997389}
+  m_Layer: 6
   m_Name: Paleo Thought
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8566087052718128551
 Transform:
   m_ObjectHideFlags: 0
@@ -1963,7 +2087,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5620164733796412702}
@@ -2042,6 +2166,44 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4483322484778997389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475678514961446281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  playerController: {fileID: 4416926081852918481}
+  dialogueManager: {fileID: 0}
+  availableDialogue: {fileID: 0}
+  aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
 --- !u!1 &5653482252439368515
 GameObject:
   m_ObjectHideFlags: 0

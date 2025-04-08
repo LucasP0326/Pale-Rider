@@ -479,113 +479,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 270526878474919915, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378545517597605765, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00011622906
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378545517597605765, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000071672395
-      objectReference: {fileID: 0}
-    - target: {fileID: 2419512941765886881, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2419512941765886881, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2419512941765886881, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767955338513339168, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108517232668350566, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_Size
-      value: 0.02639359
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108517232668350566, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226001777049030481, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290208833377075631, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_Size
-      value: 0.6955753
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290208833377075631, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4547025096751640748, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Name
       value: UI Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595810939930883781, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595810939930883781, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595810939930883781, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5354633869643804871, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_ChildControlHeight
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6723954826652603266, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Pivot.x
@@ -666,10 +562,6 @@ PrefabInstance:
     - target: {fileID: 6723954826652603266, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7278915217932040661, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8192935355676521331, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1450,6 +1342,13 @@ MonoBehaviour:
   dialogueManager: {fileID: 2107445717}
   availableDialogue: {fileID: 0}
   aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -1473,6 +1372,8 @@ MonoBehaviour:
   interactionRange: 2
   door: {fileID: 0}
   soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
   hasDialogue: 1
 --- !u!4 &1566394683
 Transform:
@@ -1648,6 +1549,13 @@ MonoBehaviour:
   dialogueManager: {fileID: 0}
   availableDialogue: {fileID: 0}
   aSource: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -1671,6 +1579,8 @@ MonoBehaviour:
   interactionRange: 2
   door: {fileID: 0}
   soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
   hasDialogue: 0
 --- !u!4 &1669234676
 Transform:

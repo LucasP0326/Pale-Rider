@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool pause;
+		public bool investigate; // New field for Investigate action
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +50,12 @@ namespace StarterAssets
 		{
 			PauseInput(value.isPressed);
 		}
+
+		// New method for Investigate input
+		public void OnInvestigate(InputValue value)
+		{
+			InvestigateInput(value.isPressed);
+		}
 #endif
 
 
@@ -75,6 +82,12 @@ namespace StarterAssets
 		public void PauseInput(bool newPauseState)
 		{
 			pause = newPauseState;
+		}
+
+		// New method to set the Investigate input state
+		public void InvestigateInput(bool newInvestigateState)
+		{
+			investigate = newInvestigateState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

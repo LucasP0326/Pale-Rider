@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Articy.Unity;
 using StarterAssets;
 using DoorScript;
+using TMPro; // Import TextMeshPro namespace
 
 public class Interactable : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class Interactable : MonoBehaviour
     public bool hasBeenInteracted = false; // Tracks if the object has been interacted with
     public GameObject oneTimeInteractionBubble; // The prefab bubble to show when object can be interacted with once.
     public float interactionBubbleRange = 5f;
+
+    [Header("Interaction Bubble Text")]
+    public GameObject interactionTextPrefab; // Prefab for the 3D TextMeshPro object
+    public string interactionText = "Default Interaction Text"; // Text to display when the bubble is clicked
+    public float interactionTextLength = 3f; // Duration to display the text
+
     
     [Header("Event Manager")]
     public UnityEvent onInteract; // Assignable event in the Inspector
@@ -40,6 +47,8 @@ public class Interactable : MonoBehaviour
     public AudioClip soundEffect;
 
     [Header("Dialogue")]
+    public bool oneTimeDialogue = false; // If true, the object can only be interacted with once for dialogue
+    public bool hasDialogueOnce = false; // Tracks if the object has been interacted with for dialogue
     public bool hasDialogue;
 
     [Header("Object Outline")]
@@ -76,6 +85,12 @@ public class Interactable : MonoBehaviour
         {
             OnInteract();
         }
+    }
+
+    void Awake()
+    {
+        if (hasDialogue)
+            availableDialogue = gameObject.GetComponent<ArticyReference>().reference.GetObject();
     }
 
     // Update is called once per frame
@@ -177,14 +192,41 @@ public class Interactable : MonoBehaviour
         Debug.Log("I am on Interactable");
         if (availableDialogue)
         {
-            dialogueManager.StartDialogue(availableDialogue);
-            //availableDialogue = null;
+            if (oneTimeDialogue && !hasDialogueOnce)
+            {
+                hasDialogueOnce = true; // Set to true after the first interaction
+                dialogueManager.StartDialogue(availableDialogue);
+                //availableDialogue = null;
+            }
+            else if (!oneTimeDialogue)
+            {
+                hasDialogueOnce = false; // Reset for future interactions
+                dialogueManager.StartDialogue(availableDialogue);
+            }
+            else
+            {
+                Debug.LogWarning("No available dialogue assigned.");
+            }
         }
     }
 
     public void SpeechBubble()
     {
-        Debug.Log("Speech Bubble is working");
+        if (interactionTextPrefab != null)
+        {
+            // Instantiate the 3D TextMeshPro object slightly above the interaction bubble
+            GameObject textInstance = Instantiate(interactionTextPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+
+            // Set the text content
+            TMP_Text tmpText = textInstance.GetComponent<TMP_Text>();
+            if (tmpText != null)
+            {
+                tmpText.text = interactionText;
+            }
+
+            // Optionally destroy the text after a delay
+            Destroy(textInstance, 3f); // Destroy after 3 seconds
+        }
     }
 
     private IEnumerator TeleportRoutine(Transform player)
