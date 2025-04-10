@@ -99,6 +99,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         //Remove existing Text
         //dialogueText.text = string.Empty;
         //dialogueSpeaker.text = string.Empty;
+
+        //Stop Current Audio
+        aSource.Stop();
         
         //Add Dialogue Text
         var objectWithText = aObject as IObjectWithLocalizableText;

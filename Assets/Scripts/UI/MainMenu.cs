@@ -15,7 +15,12 @@ public class MainMenu : MonoBehaviour
     private AudioClip clickSound; // Reference to the click sound effect
 
     [Header("Panels")]
+    public GameObject mainMenuPanel;
+    public GameObject loadGamePanel;
     public GameObject optionsPanel;
+    public GameObject settingsPanel;
+    public GameObject controlsPanel;
+
     void Start()
     {
         // Ensure the AudioSource is assigned
@@ -23,12 +28,43 @@ public class MainMenu : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
+        mainMenuPanel.SetActive(true); // Hide the main menu panel at the start
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!mainMenuPanel.activeSelf && !optionsPanel.activeSelf && !loadGamePanel.activeSelf)
+        {
+            if (Input.anyKeyDown)
+            {
+                mainMenuPanel.SetActive(true); // Show the main menu panel
+            }
+        }
         
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PlayClickSound();
+            if (optionsPanel != null && optionsPanel.activeSelf)
+            {
+                optionsPanel.SetActive(false); // Hide the options panel
+                mainMenuPanel.SetActive(true); // Show the main menu panel
+            }
+            else if (loadGamePanel != null && loadGamePanel.activeSelf)
+            {
+                loadGamePanel.SetActive(false); // Hide the load game panel
+                mainMenuPanel.SetActive(true); // Show the main menu panel
+            }
+            else if (mainMenuPanel != null && mainMenuPanel.activeSelf)
+            {
+                mainMenuPanel.SetActive(false);
+                Debug.Log("Main menu panel is active, hiding it.");
+            }
+            else
+            {
+                //Quit(); // Call the Quit method if not in options
+            }
+        }
     }
 
     public void NewGame()
@@ -66,7 +102,20 @@ public class MainMenu : MonoBehaviour
         if (optionsPanel != null)
         {
             optionsPanel.SetActive(!optionsPanel.activeSelf); // Toggle the options panel visibility
+            mainMenuPanel.SetActive(false); // Hide the main menu panel
         }
+    }
+
+    public void Settings()
+    {
+        settingsPanel.SetActive(!settingsPanel.activeSelf); // Toggle the settings panel visibility
+        controlsPanel.SetActive(false); // Hide the controls panel
+    }
+
+    public void Controls()
+    {
+        controlsPanel.SetActive(!controlsPanel.activeSelf); // Toggle the controls panel visibility
+        settingsPanel.SetActive(false); // Hide the settings panel
     }
 
     public void PlayClickSound()
