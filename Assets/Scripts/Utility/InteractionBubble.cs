@@ -1,4 +1,5 @@
 using UnityEngine;
+using StarterAssets;
 
 public class InteractionBubble : MonoBehaviour
 {
@@ -6,7 +7,13 @@ public class InteractionBubble : MonoBehaviour
 
     // Desired rotation for the bubble to appear as a perfect circle
     private Quaternion desiredRotation = Quaternion.Euler(45f, 30f, 0f);
+    private GameObject player;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player"); // Find the player object by tag
+    }
+    
     public void Setup(Interactable interactable)
     {
         parentInteractable = interactable;
@@ -19,10 +26,13 @@ public class InteractionBubble : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (parentInteractable != null)
+        if (player != null && player.GetComponent<ThirdPersonController>().inDialogue == false)
         {
-            parentInteractable.OnInteract();
-            parentInteractable.hasBeenInteracted = true; // Set the flag to true after interaction
+            if (parentInteractable != null)
+            {
+                parentInteractable.OnInteract();
+                parentInteractable.hasBeenInteracted = true; // Set the flag to true after interaction
+            }
         }
     }
 

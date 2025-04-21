@@ -12,10 +12,10 @@ public class Interactable : MonoBehaviour
     public bool eventOnStart = false;
     
     private Transform player; // Reference to the player
-    public GameObject playerController;
-    public DialogueManager dialogueManager;
-    public ArticyObject availableDialogue;
-    public AudioSource aSource;
+    private GameObject playerController;
+    private DialogueManager dialogueManager;
+    private ArticyObject availableDialogue;
+    private AudioSource aSource;
 
     [Header("One-Time Interaction")]
     public bool oneTimeInteraction = false; // If true, the object can only be interacted with once
@@ -58,6 +58,8 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        playerController = GameObject.FindGameObjectWithTag("Player");
+        dialogueManager = FindObjectOfType<DialogueManager>();
         aSource = GetComponent<AudioSource> ();
 
         // Add or get the Outline component
@@ -190,7 +192,7 @@ public class Interactable : MonoBehaviour
     public void BeginDialogue()
     {
         Debug.Log("I am on Interactable");
-        if (availableDialogue)
+        if (availableDialogue && playerController.GetComponent<ThirdPersonController>().inDialogue == false)
         {
             if (oneTimeDialogue && !hasDialogueOnce)
             {
@@ -237,6 +239,7 @@ public class Interactable : MonoBehaviour
         {
             // Store the spawn point ID before switching scenes
             PlayerPrefs.SetString("SpawnPoint", spawnPointID);
+            PlayerPrefs.Save(); // Ensure the value is saved immediately
             SceneManager.LoadScene(sceneName);
         }
         else

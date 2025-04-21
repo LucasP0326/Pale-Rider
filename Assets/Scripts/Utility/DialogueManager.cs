@@ -124,6 +124,16 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             var speakerAsset = ((speaker as IObjectWithPreviewImage).PreviewImage.Asset as Asset);
             if (speakerAsset != null)
             {
+                //No portrait for player character
+                if (speakerEntity.DisplayName == "You")
+                {
+                    speakerPortrait.gameObject.SetActive(false);
+                }
+                else
+                {
+                    speakerPortrait.gameObject.SetActive(true);
+                    speakerPortrait.sprite = speakerAsset.LoadAssetAsSprite();
+                }
                 speakerPortrait.sprite = speakerAsset.LoadAssetAsSprite();
             }
             
@@ -148,9 +158,8 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         ClearAllBranches();
 
-        //throw new System.NotImplementedException();
         bool dialogueIsFinished = true;
-        foreach(var branch in aBranches)
+        foreach (var branch in aBranches)
         {
             if (branch.Target is IDialogueFragment)
             {
@@ -158,9 +167,23 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             }
         }
 
+        // Check if the current speaker is the player
+        if (dialogueSpeaker.text == "You")
+        {
+            // Automatically proceed to the next dialogue fragment
+            foreach (var branch in aBranches)
+            {
+                if (branch.Target is IDialogueFragment)
+                {
+                    flowPlayer.Play(branch);
+                    return;
+                }
+            }
+        }
+
         if (!dialogueIsFinished)
         {
-            foreach(var branch in aBranches)
+            foreach (var branch in aBranches)
             {
                 GameObject btn = Instantiate(branchPrefab, branchLayoutPanel);
                 btn.GetComponent<BranchChoice>().AssignBranch(flowPlayer, branch);

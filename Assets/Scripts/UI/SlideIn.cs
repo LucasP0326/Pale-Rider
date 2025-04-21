@@ -10,9 +10,14 @@ public class SlideIn : MonoBehaviour
     [Tooltip("The speed of the slide-in animation.")]
     public float slideSpeed = 5f;
 
-    private RectTransform rectTransform;
-    private bool isSliding = false;
+    public RectTransform rectTransform;
+    public bool isSliding = false;
 
+    void Start()
+    {
+        
+    }
+    
     void OnEnable()
     {
         // Initialize the RectTransform and set the starting position
@@ -28,12 +33,22 @@ public class SlideIn : MonoBehaviour
     {
         if (isSliding && rectTransform != null)
         {
+            Vector3 previousPosition = rectTransform.anchoredPosition;
+
             // Smoothly move the UI element toward the target position
             rectTransform.anchoredPosition = Vector3.Lerp(
                 rectTransform.anchoredPosition,
                 targetPosition,
                 Time.deltaTime * slideSpeed
             );
+
+            // Check if the position is stuck (not moving)
+            if (Vector3.Distance(previousPosition, rectTransform.anchoredPosition) < 0.001f)
+            {
+                rectTransform.anchoredPosition = targetPosition;
+                isSliding = false; // Stop the animation
+                return;
+            }
 
             // Stop sliding when close enough to the target position
             if (Vector3.Distance(rectTransform.anchoredPosition, targetPosition) < 0.1f)

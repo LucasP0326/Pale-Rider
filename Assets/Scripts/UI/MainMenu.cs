@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
         }
         mainMenuPanel.SetActive(true); // Hide the main menu panel at the start
+        optionsPanel.SetActive(false);
     }
 
     // Update is called once per frame

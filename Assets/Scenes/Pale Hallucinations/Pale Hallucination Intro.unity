@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4672384704658236212, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6723954826652603266, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -562,6 +566,10 @@ PrefabInstance:
     - target: {fileID: 6723954826652603266, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278915217932040661, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8192935355676521331, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1338,10 +1346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 1968090299}
-  dialogueManager: {fileID: 2107445717}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
@@ -1545,10 +1549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 0}
-  dialogueManager: {fileID: 0}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
@@ -1597,11 +1597,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1968090299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
-  m_PrefabInstance: {fileID: 806114915}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2107445716
 GameObject:
   m_ObjectHideFlags: 0

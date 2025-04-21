@@ -16,4 +16,9 @@ public class EventTrigger : MonoBehaviour
             onTriggerEnter?.Invoke(); // Invoke the assigned event
         }
     }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject); // Destroy the GameObject this script is attached to
+    }
 }

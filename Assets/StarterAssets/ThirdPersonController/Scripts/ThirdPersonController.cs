@@ -20,6 +20,7 @@ namespace StarterAssets
         public GameObject pauseMenu;
         public GameObject dialogueManager;
         public GameObject thoughtCircle;
+        public GameObject HUD;
         [Header("Thought")]
         public bool hasThought = false;
         public GameObject tempThoughtTrigger;
@@ -178,6 +179,22 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            // Retrieve the spawn point ID from PlayerPrefs
+            string spawnPointID = PlayerPrefs.GetString("SpawnPoint", "DefaultSpawnPoint");
+
+            // Find the spawn point in the scene
+            Transform spawnPoint = GameObject.Find(spawnPointID)?.transform;
+
+            if (spawnPoint != null)
+            {
+                // Move the player to the spawn point
+                transform.position = spawnPoint.position;
+            }
+            else
+            {
+                Debug.LogWarning($"Spawn point with ID '{spawnPointID}' not found in the scene.");
+            }
         }
 
         private void Update()
@@ -220,11 +237,13 @@ namespace StarterAssets
             if (paused)
             {
                 pauseMenu.SetActive(true);
+                HUD.SetActive(false);
                 Time.timeScale = 0f;
             }
             else if (!paused)
             {
                 pauseMenu.SetActive(false);
+                HUD.SetActive(true);
                 Time.timeScale = 1.0f;
             }
 

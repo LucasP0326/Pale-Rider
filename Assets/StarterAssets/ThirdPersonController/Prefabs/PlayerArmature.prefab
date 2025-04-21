@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8515535955900913869}
   - component: {fileID: 7393044951806155223}
   - component: {fileID: 316391503774750807}
+  - component: {fileID: 3991955033339575694}
   m_Layer: 6
   m_Name: Neo Thought
   m_TagString: Untagged
@@ -28,12 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113062616290283118}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -0.24146368, y: -0.5407338, z: 0.4542843}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5620164733796412702}
+  m_Father: {fileID: 2411782305941534148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1060734906016463809
 MeshFilter:
@@ -147,6 +148,19 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+--- !u!114 &3991955033339575694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113062616290283118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518a403b9a86d0c43952de90b8ff9219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thoughtTrigger: {fileID: 0}
 --- !u!1 &122036865199361367
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +299,7 @@ GameObject:
   - component: {fileID: 8008910227116215906}
   - component: {fileID: 1739363571349913215}
   - component: {fileID: 4751983979687345856}
+  - component: {fileID: 6776421855251828590}
   m_Layer: 6
   m_Name: Reptile Thought
   m_TagString: Untagged
@@ -300,12 +315,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480566029579740151}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -0.24146368, y: -0.54073215, z: -0.1457157}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5620164733796412702}
+  m_Father: {fileID: 2411782305941534148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5772955401574502006
 MeshFilter:
@@ -419,6 +434,19 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+--- !u!114 &6776421855251828590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480566029579740151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518a403b9a86d0c43952de90b8ff9219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thoughtTrigger: {fileID: 0}
 --- !u!1 &537844051952069026
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +654,7 @@ GameObject:
   - component: {fileID: 4620206208920892049}
   - component: {fileID: 6510173109331051869}
   - component: {fileID: 8787718027633245489}
+  - component: {fileID: 8978184118063416504}
   m_Layer: 6
   m_Name: Pale Thought
   m_TagString: Untagged
@@ -641,12 +670,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443154812174086686}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -0.5414637, y: -0.540733, z: 0.15428431}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5620164733796412702}
+  m_Father: {fileID: 2411782305941534148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5390788167183449795
 MeshFilter:
@@ -760,6 +789,19 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+--- !u!114 &8978184118063416504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443154812174086686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518a403b9a86d0c43952de90b8ff9219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thoughtTrigger: {fileID: 0}
 --- !u!1 &1528771118847088261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,15 +1051,11 @@ Transform:
   m_GameObject: {fileID: 2704706129748351962}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 0, y: 1.913, z: 0}
+  m_LocalPosition: {x: -0.24146368, y: -0.540733, z: 0.15428431}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1230105378552338653}
-  - {fileID: 8566087052718128551}
-  - {fileID: 7354159710851556899}
-  - {fileID: 216428392370224661}
-  m_Father: {fileID: 3893294197879345259}
+  m_Children: []
+  m_Father: {fileID: 2411782305941534148}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!212 &335260868664277182
 SpriteRenderer:
@@ -1568,6 +1606,42 @@ Transform:
   - {fileID: 2719569588957798408}
   m_Father: {fileID: 7898439671699593946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4381783012665809447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2411782305941534148}
+  m_Layer: 0
+  m_Name: Thought Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2411782305941534148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381783012665809447}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24146368, y: 2.453733, z: -0.15428431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1230105378552338653}
+  - {fileID: 8566087052718128551}
+  - {fileID: 7354159710851556899}
+  - {fileID: 216428392370224661}
+  - {fileID: 5620164733796412702}
+  m_Father: {fileID: 3893294197879345259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4416926081852918481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1681,7 @@ Transform:
   - {fileID: 8338988566280778637}
   - {fileID: 8002264680419333305}
   - {fileID: 272993188807782130}
-  - {fileID: 5620164733796412702}
+  - {fileID: 2411782305941534148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6982812146204527121
@@ -2070,6 +2144,7 @@ GameObject:
   - component: {fileID: 5209123152320537155}
   - component: {fileID: 2007966047444743759}
   - component: {fileID: 4483322484778997389}
+  - component: {fileID: 1149922192513411369}
   m_Layer: 6
   m_Name: Paleo Thought
   m_TagString: Untagged
@@ -2085,12 +2160,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5475678514961446281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 0.058536336, y: -0.540733, z: 0.15428431}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5620164733796412702}
+  m_Father: {fileID: 2411782305941534148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3722413075099041465
 MeshFilter:
@@ -2204,6 +2279,19 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+--- !u!114 &1149922192513411369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475678514961446281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518a403b9a86d0c43952de90b8ff9219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thoughtTrigger: {fileID: 0}
 --- !u!1 &5653482252439368515
 GameObject:
   m_ObjectHideFlags: 0
