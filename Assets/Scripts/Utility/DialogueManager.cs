@@ -152,6 +152,23 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         TMP_Text chara = Instantiate(speakerPrefab, scrollContent);
         TMP_Text dial = Instantiate(dialoguePrefab, scrollContent);
         chara.text = dialogueSpeaker.text;
+        //Set character colors
+        if (dialogueSpeaker.text == "Reptilian Complex" || dialogueSpeaker.text == "Endurance" || dialogueSpeaker.text == "Physicality" || dialogueSpeaker.text == "Volition" || dialogueSpeaker.text == "Reflexivity")
+        {
+            chara.color = new Color(0.8f, 0.2f, 0.2f); // Red color for these attributes
+        }
+        else if (dialogueSpeaker.text == "Paleomammalian Complex" || dialogueSpeaker.text == "Empathy" || dialogueSpeaker.text == "Suggestion" || dialogueSpeaker.text == "Authority" || dialogueSpeaker.text == "Rhetoric")
+        {
+            chara.color = new Color(0.2f, 0.8f, 0.2f); // Green color for these attributes
+        }
+        else if (dialogueSpeaker.text == "Neomammalian Complex" || dialogueSpeaker.text == "Encyclopedia" || dialogueSpeaker.text == "Logic" || dialogueSpeaker.text == "Perception" || dialogueSpeaker.text == "Conceptualization")
+        {
+            chara.color = new Color(0.2f, 0.2f, 0.8f); // Blue color for these attributes
+        }
+        else if (dialogueSpeaker.text == "The Pale" || dialogueSpeaker.text == "Self-Actualization" || dialogueSpeaker.text == "Perspicacity" || dialogueSpeaker.text == "Savor Faire" || dialogueSpeaker.text == "Tenebrality")
+        {
+            chara.color = new Color(0.5f, 0.2f, 0.5f); // Purple color
+        }
         dial.text = dialogueText.text;
         // Auto-scroll to the bottom
         StartCoroutine(ScrollToBottom());
