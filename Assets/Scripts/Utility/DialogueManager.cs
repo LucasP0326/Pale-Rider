@@ -43,6 +43,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField]
     AudioClip voiceOver;
     [SerializeField]
+    AudioClip[] skillSFX;
+    
+    [SerializeField]
     AudioSource aSource;
 
     [Header("Events")]

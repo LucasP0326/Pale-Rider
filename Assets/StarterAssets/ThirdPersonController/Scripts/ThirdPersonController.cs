@@ -16,6 +16,7 @@ namespace StarterAssets
     {
         [Header("UI")]
         public bool paused = false;
+        public bool inMenu = false;
         public bool inDialogue = false;
         public GameObject pauseMenu;
         public GameObject dialogueManager;
@@ -236,7 +237,8 @@ namespace StarterAssets
 
             if (paused)
             {
-                pauseMenu.SetActive(true);
+                if (!inMenu)
+                    pauseMenu.SetActive(true);
                 HUD.SetActive(false);
                 Time.timeScale = 0f;
             }

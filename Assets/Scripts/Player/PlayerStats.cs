@@ -22,6 +22,13 @@ public class PlayerStats : MonoBehaviour
     public int maxResolve;
 
     [Header("Player Skills")]
+    public int reptilianBaseScore = 1;
+    public int paleoBaseScore = 1;
+    public int neoBaseScore = 1;
+    public int paleBaseScore = 1;
+
+    [Header("Player Cash")]
+    public float playerCash;
 
     [Header("UI")]
     public GameObject HUD;
@@ -37,6 +44,7 @@ public class PlayerStats : MonoBehaviour
     public TMP_Text resolveLossNumberText;
     private GameObject[] healthBoxes; // Array to store health box instances
     private GameObject[] resolveBoxes; // Array to store resolve box instances
+    public TMP_Text moneyText;
 
     private void Start()
     {
@@ -87,6 +95,7 @@ public class PlayerStats : MonoBehaviour
         // Update the health and resolve bars
         UpdateHealthBar();
         UpdateResolveBar();
+        UpdateMoneyText();
     }
 
     /*public void ModifyHealth(int amount)
@@ -228,6 +237,14 @@ public class PlayerStats : MonoBehaviour
             {
                 resolveImage.enabled = i < currentResolve; // Enable if within currentResolve, disable otherwise
             }
+        }
+    }
+
+    private void UpdateMoneyText()
+    {
+        if (moneyText != null)
+        {
+            moneyText.text = "£" + playerCash.ToString("F2"); // Format to 2 decimal places
         }
     }
 }
