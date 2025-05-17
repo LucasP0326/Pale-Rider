@@ -13,7 +13,7 @@ public class MixerControl : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>(); // Find the GameManager in the scene
+        gameManager = FindFirstObjectByType<GameManager>(); // Find the GameManager in the scene
         volumeSlider = GetComponent<Slider>(); // Get the Slider component attached to this GameObject
 
         // Generate a unique PlayerPrefs key for this group

@@ -22,10 +22,28 @@ public class PlayerStats : MonoBehaviour
     public int maxResolve;
 
     [Header("Player Skills")]
-    public int reptilianBaseScore = 1;
-    public int paleoBaseScore = 1;
-    public int neoBaseScore = 1;
-    public int paleBaseScore = 1;
+    public string signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
+    public int reptilianBaseScore = ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore;
+    public int paleoBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore;
+    public int neoBaseScore = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore;
+    public int paleBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore;
+
+    public int endurance = ArticyGlobalVariables.Default.PlayerStats.Endurance;
+    public int physicality = ArticyGlobalVariables.Default.PlayerStats.Physicality;
+    public int reflexivity = ArticyGlobalVariables.Default.PlayerStats.Reflexivity;
+    public int volition = ArticyGlobalVariables.Default.PlayerStats.Volition;
+    public int authority = ArticyGlobalVariables.Default.PlayerStats.Authority;
+    public int conceptualization = ArticyGlobalVariables.Default.PlayerStats.Conceptualization;
+    public int encyclopedia = ArticyGlobalVariables.Default.PlayerStats.Encyclopedia;
+    public int empathy = ArticyGlobalVariables.Default.PlayerStats.Empathy;
+    public int logic = ArticyGlobalVariables.Default.PlayerStats.Logic;
+    public int perception = ArticyGlobalVariables.Default.PlayerStats.Perception;
+    public int perspicacity = ArticyGlobalVariables.Default.PlayerStats.Perspicacity;
+    public int rhetoric = ArticyGlobalVariables.Default.PlayerStats.Rhetoric;
+    public int savoirFaire = ArticyGlobalVariables.Default.PlayerStats.SavoirFaire;
+    public int selfActualization = ArticyGlobalVariables.Default.PlayerStats.SelfActualization;
+    public int suggestion = ArticyGlobalVariables.Default.PlayerStats.Suggestion;
+    public int tenebrality = ArticyGlobalVariables.Default.PlayerStats.Tenebrality;
 
     [Header("Player Cash")]
     public float playerCash;
@@ -51,6 +69,13 @@ public class PlayerStats : MonoBehaviour
         // Initialize health and resolve from Articy variables
         maxHealth = ArticyGlobalVariables.Default.PlayerStats.MaxHealth;
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
+
+        signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
+        reptilianBaseScore = ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore;
+        paleoBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore;
+        neoBaseScore = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore;
+        paleBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore;
+
         currentHealth = maxHealth;
         currentResolve = maxResolve;
         previousHealth = currentHealth;
@@ -66,8 +91,27 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         // Sync current health and resolve with Articy variables
+        maxHealth = ArticyGlobalVariables.Default.PlayerStats.MaxHealth;
+        maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
         currentHealth = ArticyGlobalVariables.Default.PlayerStats.Health;
         currentResolve = ArticyGlobalVariables.Default.PlayerStats.Resolve;
+
+        ArticyGlobalVariables.Default.PlayerStats.Endurance = endurance;
+        ArticyGlobalVariables.Default.PlayerStats.Physicality = physicality;
+        ArticyGlobalVariables.Default.PlayerStats.Reflexivity = reflexivity;
+        ArticyGlobalVariables.Default.PlayerStats.Volition = volition;
+        ArticyGlobalVariables.Default.PlayerStats.Authority = authority;
+        ArticyGlobalVariables.Default.PlayerStats.Conceptualization = conceptualization;
+        ArticyGlobalVariables.Default.PlayerStats.Encyclopedia = encyclopedia;
+        ArticyGlobalVariables.Default.PlayerStats.Empathy = empathy;
+        ArticyGlobalVariables.Default.PlayerStats.Logic = logic;
+        ArticyGlobalVariables.Default.PlayerStats.Perception = perception;
+        ArticyGlobalVariables.Default.PlayerStats.Perspicacity = perspicacity;
+        ArticyGlobalVariables.Default.PlayerStats.Rhetoric = rhetoric;
+        ArticyGlobalVariables.Default.PlayerStats.SavoirFaire = savoirFaire;
+        ArticyGlobalVariables.Default.PlayerStats.SelfActualization = selfActualization;
+        ArticyGlobalVariables.Default.PlayerStats.Suggestion = suggestion;
+        ArticyGlobalVariables.Default.PlayerStats.Tenebrality = tenebrality;
 
         if (currentHealth != previousHealth)
         {
@@ -93,40 +137,12 @@ public class PlayerStats : MonoBehaviour
         }
 
         // Update the health and resolve bars
+        //InitializeHealthBar();
+        //InitializeResolveBar();
         UpdateHealthBar();
         UpdateResolveBar();
         UpdateMoneyText();
     }
-
-    /*public void ModifyHealth(int amount)
-    {
-        int previousHealth = currentHealth;
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-
-        // Display health loss or gain
-        DisplayHealthChange(amount);
-
-        // Update Articy global variable
-        ArticyGlobalVariables.Default.PlayerStats.Health = currentHealth;
-
-        // Update the health bar
-        UpdateHealthBar();
-    }
-
-    public void ModifyResolve(int amount)
-    {
-        int previousResolve = currentResolve;
-        currentResolve = Mathf.Clamp(currentResolve + amount, 0, maxResolve);
-
-        // Display resolve loss or gain
-        DisplayResolveChange(amount);
-
-        // Update Articy global variable
-        ArticyGlobalVariables.Default.PlayerStats.Resolve = currentResolve;
-
-        // Update the resolve bar
-        UpdateResolveBar();
-    }*/
 
     private void DisplayHealthChange(int amount)
     {
@@ -180,8 +196,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void InitializeHealthBar()
+    public void InitializeHealthBar()
     {
+        //maxHealth = reptilianBaseScore;
         // Clear existing health boxes
         foreach (Transform child in healthBar.transform)
         {
@@ -197,8 +214,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void InitializeResolveBar()
+    public void InitializeResolveBar()
     {
+        //maxResolve = paleBaseScore;
         // Clear existing resolve boxes
         foreach (Transform child in resolveBar.transform)
         {

@@ -59,7 +59,7 @@ public class Interactable : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         playerController = GameObject.FindGameObjectWithTag("Player");
-        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
         aSource = GetComponent<AudioSource> ();
 
         // Add or get the Outline component
@@ -145,21 +145,24 @@ public class Interactable : MonoBehaviour
     {
         //onClick?.Invoke(); // Call the assigned function(s)
         ThirdPersonController playerController = FindFirstObjectByType<ThirdPersonController>();
-        if (playerController != null)
+        if (playerController.inMenu == false)
         {
-            playerController.tempInteractableObject = gameObject;
-            //playerController.MoveToTarget(transform.position); // Make the player run to the object
-        }
+            if (playerController != null && playerController.paused == false)
+            {
+                playerController.tempInteractableObject = gameObject;
+                //playerController.MoveToTarget(transform.position); // Make the player run to the object
+            }
 
-        float distance = Vector3.Distance(transform.position, player.position);
+            float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= interactionRange && !isTeleporting)
-        {
-            OnInteract();
-        }
-        else
-        {
-            Debug.Log("Player is too far to interact.");
+            if (distance <= interactionRange && !isTeleporting)
+            {
+                OnInteract();
+            }
+            else
+            {
+                Debug.Log("Player is too far to interact.");
+            }
         }
     }
 

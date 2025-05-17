@@ -3,6 +3,7 @@ using Articy.Unity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 using StarterAssets;
 using TMPro;
 
@@ -14,7 +15,7 @@ public class SkillSelectInterface : MonoBehaviour
     private PlayerStats playerStats;
 
     // Game State
-    private bool firstTime = true;
+    public bool firstTime = true;
     private bool signatureSkillSelected = false;
     private bool initialSkillsAssigned = false;
 
@@ -27,8 +28,23 @@ public class SkillSelectInterface : MonoBehaviour
 
     [Header("UI Elements")]
     public GameObject rowIncreasePanel;
+    public GameObject hintPanel;
     public GameObject startingPointsPanel;
+    //Portrait
+    public GameObject selectedSkillPanel;
     public GameObject selectedSkillPortrait;
+    public TextMeshProUGUI selectedSkillName;
+    public TextMeshProUGUI selectedSkillInfo;
+    public TextMeshProUGUI selectedSkillStats1;
+    public TextMeshProUGUI selectedSkillStats2;
+    public TextMeshProUGUI selectedSkillStats3;
+    public TextMeshProUGUI selectedSkillDescription;
+    public GameObject skillInfoPanel;
+    public GameObject skillDescriptionPanel;
+    public GameObject setSignaturePanel;
+
+    [Header("Skill Row Assignments")]
+    //Points
     public TextMeshProUGUI availableSkillPointsText;
     public TextMeshProUGUI startingAvailableSkillPointsText;
     public TextMeshProUGUI reptilianScore;
@@ -39,11 +55,15 @@ public class SkillSelectInterface : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        firstTime = !ArticyGlobalVariables.Default.GlobalVariables.AssignedSkills;
+
         playerController = GameObject.FindGameObjectWithTag("Player");
         controller = playerController.GetComponent<ThirdPersonController>();
         playerStats = playerController.GetComponent<PlayerStats>();
-        //rowIncreasePanel.SetActive(firstTime);
-        //startingPointsPanel.SetActive(firstTime);
+        rowIncreasePanel.SetActive(firstTime);
+        startingPointsPanel.SetActive(firstTime);
+        hintPanel.SetActive(firstTime);
+        selectedSkillPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,18 +78,28 @@ public class SkillSelectInterface : MonoBehaviour
             }
         }
 
-        rowIncreasePanel.SetActive(firstTime);
-        startingPointsPanel.SetActive(firstTime);
-
-        if (startingAvailableSkillPoints == 0)
+        if (startingAvailableSkillPoints == 0 && signatureSkillSelected)
         {
             initialSkillsAssigned = true;
         }
-        else if (startingAvailableSkillPoints > 0)
+        else if (startingAvailableSkillPoints > 0 && !signatureSkillSelected)
         {
             initialSkillsAssigned = false;
         }
 
+        //Update UI
+        rowIncreasePanel.SetActive(firstTime);
+        startingPointsPanel.SetActive(firstTime);
+        setSignaturePanel.SetActive(firstTime);
+        if (firstTime)
+        {
+            hintPanel.SetActive(!selectedSkillPanel.activeSelf);
+        }
+        else if (!firstTime)
+        {
+            hintPanel.SetActive(false);
+        }
+        
         //Display Values
         startingAvailableSkillPointsText.text = startingAvailableSkillPoints + " Available Points";
         reptilianScore.text = playerStats.reptilianBaseScore.ToString();
@@ -83,11 +113,38 @@ public class SkillSelectInterface : MonoBehaviour
         }
     }
 
+    public void SelectSkill()
+    {
+        selectedSkillPanel.SetActive(true);
+        selectedSkill = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        if (selectedSkill != null && selectedSkillPortrait != null)
+        {
+            Sprite skillImage = selectedSkill.GetComponent<SkillPortraitInfo>().fullPortrait;
+            selectedSkillPortrait.GetComponent<Image>().sprite = skillImage;
+        }
+        if (selectedSkillName != null && selectedSkill != null)
+        {
+            selectedSkillName.text = selectedSkill.name;
+        }
+
+        selectedSkillInfo.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillInfo;
+        selectedSkillStats1.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats1 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().categoryLevel;
+        selectedSkillStats2.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats2;
+        selectedSkillStats3.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats3;
+        selectedSkillDescription.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillDescription;
+
+        if (firstTime)
+        {
+            hintPanel.SetActive(false);
+        }
+    }
+
     public void Close()
     {
-        if (initialSkillsAssigned)
+        if (initialSkillsAssigned || !firstTime)
         {
             firstTime = false;
+            ArticyGlobalVariables.Default.GlobalVariables.AssignedSkills = true;
             gameObject.SetActive(false);
             if (controller != null)
             {
@@ -99,14 +156,54 @@ public class SkillSelectInterface : MonoBehaviour
         {
             Debug.Log("You must assign your skills before closing the menu.");
         }
+
+        //Initialize Player Stats in Articy
+        playerStats.currentHealth = playerStats.maxHealth;
+        playerStats.currentResolve = playerStats.maxResolve;
+        ArticyGlobalVariables.Default.PlayerStats.Health = playerStats.maxHealth;
+        ArticyGlobalVariables.Default.PlayerStats.Resolve = playerStats.maxResolve;
+        ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore++;
+        ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore++;
+        ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore++;
+        ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore++;
+    }
+
+    public void ShowSkillInfo()
+    {
+        if (selectedSkill != null)
+        {
+            skillInfoPanel.SetActive(true);
+            skillDescriptionPanel.SetActive(false);
+        }
+    }
+
+    public void ShowSkillDescription()
+    {
+        if (selectedSkill != null)
+        {
+            skillInfoPanel.SetActive(false);
+            skillDescriptionPanel.SetActive(true);
+        }
     }
 
     //Skill Row Assignments
+
+    public void AssignSignatureSkill()
+    {
+        ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = selectedSkill.GetComponent<SkillPortraitInfo>().skillName;
+        playerStats.signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
+        signatureSkillSelected = true;
+    }
+
     public void IncreaseReptilian()
     {
         if (startingAvailableSkillPoints > 0 && playerStats.reptilianBaseScore < 6)
         {
             playerStats.reptilianBaseScore++;
+            ArticyGlobalVariables.Default.PlayerStats.MaxHealth++;
+            ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore++;
+            playerStats.maxHealth++;
+            playerStats.InitializeHealthBar();
             startingAvailableSkillPoints--;
         }
     }
@@ -115,6 +212,7 @@ public class SkillSelectInterface : MonoBehaviour
         if (startingAvailableSkillPoints > 0 && playerStats.paleoBaseScore < 6)
         {
             playerStats.paleoBaseScore++;
+            ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore++;
             startingAvailableSkillPoints--;
         }
     }
@@ -123,6 +221,7 @@ public class SkillSelectInterface : MonoBehaviour
         if (startingAvailableSkillPoints > 0 && playerStats.neoBaseScore < 6)
         {
             playerStats.neoBaseScore++;
+            ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore++;
             startingAvailableSkillPoints--;
         }
     }
@@ -131,6 +230,10 @@ public class SkillSelectInterface : MonoBehaviour
         if (startingAvailableSkillPoints > 0 && playerStats.paleBaseScore < 6)
         {
             playerStats.paleBaseScore++;
+            ArticyGlobalVariables.Default.PlayerStats.MaxResolve++;
+            ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore++;
+            playerStats.maxResolve++;
+            playerStats.InitializeResolveBar();
             startingAvailableSkillPoints--;
         }
     }
@@ -140,6 +243,10 @@ public class SkillSelectInterface : MonoBehaviour
         if (playerStats.reptilianBaseScore > 1)
         {
             playerStats.reptilianBaseScore--;
+            ArticyGlobalVariables.Default.PlayerStats.MaxHealth--;
+            ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore--;
+            playerStats.maxHealth--;
+            playerStats.InitializeHealthBar();
             startingAvailableSkillPoints++;
         }
     }
@@ -149,6 +256,7 @@ public class SkillSelectInterface : MonoBehaviour
         if (playerStats.paleoBaseScore > 1)
         {
             playerStats.paleoBaseScore--;
+            ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore--;
             startingAvailableSkillPoints++;
         }
     }
@@ -158,6 +266,7 @@ public class SkillSelectInterface : MonoBehaviour
         if (playerStats.neoBaseScore > 1)
         {
             playerStats.neoBaseScore--;
+            ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore--;
             startingAvailableSkillPoints++;
         }
     }
@@ -167,6 +276,10 @@ public class SkillSelectInterface : MonoBehaviour
         if (playerStats.paleBaseScore > 1)
         {
             playerStats.paleBaseScore--;
+            ArticyGlobalVariables.Default.PlayerStats.MaxResolve--;
+            ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore--;
+            playerStats.maxResolve--;
+            playerStats.InitializeResolveBar();
             startingAvailableSkillPoints++;
         }
     }
