@@ -76,6 +76,23 @@ public class PlayerStats : MonoBehaviour
         neoBaseScore = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore;
         paleBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore;
 
+        endurance = ArticyGlobalVariables.Default.PlayerStats.Endurance;
+        physicality = ArticyGlobalVariables.Default.PlayerStats.Physicality;
+        reflexivity = ArticyGlobalVariables.Default.PlayerStats.Reflexivity;
+        volition = ArticyGlobalVariables.Default.PlayerStats.Volition;
+        authority = ArticyGlobalVariables.Default.PlayerStats.Authority;
+        conceptualization = ArticyGlobalVariables.Default.PlayerStats.Conceptualization;
+        encyclopedia = ArticyGlobalVariables.Default.PlayerStats.Encyclopedia;
+        empathy = ArticyGlobalVariables.Default.PlayerStats.Empathy;
+        logic = ArticyGlobalVariables.Default.PlayerStats.Logic;
+        perception = ArticyGlobalVariables.Default.PlayerStats.Perception;
+        perspicacity = ArticyGlobalVariables.Default.PlayerStats.Perspicacity;
+        rhetoric = ArticyGlobalVariables.Default.PlayerStats.Rhetoric;
+        savoirFaire = ArticyGlobalVariables.Default.PlayerStats.SavoirFaire;
+        selfActualization = ArticyGlobalVariables.Default.PlayerStats.SelfActualization;
+        suggestion = ArticyGlobalVariables.Default.PlayerStats.Suggestion;
+        tenebrality = ArticyGlobalVariables.Default.PlayerStats.Tenebrality;
+
         currentHealth = maxHealth;
         currentResolve = maxResolve;
         previousHealth = currentHealth;
@@ -95,23 +112,6 @@ public class PlayerStats : MonoBehaviour
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
         currentHealth = ArticyGlobalVariables.Default.PlayerStats.Health;
         currentResolve = ArticyGlobalVariables.Default.PlayerStats.Resolve;
-
-        ArticyGlobalVariables.Default.PlayerStats.Endurance = endurance;
-        ArticyGlobalVariables.Default.PlayerStats.Physicality = physicality;
-        ArticyGlobalVariables.Default.PlayerStats.Reflexivity = reflexivity;
-        ArticyGlobalVariables.Default.PlayerStats.Volition = volition;
-        ArticyGlobalVariables.Default.PlayerStats.Authority = authority;
-        ArticyGlobalVariables.Default.PlayerStats.Conceptualization = conceptualization;
-        ArticyGlobalVariables.Default.PlayerStats.Encyclopedia = encyclopedia;
-        ArticyGlobalVariables.Default.PlayerStats.Empathy = empathy;
-        ArticyGlobalVariables.Default.PlayerStats.Logic = logic;
-        ArticyGlobalVariables.Default.PlayerStats.Perception = perception;
-        ArticyGlobalVariables.Default.PlayerStats.Perspicacity = perspicacity;
-        ArticyGlobalVariables.Default.PlayerStats.Rhetoric = rhetoric;
-        ArticyGlobalVariables.Default.PlayerStats.SavoirFaire = savoirFaire;
-        ArticyGlobalVariables.Default.PlayerStats.SelfActualization = selfActualization;
-        ArticyGlobalVariables.Default.PlayerStats.Suggestion = suggestion;
-        ArticyGlobalVariables.Default.PlayerStats.Tenebrality = tenebrality;
 
         if (currentHealth != previousHealth)
         {

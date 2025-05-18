@@ -19,17 +19,21 @@ public class SkillSelectInterface : MonoBehaviour
     private bool signatureSkillSelected = false;
     private bool initialSkillsAssigned = false;
 
+    // Colors
+    private Color purple = new Color(0.5f, 0f, 0.5f);
+
     public GameObject selectedSkill;
 
     // Values
     [Header("Skill Points")]
     public int startingAvailableSkillPoints = 8;
-    public int availableSkillPoints;
+    public int availableSkillPoints = 0;
 
     [Header("UI Elements")]
     public GameObject rowIncreasePanel;
     public GameObject hintPanel;
     public GameObject startingPointsPanel;
+    public GameObject availableSkillPointsPanel;
     //Portrait
     public GameObject selectedSkillPanel;
     public GameObject selectedSkillPortrait;
@@ -42,6 +46,7 @@ public class SkillSelectInterface : MonoBehaviour
     public GameObject skillInfoPanel;
     public GameObject skillDescriptionPanel;
     public GameObject setSignaturePanel;
+    public GameObject levelUpPanel;
 
     [Header("Skill Row Assignments")]
     //Points
@@ -69,6 +74,8 @@ public class SkillSelectInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        availableSkillPoints = ArticyGlobalVariables.Default.PlayerStats.AvailableSkillPoints;
+        
         if (playerController != null)
         {
             if (controller != null)
@@ -90,7 +97,15 @@ public class SkillSelectInterface : MonoBehaviour
         //Update UI
         rowIncreasePanel.SetActive(firstTime);
         startingPointsPanel.SetActive(firstTime);
-        setSignaturePanel.SetActive(firstTime);
+        availableSkillPointsPanel.SetActive(!firstTime);
+        if (firstTime)
+        {
+            if (signatureSkillSelected == false)
+                setSignaturePanel.SetActive(true);
+            else if (signatureSkillSelected == true)
+                setSignaturePanel.SetActive(false);
+        }
+        
         if (firstTime)
         {
             hintPanel.SetActive(!selectedSkillPanel.activeSelf);
@@ -99,9 +114,17 @@ public class SkillSelectInterface : MonoBehaviour
         {
             hintPanel.SetActive(false);
         }
+
+        if (firstTime)
+            levelUpPanel.SetActive(false);
+        else if (!firstTime && availableSkillPoints > 0)
+            levelUpPanel.SetActive(true);
+        else if (!firstTime && availableSkillPoints <= 0)
+            levelUpPanel.SetActive(false);
         
         //Display Values
         startingAvailableSkillPointsText.text = startingAvailableSkillPoints + " Available Points";
+        availableSkillPointsText.text = availableSkillPoints + " Available Points";
         reptilianScore.text = playerStats.reptilianBaseScore.ToString();
         paleoScore.text = playerStats.paleoBaseScore.ToString();
         neoScore.text = playerStats.neoBaseScore.ToString();
@@ -129,7 +152,7 @@ public class SkillSelectInterface : MonoBehaviour
 
         selectedSkillInfo.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillInfo;
         selectedSkillStats1.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats1 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().categoryLevel;
-        selectedSkillStats2.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats2;
+        selectedSkillStats2.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats2 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().skillLevel;
         selectedSkillStats3.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats3;
         selectedSkillDescription.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillDescription;
 
@@ -192,7 +215,15 @@ public class SkillSelectInterface : MonoBehaviour
     {
         ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = selectedSkill.GetComponent<SkillPortraitInfo>().skillName;
         playerStats.signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
+        selectedSkill.GetComponent<SkillPortraitInfo>().LevelUpSkill();
         signatureSkillSelected = true;
+    }
+
+    public void LevelUpSkill()
+    {
+        ArticyGlobalVariables.Default.PlayerStats.AvailableSkillPoints--;
+        availableSkillPoints--;
+        selectedSkill.GetComponent<SkillPortraitInfo>().LevelUpSkill();
     }
 
     public void IncreaseReptilian()
