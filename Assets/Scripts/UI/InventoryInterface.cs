@@ -1,0 +1,220 @@
+using Articy.Unity;
+using Articy.Unity.Interfaces;
+using UnityEngine;
+using UnityEngine.UI;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
+using StarterAssets;
+using TMPro;
+
+public class InventoryInterface : MonoBehaviour
+{
+    //Important References
+    private GameObject playerController;
+    private ThirdPersonController controller;
+    private InventoryManager inventoryManager; // Reference to the InventoryManager script
+    private PlayerStats playerStats;
+
+    [Header("UI Elements")]
+    //Stats
+    public GameObject repNumber;
+    public GameObject paleoNumber;
+    public GameObject neoNumber;
+    public GameObject paleNumber;
+
+    //Health And Resolve UI
+    public GameObject healthBar;
+    public GameObject resolveBar;
+    public GameObject healthBoxPrefab; // Prefab for a single health box
+    public GameObject resolveBoxPrefab; // Prefab for a single resolve box
+    private GameObject[] healthBoxes; // Array to store health box instances
+    private GameObject[] resolveBoxes; // Array to store resolve box instances
+    public GameObject healthText;
+    public GameObject resolveText;
+
+    public GameObject selectedItem;
+
+    //Inventory Item UI
+    public GameObject ToolsinventoryGrid; // The grid where inventory items will be displayed
+    public GameObject ClothesinventoryGrid; // The grid for clothes items
+    public GameObject ItemsinventoryGrid; // The grid for other items
+    public GameObject InteractinventoryGrid; // The grid for interactable items
+
+    //Item Display
+    public GameObject selectedItemPicture;
+    public TextMeshProUGUI selectedItemName;
+    public TextMeshProUGUI selectedItemDescription;
+    public TextMeshProUGUI selectedItemPrice;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        playerController = GameObject.FindGameObjectWithTag("Player");
+        controller = playerController.GetComponent<ThirdPersonController>();
+        inventoryManager = playerController.GetComponent<InventoryManager>();
+        playerStats = playerController.GetComponent<PlayerStats>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (playerController != null)
+        {
+            if (controller != null)
+            {
+                controller.inMenu = gameObject.activeSelf;
+                controller.paused = gameObject.activeSelf;
+            }
+        }
+
+        UpdateNumbers();
+        UpdateHealth();
+    }
+
+    public void UpdateInventory()
+    {
+        // Clear all inventory grids
+        foreach (Transform child in ToolsinventoryGrid.transform)
+            Destroy(child.gameObject);
+        foreach (Transform child in ClothesinventoryGrid.transform)
+            Destroy(child.gameObject);
+        foreach (Transform child in ItemsinventoryGrid.transform)
+            Destroy(child.gameObject);
+        foreach (Transform child in InteractinventoryGrid.transform)
+            Destroy(child.gameObject);
+
+        // Repopulate grids based on itemType
+        foreach (var item in inventoryManager.inventoryItems)
+        {
+            if (item == null) continue;
+
+            // Instantiate the UI element for the item (assuming itemPrefab is a UI prefab)
+            InventoryItem itemUI = Instantiate(inventoryManager.itemPrefab);
+
+            // Set parent based on itemType
+            switch (item.itemType)
+            {
+                case "Tool":
+                    itemUI.transform.SetParent(ToolsinventoryGrid.transform, false);
+                    break;
+                case "Clothes":
+                    itemUI.transform.SetParent(ClothesinventoryGrid.transform, false);
+                    break;
+                case "Item":
+                    itemUI.transform.SetParent(ItemsinventoryGrid.transform, false);
+                    break;
+                case "Interact":
+                    itemUI.transform.SetParent(InteractinventoryGrid.transform, false);
+                    break;
+                default:
+                    itemUI.transform.SetParent(ItemsinventoryGrid.transform, false); // fallback
+                    break;
+            }
+
+            // Copy data from the inventory item to the UI instance
+            itemUI.technicalName = item.technicalName;
+            itemUI.itemName = item.itemName;
+            itemUI.itemType = item.itemType;
+            itemUI.itemDescription = item.itemDescription;
+            itemUI.itemIcon = item.itemIcon;
+            // ...copy any other fields as needed...
+
+            // Optionally update UI visuals (icon, text, etc.)
+            var imageComponent = itemUI.GetComponent<UnityEngine.UI.Image>();
+            if (imageComponent != null && item.itemIcon != null)
+                imageComponent.sprite = item.itemIcon;
+        }
+    }
+
+    public void UpdateNumbers()
+    {
+        repNumber.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore.ToString();
+        paleoNumber.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore.ToString();
+        neoNumber.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore.ToString();
+        paleNumber.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore.ToString();
+    }
+
+    public void UpdateHealth()
+    {
+        // Ensure healthBoxes array is initialized and matches maxHealth
+        if (healthBoxes == null || healthBoxes.Length != playerStats.maxHealth)
+        {
+            // Clear old boxes
+            foreach (Transform child in healthBar.transform)
+                Destroy(child.gameObject);
+
+            // Create new boxes
+            healthBoxes = new GameObject[playerStats.maxHealth];
+            for (int i = 0; i < playerStats.maxHealth; i++)
+            {
+                healthBoxes[i] = Instantiate(healthBoxPrefab, healthBar.transform);
+            }
+        }
+
+        // Enable boxes up to currentHealth, disable the rest
+        for (int i = 0; i < playerStats.maxHealth; i++)
+        {
+            healthBoxes[i].SetActive(i < playerStats.currentHealth);
+        }
+
+        // Repeat for resolve
+        if (resolveBoxes == null || resolveBoxes.Length != playerStats.maxResolve)
+        {
+            foreach (Transform child in resolveBar.transform)
+                Destroy(child.gameObject);
+
+            resolveBoxes = new GameObject[playerStats.maxResolve];
+            for (int i = 0; i < playerStats.maxResolve; i++)
+            {
+                resolveBoxes[i] = Instantiate(resolveBoxPrefab, resolveBar.transform);
+            }
+        }
+
+        for (int i = 0; i < playerStats.maxResolve; i++)
+        {
+            resolveBoxes[i].SetActive(i < playerStats.currentResolve);
+        }
+
+        // Update health and resolve text
+        healthText.GetComponent<TextMeshProUGUI>().text = $"{playerStats.currentHealth}/{playerStats.maxHealth}";
+        resolveText.GetComponent<TextMeshProUGUI>().text = $"{playerStats.currentResolve}/{playerStats.maxResolve}";
+    }
+
+    public void Close()
+    {
+        // Close the inventory interface
+        gameObject.SetActive(false);
+
+        // Resume player control
+        if (playerController != null && controller != null)
+        {
+            controller.inMenu = false;
+            controller.paused = false;
+        }
+    }
+
+    public void SelectItem()
+    {
+        if (selectedItem != null)
+        {
+            InventoryItem item = selectedItem.GetComponent<InventoryItem>();
+            if (item != null)
+            {
+                selectedItemPicture.GetComponent<Image>().sprite = item.itemIcon;
+                selectedItemName.text = item.GetComponent<InventoryItem>().itemName;
+                selectedItemDescription.text = item.GetComponent<InventoryItem>().itemDescription;
+                selectedItemPrice.text = item.GetComponent<InventoryItem>().itemPrice.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("Selected item does not have an InventoryItem component.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No item selected.");
+        }
+    }
+}
+
+

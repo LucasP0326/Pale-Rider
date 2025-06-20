@@ -123,10 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 4416926081852918481}
-  dialogueManager: {fileID: 0}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
@@ -409,10 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 4416926081852918481}
-  dialogueManager: {fileID: 0}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
@@ -543,6 +535,37 @@ Transform:
   m_Children:
   - {fileID: 8322255484584408707}
   m_Father: {fileID: 9036379305195573192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1085152454542240306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055815396097116867}
+  m_Layer: 0
+  m_Name: InventorySpace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2055815396097116867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085152454542240306}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24146368, y: 2.453733, z: -0.15428431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3893294197879345259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191273259690468839
 GameObject:
@@ -764,10 +787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 4416926081852918481}
-  dialogueManager: {fileID: 0}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
@@ -1654,6 +1673,7 @@ GameObject:
   - component: {fileID: 6982812146204527121}
   - component: {fileID: 4416926081852918491}
   - component: {fileID: 7299142118477806650}
+  - component: {fileID: 4887847636039713900}
   - component: {fileID: 4416926081852918490}
   - component: {fileID: 5885216827943657505}
   - component: {fileID: 135756642000475821}
@@ -1682,6 +1702,7 @@ Transform:
   - {fileID: 8002264680419333305}
   - {fileID: 272993188807782130}
   - {fileID: 2411782305941534148}
+  - {fileID: 2055815396097116867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6982812146204527121
@@ -1743,6 +1764,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552999ce01b83934ab622479aa6f84b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  currentResolve: 0
+  maxHealth: 0
+  maxResolve: 0
+  signatureSkill: 
+  reptilianBaseScore: 0
+  paleoBaseScore: 0
+  neoBaseScore: 0
+  paleBaseScore: 0
+  endurance: 0
+  physicality: 0
+  reflexivity: 0
+  volition: 0
+  authority: 0
+  conceptualization: 0
+  encyclopedia: 0
+  empathy: 0
+  logic: 0
+  perception: 0
+  perspicacity: 0
+  rhetoric: 0
+  savoirFaire: 0
+  selfActualization: 0
+  suggestion: 0
+  tenebrality: 0
+  playerCash: 0
+  HUD: {fileID: 0}
+  healthBar: {fileID: 0}
+  resolveBar: {fileID: 0}
+  healthBoxPrefab: {fileID: 0}
+  resolveBoxPrefab: {fileID: 0}
+  healthLoss: {fileID: 0}
+  healthLossText: {fileID: 0}
+  healthLossNumberText: {fileID: 0}
+  resolveLoss: {fileID: 0}
+  resolveLossText: {fileID: 0}
+  resolveLossNumberText: {fileID: 0}
+  moneyText: {fileID: 0}
+--- !u!114 &4887847636039713900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ad302cf639d6c4dab04e8ae4305aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryItems: []
+  itemPrefab: {fileID: -8345487444715140597, guid: bef3df0e60e5c2948b9311900aaf0458, type: 3}
+  inventorySpace: {fileID: 1085152454542240306}
 --- !u!114 &4416926081852918490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1756,10 +1830,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  inMenu: 0
   inDialogue: 0
   pauseMenu: {fileID: 0}
   dialogueManager: {fileID: 0}
   thoughtCircle: {fileID: 2704706129748351962}
+  HUD: {fileID: 0}
   hasThought: 0
   tempThoughtTrigger: {fileID: 0}
   reptilianThoughtBubble: {fileID: 480566029579740151}
@@ -2254,10 +2330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  playerController: {fileID: 4416926081852918481}
-  dialogueManager: {fileID: 0}
-  availableDialogue: {fileID: 0}
-  aSource: {fileID: 0}
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}

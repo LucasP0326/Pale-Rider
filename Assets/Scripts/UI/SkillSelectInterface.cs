@@ -16,7 +16,7 @@ public class SkillSelectInterface : MonoBehaviour
 
     // Game State
     public bool firstTime = true;
-    private bool signatureSkillSelected = false;
+    public bool signatureSkillSelected = false;
     private bool initialSkillsAssigned = false;
 
     // Colors
@@ -74,6 +74,15 @@ public class SkillSelectInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ArticyGlobalVariables.Default.PlayerStats.SignatureSkill != "")
+        {
+            signatureSkillSelected = true;
+        }
+        else
+        {
+            signatureSkillSelected = false;
+        }
+
         availableSkillPoints = ArticyGlobalVariables.Default.PlayerStats.AvailableSkillPoints;
         
         if (playerController != null)
@@ -104,6 +113,10 @@ public class SkillSelectInterface : MonoBehaviour
                 setSignaturePanel.SetActive(true);
             else if (signatureSkillSelected == true)
                 setSignaturePanel.SetActive(false);
+        }
+        else if (!firstTime)
+        {
+            setSignaturePanel.SetActive(false);
         }
         
         if (firstTime)
@@ -185,10 +198,10 @@ public class SkillSelectInterface : MonoBehaviour
         playerStats.currentResolve = playerStats.maxResolve;
         ArticyGlobalVariables.Default.PlayerStats.Health = playerStats.maxHealth;
         ArticyGlobalVariables.Default.PlayerStats.Resolve = playerStats.maxResolve;
-        ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore++;
-        ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore++;
-        ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore++;
-        ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore++;
+        //ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore++;
+        //ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore++;
+        //ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore++;
+        //ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore++;
     }
 
     public void ShowSkillInfo()
