@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
         newItem.itemName = articyObj.DisplayName;
         newItem.itemType = articyObj.Template.ItemCategory.SmallTextValue;
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
-        // newItem.itemPrice = (int)articyObj.Template.Price;
+        newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
 
         // If your Articy object stores an image as an Asset reference:
         var itemAsset = ((articyObj as IObjectWithPreviewImage).PreviewImage.Asset as Asset);

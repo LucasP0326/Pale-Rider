@@ -117,6 +117,7 @@ public class InventoryInterface : MonoBehaviour
             itemUI.itemType = item.itemType;
             itemUI.itemDescription = item.itemDescription;
             itemUI.itemIcon = item.itemIcon;
+            itemUI.itemPrice = item.itemPrice;
             // ...copy any other fields as needed...
 
             // Optionally update UI visuals (icon, text, etc.)
@@ -203,7 +204,7 @@ public class InventoryInterface : MonoBehaviour
                 selectedItemPicture.GetComponent<Image>().sprite = item.itemIcon;
                 selectedItemName.text = item.GetComponent<InventoryItem>().itemName;
                 selectedItemDescription.text = item.GetComponent<InventoryItem>().itemDescription;
-                selectedItemPrice.text = item.GetComponent<InventoryItem>().itemPrice.ToString();
+                selectedItemPrice.text = "£" + item.GetComponent<InventoryItem>().itemPrice;
             }
             else
             {
