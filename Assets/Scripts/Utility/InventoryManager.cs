@@ -4,6 +4,7 @@ using Articy.Unity;
 using Articy.Unity.Interfaces;
 using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
+using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class InventoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //PlayerPrefs.DeleteKey("PlayerInventory"); // Remove saved inventory on game start
+        // Optionally: PlayerPrefs.DeleteAll(); // (removes all PlayerPrefs, use with caution)
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -63,4 +66,99 @@ public class InventoryManager : MonoBehaviour
         itemsList.Add(newItem);
         inventoryItems = itemsList.ToArray();
     }
+
+    public void SaveInventory()
+    {
+        var dataList = new List<InventoryItemData>();
+        foreach (var item in inventoryItems)
+        {
+            if (item == null) continue;
+            dataList.Add(new InventoryItemData {
+                technicalName = item.technicalName,
+                itemName = item.itemName,
+                itemType = item.itemType,
+                itemDescription = item.itemDescription,
+                itemPrice = item.itemPrice,
+                itemQuantity = item.itemQuantity,
+                isEquipped = item.isEquipped
+            });
+        }
+        string json = JsonUtility.ToJson(new SerializationWrapper<InventoryItemData>(dataList));
+        PlayerPrefs.SetString("PlayerInventory", json);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadInventory()
+    {
+        string json = PlayerPrefs.GetString("PlayerInventory", "");
+        if (!string.IsNullOrEmpty(json))
+        {
+            var wrapper = JsonUtility.FromJson<SerializationWrapper<InventoryItemData>>(json);
+            if (wrapper != null && wrapper.list != null)
+            {
+                // Clear existing inventory UI
+                foreach (Transform child in inventorySpace.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                // Rebuild inventoryItems array and instantiate UI prefabs
+                var itemsList = new List<InventoryItem>();
+                foreach (var data in wrapper.list)
+                {
+                    // Instantiate the prefab
+                    InventoryItem newItem = Instantiate(itemPrefab, inventorySpace.transform);
+
+                    // Populate fields
+                    newItem.technicalName = data.technicalName;
+                    newItem.itemName = data.itemName;
+                    newItem.itemType = data.itemType;
+                    newItem.itemDescription = data.itemDescription;
+                    newItem.itemPrice = data.itemPrice;
+                    newItem.itemQuantity = data.itemQuantity;
+                    newItem.isEquipped = data.isEquipped;
+
+                    // Optionally, reload icon from Articy if needed
+                    var articyObj = ArticyDatabase.GetObject(data.technicalName) as Articy.Pale_Rider.Item;
+                    if (articyObj != null)
+                    {
+                        var itemAsset = ((articyObj as IObjectWithPreviewImage).PreviewImage.Asset as Asset);
+                        newItem.itemIcon = itemAsset != null ? itemAsset.LoadAssetAsSprite() : null;
+                        if (newItem.itemIcon != null)
+                        {
+                            var imageComponent = newItem.GetComponent<Image>();
+                            if (imageComponent != null)
+                            {
+                                imageComponent.sprite = newItem.itemIcon;
+                            }
+                        }
+                    }
+
+                    itemsList.Add(newItem);
+                }
+                inventoryItems = itemsList.ToArray();
+            }
+        }
+    }
+}
+
+// Helper for serializing lists
+[System.Serializable]
+public class SerializationWrapper<T>
+{
+    public List<T> list;
+    public SerializationWrapper(List<T> list) { this.list = list; }
+}
+
+[System.Serializable]
+public class InventoryItemData
+{
+    public string technicalName;
+    public string itemName;
+    public string itemType;
+    public string itemDescription;
+    public int itemPrice;
+    public int itemQuantity;
+    public bool isEquipped;
+    // Add other fields as needed (e.g., icon reference as a string)
 }

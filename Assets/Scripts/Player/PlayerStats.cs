@@ -21,29 +21,32 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
     public int maxResolve;
 
-    [Header("Player Skills")]
-    public string signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
-    public int reptilianBaseScore = ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore;
-    public int paleoBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore;
-    public int neoBaseScore = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore;
-    public int paleBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore;
+    [Header("Inventory")]
+    public InventoryManager inventoryManager; // Reference to the InventoryManager
 
-    public int endurance = ArticyGlobalVariables.Default.PlayerStats.Endurance;
-    public int physicality = ArticyGlobalVariables.Default.PlayerStats.Physicality;
-    public int reflexivity = ArticyGlobalVariables.Default.PlayerStats.Reflexivity;
-    public int volition = ArticyGlobalVariables.Default.PlayerStats.Volition;
-    public int authority = ArticyGlobalVariables.Default.PlayerStats.Authority;
-    public int conceptualization = ArticyGlobalVariables.Default.PlayerStats.Conceptualization;
-    public int encyclopedia = ArticyGlobalVariables.Default.PlayerStats.Encyclopedia;
-    public int empathy = ArticyGlobalVariables.Default.PlayerStats.Empathy;
-    public int logic = ArticyGlobalVariables.Default.PlayerStats.Logic;
-    public int perception = ArticyGlobalVariables.Default.PlayerStats.Perception;
-    public int perspicacity = ArticyGlobalVariables.Default.PlayerStats.Perspicacity;
-    public int rhetoric = ArticyGlobalVariables.Default.PlayerStats.Rhetoric;
-    public int savoirFaire = ArticyGlobalVariables.Default.PlayerStats.SavoirFaire;
-    public int selfActualization = ArticyGlobalVariables.Default.PlayerStats.SelfActualization;
-    public int suggestion = ArticyGlobalVariables.Default.PlayerStats.Suggestion;
-    public int tenebrality = ArticyGlobalVariables.Default.PlayerStats.Tenebrality;
+    [Header("Player Skills")]
+    public string signatureSkill;
+    public int reptilianBaseScore;
+    public int paleoBaseScore;
+    public int neoBaseScore;
+    public int paleBaseScore;
+
+    public int endurance;
+    public int physicality;
+    public int reflexivity;
+    public int volition;
+    public int authority;
+    public int conceptualization;
+    public int encyclopedia;
+    public int empathy;
+    public int logic;
+    public int perception;
+    public int perspicacity;
+    public int rhetoric;
+    public int savoirFaire;
+    public int selfActualization;
+    public int suggestion;
+    public int tenebrality;
 
     [Header("Player Cash")]
     public float playerCash;
@@ -66,6 +69,10 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        //Initialized Inventory Manager
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        inventoryManager.LoadInventory(); // Load inventory data at the start
+
         // Initialize health and resolve from Articy variables
         maxHealth = ArticyGlobalVariables.Default.PlayerStats.MaxHealth;
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;

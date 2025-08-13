@@ -34,6 +34,8 @@ public class Interactable : MonoBehaviour
     private GameObject interactionBubbleInstance;
 
     [Header("Teleporting")]
+    public InventoryManager inventoryManager;
+    public TimeManager timeManager;
     public Transform targetPoint;
     public bool changeScene = false;
     public string sceneName;
@@ -57,6 +59,8 @@ public class Interactable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        timeManager = FindFirstObjectByType<TimeManager>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         playerController = GameObject.FindGameObjectWithTag("Player");
         dialogueManager = FindFirstObjectByType<DialogueManager>();
@@ -240,6 +244,10 @@ public class Interactable : MonoBehaviour
 
         if (changeScene)
         {
+            //Store Inventory and Time Data
+            //inventoryManager.SaveInventory(); // Save inventory before changing scene
+            timeManager.SaveTimeToArticy(); // Save time before changing scene
+            
             // Store the spawn point ID before switching scenes
             PlayerPrefs.SetString("SpawnPoint", spawnPointID);
             PlayerPrefs.Save(); // Ensure the value is saved immediately
