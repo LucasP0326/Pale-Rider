@@ -3,6 +3,10 @@ using UnityEngine.UI;
 using StarterAssets;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Articy.Unity;
+using Articy.Unity.Interfaces;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,11 +15,13 @@ public class PauseMenu : MonoBehaviour
 
     //Important References
     private InventoryManager inventoryManager;
+    private SaveManager saveManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         inventoryManager = FindObjectOfType<InventoryManager>();
+        saveManager = FindObjectOfType<SaveManager>();
     }
 
     // Update is called once per frame
@@ -41,11 +47,16 @@ public class PauseMenu : MonoBehaviour
 
     public void SaveGame()
     {
-        inventoryManager.SaveInventory();
+        saveManager.SaveGame();
     }
 
     public void LoadGame()
     {
-        //Insert More
+        saveManager.LoadGame();
+    }
+
+    public void ResetGame()
+    {
+        saveManager.ResetGame();
     }
 }

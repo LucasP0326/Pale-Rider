@@ -11710,6 +11710,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 1
   sceneName: End Scene
@@ -19793,6 +19794,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255430997}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1258189215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258189216}
+  - component: {fileID: 1258189217}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1258189216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258189215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.878452, y: 6.1176353, z: 11.397606}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1258189217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258189215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0071e0fd1066940bb1fd1b1a62e44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1266608149
 GameObject:
   m_ObjectHideFlags: 0
@@ -22289,6 +22334,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 1
   sceneName: Altamesa
@@ -22366,6 +22412,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 1
   sceneName: Altamesa
@@ -25715,6 +25762,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 0
   sceneName: 
@@ -27332,6 +27380,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649809527963436222, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SaveGame
+      objectReference: {fileID: 0}
     - target: {fileID: 4547025096751640748, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Name
       value: UI Canvas
@@ -27511,6 +27563,34 @@ PrefabInstance:
     - target: {fileID: 6796351923150792810, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2002304825}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426853773402373924, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7603553340837194125, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -29430,6 +29510,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 1
   sceneName: Altamesa Saloon 2
@@ -31861,6 +31942,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997069398}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2002304825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3997497015978146524, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+  m_PrefabInstance: {fileID: 1771915936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771915937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63f928f4d250df409990210125bb098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2016275578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34196,6 +34288,7 @@ SceneRoots:
   - {fileID: 1756104797}
   - {fileID: 1841826602}
   - {fileID: 969103075}
+  - {fileID: 1258189216}
   - {fileID: 1907560128}
   - {fileID: 1402586553}
   - {fileID: 1771915936}
