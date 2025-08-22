@@ -151,6 +151,47 @@ public class PlayerStats : MonoBehaviour
         UpdateMoneyText();
     }
 
+    public void UpdatePlayerStats()
+    {
+        // Initialize health and resolve from Articy variables
+        maxHealth = ArticyGlobalVariables.Default.PlayerStats.MaxHealth;
+        maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
+
+        signatureSkill = ArticyGlobalVariables.Default.PlayerStats.SignatureSkill;
+        reptilianBaseScore = ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore;
+        paleoBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore;
+        neoBaseScore = ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore;
+        paleBaseScore = ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore;
+
+        endurance = ArticyGlobalVariables.Default.PlayerStats.Endurance;
+        physicality = ArticyGlobalVariables.Default.PlayerStats.Physicality;
+        reflexivity = ArticyGlobalVariables.Default.PlayerStats.Reflexivity;
+        volition = ArticyGlobalVariables.Default.PlayerStats.Volition;
+        authority = ArticyGlobalVariables.Default.PlayerStats.Authority;
+        conceptualization = ArticyGlobalVariables.Default.PlayerStats.Conceptualization;
+        encyclopedia = ArticyGlobalVariables.Default.PlayerStats.Encyclopedia;
+        empathy = ArticyGlobalVariables.Default.PlayerStats.Empathy;
+        logic = ArticyGlobalVariables.Default.PlayerStats.Logic;
+        perception = ArticyGlobalVariables.Default.PlayerStats.Perception;
+        perspicacity = ArticyGlobalVariables.Default.PlayerStats.Perspicacity;
+        rhetoric = ArticyGlobalVariables.Default.PlayerStats.Rhetoric;
+        savoirFaire = ArticyGlobalVariables.Default.PlayerStats.SavoirFaire;
+        selfActualization = ArticyGlobalVariables.Default.PlayerStats.SelfActualization;
+        suggestion = ArticyGlobalVariables.Default.PlayerStats.Suggestion;
+        tenebrality = ArticyGlobalVariables.Default.PlayerStats.Tenebrality;
+
+        currentHealth = maxHealth;
+        currentResolve = maxResolve;
+        previousHealth = currentHealth;
+        previousResolve = currentResolve;
+
+        // Populate the health and resolve bars
+        InitializeHealthBar();
+        InitializeResolveBar();
+        UpdateHealthBar();
+        UpdateResolveBar();
+    }
+
     private void DisplayHealthChange(int amount)
     {
         if (healthLoss != null)

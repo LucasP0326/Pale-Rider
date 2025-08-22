@@ -5,11 +5,13 @@ public class SaveManager : MonoBehaviour
 {
     //Important References
     private InventoryManager inventoryManager;
+    private PlayerStats playerStats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Suggestion", ArticyGlobalVariables.Default.PlayerStats.Suggestion);
         PlayerPrefs.SetInt("Tenebrality", ArticyGlobalVariables.Default.PlayerStats.Tenebrality);
         PlayerPrefs.SetInt("Volition", ArticyGlobalVariables.Default.PlayerStats.Volition);
+        PlayerPrefs.SetString("SignatureSkill", ArticyGlobalVariables.Default.PlayerStats.SignatureSkill);
 
         //Player State Stats
         PlayerPrefs.SetInt("Health", ArticyGlobalVariables.Default.PlayerStats.Health);
@@ -100,6 +103,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Suggestion = PlayerPrefs.GetInt("Suggestion", 0);
         ArticyGlobalVariables.Default.PlayerStats.Tenebrality = PlayerPrefs.GetInt("Tenebrality", 0);
         ArticyGlobalVariables.Default.PlayerStats.Volition = PlayerPrefs.GetInt("Volition", 0);
+        ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "DefaultSkill");
 
         // Player State Stats
         ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 0);
@@ -132,6 +136,7 @@ public class SaveManager : MonoBehaviour
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
+        playerStats.UpdatePlayerStats();
 
         Debug.Log("Game Loaded!");
     }
