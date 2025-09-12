@@ -12,10 +12,13 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject player;
     public string mainMenuName;
+    public GameObject optionsPanel;
+    public GameObject mainPanel;
 
     //Important References
     private InventoryManager inventoryManager;
     private SaveManager saveManager;
+    public bool optionsOpen = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +30,6 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void Intro()
@@ -58,5 +60,19 @@ public class PauseMenu : MonoBehaviour
     public void ResetGame()
     {
         saveManager.ResetGame();
+    }
+
+    public void Options()
+    {
+        optionsPanel.SetActive(true);
+        optionsOpen = true;
+        mainPanel.SetActive(false);
+    }
+
+    public void CloseOptions()
+    {
+        optionsOpen = false;
+        optionsPanel.SetActive(false);
+        mainPanel.SetActive(true);
     }
 }

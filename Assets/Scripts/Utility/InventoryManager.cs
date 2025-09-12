@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        InventoryItemChecker();
     }
 
     public void AddItem(string technicalName)
@@ -73,7 +73,8 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in inventoryItems)
         {
             if (item == null) continue;
-            dataList.Add(new InventoryItemData {
+            dataList.Add(new InventoryItemData
+            {
                 technicalName = item.technicalName,
                 itemName = item.itemName,
                 itemType = item.itemType,
@@ -138,6 +139,31 @@ public class InventoryManager : MonoBehaviour
                 }
                 inventoryItems = itemsList.ToArray();
             }
+        }
+    }
+
+    public void InventoryItemChecker()
+    {
+        //Inventory Add Items
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.Revolver)
+        {
+            AddItem("Tool_KonstanzRevolver");
+            ArticyGlobalVariables.Default.InventoryAddingStats.Revolver = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.RancherHat)
+        {
+            AddItem("Clothing_HisperianRancherHat");
+            ArticyGlobalVariables.Default.InventoryAddingStats.RancherHat = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.Canister)
+        {
+            AddItem("Item_OxygenCanister");
+            ArticyGlobalVariables.Default.InventoryAddingStats.Canister = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.GasMask)
+        {
+            AddItem("Clothing_GasMask");
+            ArticyGlobalVariables.Default.InventoryAddingStats.GasMask = false;
         }
     }
 }

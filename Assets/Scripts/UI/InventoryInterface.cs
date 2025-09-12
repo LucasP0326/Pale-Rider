@@ -97,7 +97,7 @@ public class InventoryInterface : MonoBehaviour
                 case "Tool":
                     itemUI.transform.SetParent(ToolsinventoryGrid.transform, false);
                     break;
-                case "Clothes":
+                case "Clothing":
                     itemUI.transform.SetParent(ClothesinventoryGrid.transform, false);
                     break;
                 case "Item":
