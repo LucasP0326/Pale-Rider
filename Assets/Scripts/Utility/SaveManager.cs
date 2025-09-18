@@ -104,7 +104,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Suggestion = PlayerPrefs.GetInt("Suggestion", 0);
         ArticyGlobalVariables.Default.PlayerStats.Tenebrality = PlayerPrefs.GetInt("Tenebrality", 0);
         ArticyGlobalVariables.Default.PlayerStats.Volition = PlayerPrefs.GetInt("Volition", 0);
-        ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "DefaultSkill");
+        ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "");
 
         // Player State Stats
         ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 1);

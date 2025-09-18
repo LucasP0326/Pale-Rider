@@ -212,7 +212,9 @@ public class InventoryInterface : MonoBehaviour
                 selectedItemPicture.GetComponent<Image>().sprite = item.itemIcon;
                 selectedItemName.text = item.GetComponent<InventoryItem>().itemName;
                 selectedItemDescription.text = item.GetComponent<InventoryItem>().itemDescription;
-                selectedItemPrice.text = "£" + item.GetComponent<InventoryItem>().itemPrice;
+                // Format price as pounds and pence (e.g., £12.34)
+                int price = item.GetComponent<InventoryItem>().itemPrice;
+                selectedItemPrice.text = "£" + (price / 100f).ToString("0.00");
             }
             else
             {

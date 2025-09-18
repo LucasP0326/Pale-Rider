@@ -173,6 +173,16 @@ public class InventoryManager : MonoBehaviour
             AddItem("Clothing_GasMask");
             ArticyGlobalVariables.Default.InventoryAddingStats.GasMask = false;
         }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.Rifle)
+        {
+            AddItem("Tool_KonstanzRifleBroken");
+            ArticyGlobalVariables.Default.InventoryAddingStats.Rifle = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.Patch)
+        {
+            AddItem("Item_Patch");
+            ArticyGlobalVariables.Default.InventoryAddingStats.Patch = false;
+        }
     }
 
     public IEnumerator PopupCoroutine(string itemName)
