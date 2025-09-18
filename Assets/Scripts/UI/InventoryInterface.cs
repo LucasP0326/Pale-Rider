@@ -53,6 +53,7 @@ public class InventoryInterface : MonoBehaviour
         controller = playerController.GetComponent<ThirdPersonController>();
         inventoryManager = playerController.GetComponent<InventoryManager>();
         playerStats = playerController.GetComponent<PlayerStats>();
+        UpdateInventory();
     }
 
     // Update is called once per frame
@@ -69,6 +70,11 @@ public class InventoryInterface : MonoBehaviour
 
         UpdateNumbers();
         UpdateHealth();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close();
+        }
     }
 
     public void UpdateInventory()
@@ -185,6 +191,8 @@ public class InventoryInterface : MonoBehaviour
     {
         // Close the inventory interface
         gameObject.SetActive(false);
+
+        UpdateInventory();
 
         // Resume player control
         if (playerController != null && controller != null)

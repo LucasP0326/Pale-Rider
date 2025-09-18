@@ -74,6 +74,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("UnlockedSkills", ArticyGlobalVariables.Default.GlobalVariables.UnlockedSkills ? 1 : 0);
         PlayerPrefs.SetInt("UnlockedQuests", ArticyGlobalVariables.Default.GlobalVariables.UnlockedQuests ? 1 : 0);
         PlayerPrefs.SetInt("UnlockedMap", ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap ? 1 : 0);
+        PlayerPrefs.SetInt("IngoPaleRealization", ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization ? 1 : 0);
         PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
 
         PlayerPrefs.Save();
@@ -106,16 +107,16 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "DefaultSkill");
 
         // Player State Stats
-        ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 0);
-        ArticyGlobalVariables.Default.PlayerStats.MaxHealth = PlayerPrefs.GetInt("MaxHealth", 0);
-        ArticyGlobalVariables.Default.PlayerStats.Resolve = PlayerPrefs.GetInt("Resolve", 0);
-        ArticyGlobalVariables.Default.PlayerStats.MaxResolve = PlayerPrefs.GetInt("MaxResolve", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 1);
+        ArticyGlobalVariables.Default.PlayerStats.MaxHealth = PlayerPrefs.GetInt("MaxHealth", 1);
+        ArticyGlobalVariables.Default.PlayerStats.Resolve = PlayerPrefs.GetInt("Resolve", 1);
+        ArticyGlobalVariables.Default.PlayerStats.MaxResolve = PlayerPrefs.GetInt("MaxResolve", 1);
 
         // Skill Base Scores
-        ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore = PlayerPrefs.GetInt("ReptilianBaseScore", 0);
-        ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore = PlayerPrefs.GetInt("PaleoBaseScore", 0);
-        ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore = PlayerPrefs.GetInt("NeoBaseScore", 0);
-        ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore = PlayerPrefs.GetInt("PaleBaseScore", 0);
+        ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore = PlayerPrefs.GetInt("ReptilianBaseScore", 1);
+        ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore = PlayerPrefs.GetInt("PaleoBaseScore", 1);
+        ArticyGlobalVariables.Default.PlayerStats.NeoBaseScore = PlayerPrefs.GetInt("NeoBaseScore", 1);
+        ArticyGlobalVariables.Default.PlayerStats.PaleBaseScore = PlayerPrefs.GetInt("PaleBaseScore", 1);
 
         // Player Variables (bools)
         ArticyGlobalVariables.Default.PlayerVariables.FoundGasMask = PlayerPrefs.GetInt("FoundGasMask", 0) == 1;
@@ -133,6 +134,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedSkills = PlayerPrefs.GetInt("UnlockedSkills", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedQuests = PlayerPrefs.GetInt("UnlockedQuests", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap = PlayerPrefs.GetInt("UnlockedMap", 0) == 1;
+        ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);

@@ -1,22 +1,51 @@
+using Articy.Unity;
+using Articy.Unity.Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
+using StarterAssets;
+using TMPro;
 
 public class QuestInterface : MonoBehaviour
 {
     public GameObject activeQuestsPanel;
     public GameObject completedQuestsPanel;
     public int questPanelViewState; // 0 = None, 1 = Active, 2 = Completed
+
+    //Important References
+    private GameObject playerController;
+    private ThirdPersonController controller;
+    private InventoryManager inventoryManager; // Reference to the InventoryManager script
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        playerController = GameObject.FindGameObjectWithTag("Player");
+        controller = playerController.GetComponent<ThirdPersonController>();
+        inventoryManager = playerController.GetComponent<InventoryManager>();
+        questPanelViewState = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerController != null)
+        {
+            if (controller != null)
+            {
+                controller.inMenu = gameObject.activeSelf;
+                controller.paused = gameObject.activeSelf;
+            }
+        }
+        
         if (!activeQuestsPanel.activeSelf && !completedQuestsPanel.activeSelf)
         {
             questPanelViewState = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close();
         }
     }
 
@@ -59,6 +88,19 @@ public class QuestInterface : MonoBehaviour
             activeQuestsPanel.SetActive(false);
             completedQuestsPanel.SetActive(true);
             questPanelViewState = 2;
+        }
+    }
+
+    public void Close()
+    {
+        // Close the inventory interface
+        gameObject.SetActive(false);
+
+        // Resume player control
+        if (playerController != null && controller != null)
+        {
+            controller.inMenu = false;
+            controller.paused = false;
         }
     }
 }

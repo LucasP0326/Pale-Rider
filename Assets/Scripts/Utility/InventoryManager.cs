@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Articy.Unity;
@@ -5,12 +6,17 @@ using Articy.Unity.Interfaces;
 using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 using System.Collections.Generic;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
     public InventoryItem[] inventoryItems; // Array to hold all inventory items
     public InventoryItem itemPrefab; // Prefab for creating new inventory items
     public GameObject inventorySpace;
+
+    [Header("Item Added Popup")]
+    public GameObject itemPopup;
+    public TextMeshProUGUI popupItemName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +51,8 @@ public class InventoryManager : MonoBehaviour
         newItem.itemType = articyObj.Template.ItemCategory.SmallTextValue;
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
         newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
+        
+        StartCoroutine(PopupCoroutine(newItem.itemName));
 
         // If your Articy object stores an image as an Asset reference:
         var itemAsset = ((articyObj as IObjectWithPreviewImage).PreviewImage.Asset as Asset);
@@ -166,7 +174,17 @@ public class InventoryManager : MonoBehaviour
             ArticyGlobalVariables.Default.InventoryAddingStats.GasMask = false;
         }
     }
+
+    public IEnumerator PopupCoroutine(string itemName)
+    {
+        itemPopup.SetActive(true);
+        popupItemName.text = itemName;
+        yield return new WaitForSeconds(5f);
+        itemPopup.SetActive(false);
+    }
 }
+
+
 
 // Helper for serializing lists
 [System.Serializable]
