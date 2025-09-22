@@ -133,6 +133,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 0
   sceneName: 
@@ -415,6 +417,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 0
   sceneName: 
@@ -797,6 +801,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 0
   sceneName: 
@@ -1768,6 +1774,7 @@ MonoBehaviour:
   currentResolve: 0
   maxHealth: 0
   maxResolve: 0
+  inventoryManager: {fileID: 0}
   signatureSkill: 
   reptilianBaseScore: 0
   paleoBaseScore: 0
@@ -1817,6 +1824,8 @@ MonoBehaviour:
   inventoryItems: []
   itemPrefab: {fileID: -8345487444715140597, guid: bef3df0e60e5c2948b9311900aaf0458, type: 3}
   inventorySpace: {fileID: 1085152454542240306}
+  itemPopup: {fileID: 0}
+  popupItemName: {fileID: 0}
 --- !u!114 &4416926081852918490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,6 +2349,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 0
   sceneName: 

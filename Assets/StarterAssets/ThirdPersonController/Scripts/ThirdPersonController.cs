@@ -225,7 +225,7 @@ namespace StarterAssets
             if (tempInteractableObject != null)
             {
                 float distance = Vector3.Distance(transform.position, tempInteractableObject.transform.position);
-                
+
                 if (distance <= interactionRange) // Ensure interactionRange is defined
                 {
                     _isMovingToClick = false;
@@ -249,7 +249,7 @@ namespace StarterAssets
                 Time.timeScale = 1.0f;
             }
 
-            if (hasThought)
+            if (hasThought || Input.GetKey(KeyCode.Tab))
             {
                 thoughtCircle.SetActive(true);
                 if (tempThoughtTrigger != null)

@@ -12631,6 +12631,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552705151}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &558743773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4213741201639999679, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
+  m_PrefabInstance: {fileID: 1025616984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &566914681
 GameObject:
   m_ObjectHideFlags: 0
@@ -25057,16 +25062,196 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6775305957430143056, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4213741201639999679, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1025616988}
+    - targetCorrespondingSourceObject: {fileID: 4213741201639999679, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1025616987}
+    - targetCorrespondingSourceObject: {fileID: 4213741201639999679, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1025616986}
   m_SourcePrefab: {fileID: 100100000, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
 --- !u!4 &1025616985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6676226528062028129, guid: b5f4da707e2b9f94fa5e6da4652418c0, type: 3}
   m_PrefabInstance: {fileID: 1025616984}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1025616986
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558743773}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6800583091792525412, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 570a7b8173d0b9b4d97199a78214ffa3, type: 3}
+  m_Resource: {fileID: 8300000, guid: 570a7b8173d0b9b4d97199a78214ffa3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1025616987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558743773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  oneTimeInteraction: 1
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 1807361461611000984, guid: a125e7deb2ded14438c067dec216d49d, type: 3}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
+  interactionText: A thick fog covers the land ahead of you, strong enough you can
+    hardly even make out the adjacent road
+  interactionTextLength: 10
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1025616987}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SpeechBubble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 570a7b8173d0b9b4d97199a78214ffa3, type: 3}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+--- !u!65 &1025616988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558743773}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3403895, y: 0.999733, z: 0.9413681}
+  m_Center: {x: 0.32980525, y: -0.55093074, z: -0.33491623}
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0

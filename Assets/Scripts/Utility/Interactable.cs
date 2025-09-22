@@ -226,11 +226,11 @@ public class Interactable : MonoBehaviour
             // Instantiate the 3D TextMeshPro object slightly above the interaction bubble
             GameObject textInstance = Instantiate(interactionTextPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
 
-            // Set the text content
+            // Set the text content and add <mark> tag for black highlight
             TMP_Text tmpText = textInstance.GetComponent<TMP_Text>();
             if (tmpText != null)
             {
-                tmpText.text = interactionText;
+                tmpText.text = $"<mark=#000000FF>{interactionText}</mark>"; // FF is alpha for fully opaque black
             }
 
             // Optionally destroy the text after a delay
