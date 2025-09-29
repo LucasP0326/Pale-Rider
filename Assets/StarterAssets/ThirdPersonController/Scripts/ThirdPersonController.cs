@@ -108,7 +108,7 @@ namespace StarterAssets
         private float _doubleClickThreshold = 0.3f;
         private bool _isSprintingToClick = false;
         [SerializeField] private GameObject clickIndicatorPrefab; // Assign in Inspector
-        
+
         // player
         private float _speed;
         private float _animationBlend;
@@ -147,7 +147,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
                 return _playerInput.currentControlScheme == "KeyboardMouse";
 #else
-				return false;
+                return false;
 #endif
             }
         }
@@ -165,14 +165,14 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLE_INPUT_SYSTEM
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+            Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
@@ -258,6 +258,11 @@ namespace StarterAssets
                     paleomammalianThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().paleomammalianThought);
                     neomammalianThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().neomammalianThought);
                     paleThoughtBubble.SetActive(tempThoughtTrigger.GetComponent<ThoughtTrigger>().paleThought);
+
+                    reptilianThoughtBubble.GetComponent<ThoughtInteractionManager>().thoughtTrigger = tempThoughtTrigger;
+                    paleomammalianThoughtBubble.GetComponent<ThoughtInteractionManager>().thoughtTrigger = tempThoughtTrigger;
+                    neomammalianThoughtBubble.GetComponent<ThoughtInteractionManager>().thoughtTrigger = tempThoughtTrigger;
+                    paleThoughtBubble.GetComponent<ThoughtInteractionManager>().thoughtTrigger = tempThoughtTrigger;
                 }
             }
             else
@@ -581,7 +586,7 @@ namespace StarterAssets
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                
+
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, GroundLayers)) // Ensure we hit the ground
                 {
                     if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Interactable"))
@@ -622,5 +627,7 @@ namespace StarterAssets
                 tempThoughtTrigger = null;
             }
         }
+        
+        //Set thought trigger
     }
 }

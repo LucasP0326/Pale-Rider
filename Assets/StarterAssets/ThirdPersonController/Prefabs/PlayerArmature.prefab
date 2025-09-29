@@ -1843,7 +1843,7 @@ MonoBehaviour:
   inDialogue: 0
   pauseMenu: {fileID: 0}
   dialogueManager: {fileID: 0}
-  thoughtCircle: {fileID: 2704706129748351962}
+  thoughtCircle: {fileID: 4381783012665809447}
   HUD: {fileID: 0}
   hasThought: 0
   tempThoughtTrigger: {fileID: 0}

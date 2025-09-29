@@ -4,21 +4,44 @@ public class ThoughtInteractionManager : MonoBehaviour
 {
     public GameObject thoughtTrigger; // The current trigger the player is inside
 
-    private void OnTriggerEnter(Collider other)
+    // Call this from the thought bubble's OnClick event
+
+    private void OnClick()
     {
-        // Check if the object has the Interactable script
-        if (other.GetComponent<Interactable>() != null)
-        {
-            thoughtTrigger = other.gameObject; // Assign the GameObject to thoughtTrigger
-        }
+        OnThoughtBubbleClicked();
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnMouseDown()
     {
-        // Check if the object has the Interactable script
-        if (other.GetComponent<Interactable>() != null && thoughtTrigger == other.gameObject)
+        OnThoughtBubbleClicked();
+    }
+
+    public void OnThoughtBubbleClicked()
+    {
+        if (thoughtTrigger != null)
         {
-            thoughtTrigger = null; // Clear the thoughtTrigger when exiting the trigger
+            var interactable = thoughtTrigger.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.OnInteract(); // Replace with your actual interaction method
+            }
+        }
+
+        if (thoughtTrigger.GetComponent<ThoughtTrigger>().reptilianThought)
+        {
+            thoughtTrigger.GetComponent<ThoughtTrigger>().reptilianThought = false; // Set to false after interaction
+        }
+        if (thoughtTrigger.GetComponent<ThoughtTrigger>().paleomammalianThought)
+        {
+            thoughtTrigger.GetComponent<ThoughtTrigger>().paleomammalianThought = false; // Set to false after interaction
+        }
+        if (thoughtTrigger.GetComponent<ThoughtTrigger>().neomammalianThought)
+        {
+            thoughtTrigger.GetComponent<ThoughtTrigger>().neomammalianThought = false; // Set to false after interaction
+        }
+        if (thoughtTrigger.GetComponent<ThoughtTrigger>().paleThought)
+        {
+            thoughtTrigger.GetComponent<ThoughtTrigger>().paleThought = false; // Set to false after interaction
         }
     }
 }

@@ -2033,12 +2033,24 @@ MonoBehaviour:
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
-  interactionTextPrefab: {fileID: 0}
+  interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
   interactionText: Default Interaction Text
   interactionTextLength: 3
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 57651212}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SpeechBubble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   inventoryManager: {fileID: 0}
   timeManager: {fileID: 0}
   targetPoint: {fileID: 0}

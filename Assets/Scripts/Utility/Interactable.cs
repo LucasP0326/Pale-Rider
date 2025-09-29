@@ -221,7 +221,7 @@ public class Interactable : MonoBehaviour
 
     public void SpeechBubble()
     {
-        if (interactionTextPrefab != null)
+        if (interactionTextPrefab != null && !hasBeenInteracted)
         {
             // Instantiate the 3D TextMeshPro object slightly above the interaction bubble
             GameObject textInstance = Instantiate(interactionTextPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
