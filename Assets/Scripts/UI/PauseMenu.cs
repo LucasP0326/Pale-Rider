@@ -23,8 +23,8 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        inventoryManager = FindObjectOfType<InventoryManager>();
-        saveManager = FindObjectOfType<SaveManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        saveManager = FindFirstObjectByType<SaveManager>();
     }
 
     // Update is called once per frame

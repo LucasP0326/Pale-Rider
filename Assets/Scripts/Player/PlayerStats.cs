@@ -21,6 +21,9 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
     public int maxResolve;
 
+    [Header("Death States")]
+    public bool sucumbingToPale;
+
     [Header("Inventory")]
     public InventoryManager inventoryManager; // Reference to the InventoryManager
 
@@ -119,6 +122,9 @@ public class PlayerStats : MonoBehaviour
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
         currentHealth = ArticyGlobalVariables.Default.PlayerStats.Health;
         currentResolve = ArticyGlobalVariables.Default.PlayerStats.Resolve;
+
+        //Check Death States
+        sucumbingToPale = ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale;
 
         if (currentHealth != previousHealth)
         {

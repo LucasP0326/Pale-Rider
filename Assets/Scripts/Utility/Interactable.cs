@@ -245,7 +245,7 @@ public class Interactable : MonoBehaviour
         if (changeScene)
         {
             //Store Inventory and Time Data
-            inventoryManager.SaveInventory(); // Save inventory before changing scene
+            //inventoryManager.SaveInventory(); // Save inventory before changing scene
             timeManager.SaveTimeToArticy(); // Save time before changing scene
             
             // Store the spawn point ID before switching scenes

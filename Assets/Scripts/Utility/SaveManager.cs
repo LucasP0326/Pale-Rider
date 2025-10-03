@@ -1,23 +1,31 @@
 using UnityEngine;
 using Articy.Pale_Rider.GlobalVariables;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SaveManager : MonoBehaviour
 {
     //Important References
     private InventoryManager inventoryManager;
     private PlayerStats playerStats;
+    public string sceneName;
+    public Vector3 playerPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager>();
-        playerStats = FindObjectOfType<PlayerStats>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        if (ArticyGlobalVariables.Default.GlobalVariables.LoadingGame)
+            LoadGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
     // Call this to save
@@ -25,6 +33,12 @@ public class SaveManager : MonoBehaviour
     {
         //Misc Scripts
         inventoryManager.SaveInventory();
+
+        //Player Location
+        PlayerPrefs.SetString("SceneName", sceneName);
+        PlayerPrefs.SetFloat("PlayerPosX", playerPosition.x);
+        PlayerPrefs.SetFloat("PlayerPosY", playerPosition.y);
+        PlayerPrefs.SetFloat("PlayerPosZ", playerPosition.z);
 
         //Player Skill Stats
         PlayerPrefs.SetInt("Authority", ArticyGlobalVariables.Default.PlayerStats.Authority);
@@ -62,6 +76,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("FoundGasMask", ArticyGlobalVariables.Default.PlayerVariables.FoundGasMask ? 1 : 0);
         PlayerPrefs.SetInt("HasEquipment", ArticyGlobalVariables.Default.PlayerVariables.HasEquipment ? 1 : 0);
         PlayerPrefs.SetInt("IdentityCrisis", ArticyGlobalVariables.Default.PlayerVariables.IdentityCrisis ? 1 : 0);
+        PlayerPrefs.SetInt("SucumbingToPale", ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale ? 1 : 0);
 
         //Global Variables
         PlayerPrefs.SetInt("MadeBed", ArticyGlobalVariables.Default.GlobalVariables.MadeBed ? 1 : 0);
@@ -84,8 +99,25 @@ public class SaveManager : MonoBehaviour
     // Call this to load
     public void LoadGame()
     {
+        ArticyGlobalVariables.Default.GlobalVariables.LoadingGame = true;
         // Load Misc Scripts
         inventoryManager.LoadInventory();
+
+        //Player Position
+        sceneName = PlayerPrefs.GetString("SceneName", "SampleScene");
+        float posX = PlayerPrefs.GetFloat("PlayerPosX", 0f);
+        float posY = PlayerPrefs.GetFloat("PlayerPosY", 0f);
+        float posZ = PlayerPrefs.GetFloat("PlayerPosZ", 0f);
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != sceneName)
+        {
+            StartCoroutine(LoadSceneAndTeleport(sceneName, new Vector3(posX, posY, posZ)));
+            return; // Stop further loading until scene is loaded
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == sceneName)
+        {
+            TeleportToLoadLocation(new Vector3(posX, posY, posZ));
+        }
 
         // Load Player Skill Stats
         ArticyGlobalVariables.Default.PlayerStats.Authority = PlayerPrefs.GetInt("Authority", 0);
@@ -122,6 +154,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.FoundGasMask = PlayerPrefs.GetInt("FoundGasMask", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.HasEquipment = PlayerPrefs.GetInt("HasEquipment", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.IdentityCrisis = PlayerPrefs.GetInt("IdentityCrisis", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale = PlayerPrefs.GetInt("SucumbingToPale", 0) == 1;
 
         // Global Variables (bools)
         ArticyGlobalVariables.Default.GlobalVariables.MadeBed = PlayerPrefs.GetInt("MadeBed", 0) == 1;
@@ -139,13 +172,55 @@ public class SaveManager : MonoBehaviour
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
         playerStats.UpdatePlayerStats();
-
+        
         Debug.Log("Game Loaded!");
+    }
+
+    private IEnumerator LoadSceneAndTeleport(string targetScene, Vector3 targetPosition)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
+
+        while (!asyncLoad.isDone)
+            yield return null;
+
+        // Wait one frame to ensure everything is initialized
+        yield return null;
+
+        // Teleport player
+        TeleportToLoadLocation(targetPosition);
+
+        // Continue loading other data if needed
+        Debug.Log("Game Loaded and Teleported!");
+    }
+
+    public void TeleportToLoadLocation(Vector3 pos)
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            // Temporarily disable the CharacterController
+            var controller = playerObj.GetComponent<CharacterController>();
+            if (controller != null)
+            {
+                controller.enabled = false;
+                playerObj.transform.position = pos;
+                controller.enabled = true;
+                Debug.Log($"Teleported to position: {pos} using CharacterController method");
+            }
+            else
+            {
+                // Fallback to direct transform if no CharacterController is found
+                playerObj.transform.position = pos;
+                Debug.Log($"Teleported to position: {pos} using direct transform");
+            }
+        }
+        ArticyGlobalVariables.Default.GlobalVariables.LoadingGame = false;
     }
     
     public void ResetGame()
     {
         PlayerPrefs.DeleteAll();
+        inventoryManager.ClearInventory();
         Debug.Log("Game Reset!");
     }
 }

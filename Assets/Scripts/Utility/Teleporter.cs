@@ -35,7 +35,19 @@ public class Teleporter : MonoBehaviour
             Transform targetPoint = GameObject.Find(spawnPointID)?.transform;
             if (targetPoint != null)
             {
-                player.transform.position = targetPoint.position;
+                var controller = player.GetComponent<CharacterController>();
+                if (controller != null)
+                {
+                    controller.enabled = false;
+                    player.transform.position = targetPoint.position;
+                    controller.enabled = true;
+                    Debug.Log($"In-scene teleported to: {targetPoint.position}");
+                }
+                else
+                {
+                    player.transform.position = targetPoint.position;
+                    Debug.Log($"In-scene teleported (direct) to: {targetPoint.position}");
+                }
             }
         }
 

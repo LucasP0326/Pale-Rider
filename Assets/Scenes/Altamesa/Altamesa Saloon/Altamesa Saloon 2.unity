@@ -1887,7 +1887,7 @@ GameObject:
   - component: {fileID: 57651212}
   - component: {fileID: 57651213}
   m_Layer: 2
-  m_Name: Player Room Paleo Thought
+  m_Name: Your Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

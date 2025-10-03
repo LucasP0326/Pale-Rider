@@ -8,7 +8,7 @@ using Articy.Pale_Rider.GlobalVariables;
 public class InventoryItem : MonoBehaviour
 {
     //Important References
-    private InventoryInterface inventoryInterface; // Reference to the InventoryInterface script
+    public InventoryInterface inventoryInterface; // Reference to the InventoryInterface script
 
     public string itemName; // Name of the item
     public string technicalName; // Unique identifier for the item
@@ -22,7 +22,7 @@ public class InventoryItem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryInterface = GameObject.FindGameObjectWithTag("InventoryInterface").GetComponent<InventoryInterface>();
+        inventoryInterface = GameObject.FindFirstObjectByType<InventoryInterface>();
     }
 
     // Update is called once per frame

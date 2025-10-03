@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         newItem.itemType = articyObj.Template.ItemCategory.SmallTextValue;
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
         newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
-        
+
         StartCoroutine(PopupCoroutine(newItem.itemName));
 
         // If your Articy object stores an image as an Asset reference:
@@ -191,6 +191,22 @@ public class InventoryManager : MonoBehaviour
         popupItemName.text = itemName;
         yield return new WaitForSeconds(5f);
         itemPopup.SetActive(false);
+    }
+    
+    public void ClearInventory()
+    {
+        // Clear the inventory array
+        inventoryItems = new InventoryItem[0];
+
+        // Clear the inventory UI
+        foreach (Transform child in inventorySpace.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Remove saved inventory from PlayerPrefs
+        PlayerPrefs.DeleteKey("PlayerInventory");
+        PlayerPrefs.Save();
     }
 }
 

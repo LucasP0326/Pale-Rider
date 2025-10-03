@@ -10142,6 +10142,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714001212}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &720331152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1501710357287840042, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
+  m_PrefabInstance: {fileID: 1404172966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &727664936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6632344150658346513, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
@@ -11689,7 +11694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &815097519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11729,8 +11734,8 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
   changeScene: 1
-  sceneName: End Scene
-  spawnPointID: 
+  sceneName: Altamesa
+  spawnPointID: SaloonExit
   teleportCooldown: 1
   interactionRange: 2
   door: {fileID: 0}
@@ -13880,6 +13885,7 @@ Transform:
   - {fileID: 671642007}
   - {fileID: 1855782679}
   - {fileID: 937065482}
+  - {fileID: 1523658712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937065481
@@ -22244,6 +22250,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1563637371}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1501710357287840042, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414137177}
     - targetCorrespondingSourceObject: {fileID: 8247959313628021088, guid: ab4a28f2f23bf36418309ba137a15ae8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1404172973}
@@ -22872,6 +22881,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412586511}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1414137177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720331152}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnStart: 0
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1414137177}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: TryTeleport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: Altamesa
+  spawnPointID: SaloonExit
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
 --- !u!1 &1419288835
 GameObject:
   m_ObjectHideFlags: 0
@@ -23856,6 +23913,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517279330}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1523658711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1523658712}
+  m_Layer: 0
+  m_Name: Thought Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1523658712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523658711}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.301587, y: 1.2758461, z: 12.282911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1872966126}
+  m_Father: {fileID: 920470443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1532092840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27416,6 +27505,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.00001335144
       objectReference: {fileID: 0}
+    - target: {fileID: 1658534691083953997, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00096951274
+      objectReference: {fileID: 0}
     - target: {fileID: 1810162794531703902, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -27578,6 +27671,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3950783133194328588, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498545161457507000, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498545161457507000, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4547025096751640748, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
@@ -28019,6 +28120,18 @@ PrefabInstance:
     - target: {fileID: 8118147739009140366, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_SizeDelta.x
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521264633350700350, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521264633350700350, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521264633350700350, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8787089638534046709, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Mesh
@@ -29041,7 +29154,7 @@ AudioSource:
   m_GameObject: {fileID: 1841826599}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6674700520906834807, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -29579,7 +29692,7 @@ GameObject:
   - component: {fileID: 1872966120}
   - component: {fileID: 1872966119}
   m_Layer: 2
-  m_Name: Player Room Paleo Thought
+  m_Name: Downstairs Though Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29778,11 +29891,11 @@ Transform:
   m_GameObject: {fileID: 1872966118}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.4196, y: 1.3344002, z: 7.0311}
+  m_LocalPosition: {x: 8.260726, y: -1.2728207, z: -1.7164402}
   m_LocalScale: {x: 1.7561104, y: 1.6452, z: 2.048843}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1523658712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875005451
 GameObject:
@@ -34971,4 +35084,3 @@ SceneRoots:
   - {fileID: 920470443}
   - {fileID: 184072787}
   - {fileID: 815097524}
-  - {fileID: 1872966126}
