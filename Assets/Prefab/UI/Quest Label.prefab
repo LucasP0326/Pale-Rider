@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2657589843498164053}
   - component: {fileID: 6027030078289497463}
   - component: {fileID: 4172967160241289646}
+  - component: {fileID: 5854431594760164068}
   m_Layer: 5
   m_Name: Quest Label
   m_TagString: Untagged
@@ -257,7 +258,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2657589843498164053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5854431594760164068}
+        m_TargetAssemblyTypeName: Quest, Assembly-CSharp
+        m_MethodName: OnQuestSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4172967160241289646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +286,22 @@ MonoBehaviour:
   buttonText: {fileID: 2202200862556142436}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 0.45490196, b: 0, a: 1}
+--- !u!114 &5854431594760164068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5732921205216628562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7e67b887cc5c042918f8950375d670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInterface: {fileID: 0}
+  technicalName: 
+  questName: 
+  questDescription: 
+  questStages: 
+  questStage: 0
+  isComplete: 0

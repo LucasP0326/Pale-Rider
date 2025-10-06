@@ -571,6 +571,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3893294197879345259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1171604190703338248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2182859991521991546}
+  m_Layer: 0
+  m_Name: Quest Space
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2182859991521991546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171604190703338248}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24146368, y: 2.453733, z: -0.15428431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3893294197879345259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191273259690468839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1711,7 @@ GameObject:
   - component: {fileID: 4416926081852918491}
   - component: {fileID: 7299142118477806650}
   - component: {fileID: 4887847636039713900}
+  - component: {fileID: 6770774144591164222}
   - component: {fileID: 4416926081852918490}
   - component: {fileID: 5885216827943657505}
   - component: {fileID: 135756642000475821}
@@ -1709,6 +1741,7 @@ Transform:
   - {fileID: 272993188807782130}
   - {fileID: 2411782305941534148}
   - {fileID: 2055815396097116867}
+  - {fileID: 2182859991521991546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6982812146204527121
@@ -1774,6 +1807,7 @@ MonoBehaviour:
   currentResolve: 0
   maxHealth: 0
   maxResolve: 0
+  sucumbingToPale: 0
   inventoryManager: {fileID: 0}
   signatureSkill: 
   reptilianBaseScore: 0
@@ -1809,6 +1843,7 @@ MonoBehaviour:
   resolveLossText: {fileID: 0}
   resolveLossNumberText: {fileID: 0}
   moneyText: {fileID: 0}
+  fadeCanvas: {fileID: 0}
 --- !u!114 &4887847636039713900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,6 +1861,25 @@ MonoBehaviour:
   inventorySpace: {fileID: 1085152454542240306}
   itemPopup: {fileID: 0}
   popupItemName: {fileID: 0}
+--- !u!114 &6770774144591164222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf24b84bd56a3048b8a42946976f01a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeQuests: []
+  completedQuests: []
+  questPrefab: {fileID: 0}
+  questNameText: {fileID: 0}
+  questSpace: {fileID: 1171604190703338248}
+  activeQuestsPanel: {fileID: 0}
+  completedQuestsPanel: {fileID: 0}
 --- !u!114 &4416926081852918490
 MonoBehaviour:
   m_ObjectHideFlags: 0

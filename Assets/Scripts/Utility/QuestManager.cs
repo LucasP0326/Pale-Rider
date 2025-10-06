@@ -1,0 +1,107 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using Articy.Unity;
+using Articy.Unity.Interfaces;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
+using System.Collections.Generic;
+using TMPro;
+
+public class QuestManager : MonoBehaviour
+{
+    public bool addingQuests;
+
+    [Header("Quest List")]
+    public Quest[] activeQuests;
+    public Quest[] completedQuests;
+    public Quest questPrefab;
+    public TextMeshProUGUI questNameText;
+
+    [Header("Quest Interface")]
+    public GameObject questSpace;
+    public GameObject activeQuestsPanel;
+    public GameObject completedQuestsPanel;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        QuestChecker();
+        QuestUpdater();
+    }
+
+    public void QuestChecker()
+    {
+        // Logic to check and update quests
+        addingQuests = ArticyGlobalVariables.Default.Quests.AddingQuests;
+        if (addingQuests)
+        {
+            if (ArticyGlobalVariables.Default.Quests.LeaveThePale != 0)
+            {
+                AddQuest("Q_LeaveThePale");
+            }
+        }
+        addingQuests = false;
+        ArticyGlobalVariables.Default.Quests.AddingQuests = false;
+    }
+
+    public void QuestUpdater()
+    {
+        foreach (Transform child in questSpace.transform)
+        {
+            Quest quest = child.GetComponent<Quest>();
+            if (quest != null && quest.technicalName == "Q_LeaveThePale")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.LeaveThePale;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    quest.isComplete = true;
+                }
+            }
+        }
+    }
+
+    public void AddQuest(string technicalName)
+    {
+        var articyObj = ArticyDatabase.GetObject(technicalName) as Articy.Pale_Rider.Quests;
+        if (articyObj == null)
+        {
+            Debug.LogWarning("Articy object not found for technical name: " + technicalName);
+            return;
+        }
+
+        //Instantiate Prefab
+        Quest newQuest = Instantiate(questPrefab, questSpace.transform);
+
+        //Populate Fields
+        newQuest.technicalName = technicalName;
+        newQuest.questName = articyObj.DisplayName;
+        newQuest.questDescription = articyObj.Template.Description.MediumTextValue;
+        newQuest.questStages = articyObj.Template.QuestStages.LargeTextValue;
+
+        //Add New Quest to Active Quests
+        var questsList = new List<Quest>(activeQuests ?? new Quest[0]);
+        questsList.Add(newQuest);
+        activeQuests = questsList.ToArray();
+    }
+
+    public void SaveQuests()
+    {
+        // Implement saving logic if needed
+    }
+}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // Required for Image components
 using Articy.Unity; // Import Articy namespace
@@ -69,6 +70,7 @@ public class PlayerStats : MonoBehaviour
     private GameObject[] healthBoxes; // Array to store health box instances
     private GameObject[] resolveBoxes; // Array to store resolve box instances
     public TMP_Text moneyText;
+    public GameObject fadeCanvas; // Fullscreen UI Image for fading
 
     private void Start()
     {
@@ -125,6 +127,15 @@ public class PlayerStats : MonoBehaviour
 
         //Check Death States
         sucumbingToPale = ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale;
+
+        if (sucumbingToPale)
+        {
+            StartCoroutine(PaleDeathScene());
+            sucumbingToPale = false; // Reset the flag to prevent repeated triggers
+            ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale = false; // Also reset in Articy variables
+            Debug.Log("Player is sucumbing to the Pale!");
+            // You can trigger death animations, game over screens, etc.
+        }
 
         if (currentHealth != previousHealth)
         {
@@ -318,5 +329,43 @@ public class PlayerStats : MonoBehaviour
         {
             moneyText.text = "£" + playerCash.ToString("F2"); // Format to 2 decimal places
         }
+    }
+
+    private IEnumerator PaleDeathScene()
+    {
+        Debug.Log("Starting Pale Death Scene Transition...");
+        if (fadeCanvas == null)
+        {
+            Debug.LogWarning("FadeCanvas not found in scene.");
+            yield break;
+        }
+
+        // Get the CanvasRenderer or Image component to control alpha
+        var image = fadeCanvas.GetComponent<UnityEngine.UI.Image>();
+        if (image == null)
+        {
+            Debug.LogWarning("FadeCanvas does not have an Image component.");
+            yield break;
+        }
+
+        // Fade to black over 2 seconds
+        float duration = 2f;
+        float elapsed = 0f;
+        Color color = image.color;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsed / duration);
+            image.color = color;
+            yield return null;
+        }
+        color.a = 1f;
+        image.color = color;
+
+        // Wait a moment on black
+        yield return new WaitForSeconds(1f);
+
+        // Load the "Sucumbing to Pale" scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Sucumbing to Pale");
     }
 }
