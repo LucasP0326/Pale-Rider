@@ -38,17 +38,24 @@ public class QuestManager : MonoBehaviour
 
     public void QuestChecker()
     {
-        // Logic to check and update quests
-        addingQuests = ArticyGlobalVariables.Default.Quests.AddingQuests;
-        if (addingQuests)
+        if (ArticyGlobalVariables.Default.Quests.LeaveThePale != 0)
         {
-            if (ArticyGlobalVariables.Default.Quests.LeaveThePale != 0)
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_LeaveThePale")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
             {
                 AddQuest("Q_LeaveThePale");
             }
         }
-        addingQuests = false;
-        ArticyGlobalVariables.Default.Quests.AddingQuests = false;
     }
 
     public void QuestUpdater()
