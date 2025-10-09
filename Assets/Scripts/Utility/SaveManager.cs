@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     //Important References
     private InventoryManager inventoryManager;
+    private QuestManager questManager;
     private PlayerStats playerStats;
     public string sceneName;
     public Vector3 playerPosition;
@@ -15,6 +16,7 @@ public class SaveManager : MonoBehaviour
     void Start()
     {
         inventoryManager = FindFirstObjectByType<InventoryManager>();
+        questManager = FindFirstObjectByType<QuestManager>();
         playerStats = FindFirstObjectByType<PlayerStats>();
         if (ArticyGlobalVariables.Default.GlobalVariables.LoadingGame)
             LoadGame();
@@ -92,6 +94,9 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("IngoPaleRealization", ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization ? 1 : 0);
         PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
 
+        //Quests
+        PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
+
         PlayerPrefs.Save();
         Debug.Log("Game Saved!");
     }
@@ -168,6 +173,9 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedQuests = PlayerPrefs.GetInt("UnlockedQuests", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap = PlayerPrefs.GetInt("UnlockedMap", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
+
+        //Quests
+        ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
