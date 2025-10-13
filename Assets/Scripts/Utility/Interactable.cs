@@ -6,6 +6,8 @@ using Articy.Unity;
 using StarterAssets;
 using DoorScript;
 using TMPro; // Import TextMeshPro namespace
+using System; // <-- added for Convert
+using System.Reflection; // <-- added for reflection
 
 public class Interactable : MonoBehaviour
 {
@@ -52,6 +54,17 @@ public class Interactable : MonoBehaviour
     public bool oneTimeDialogue = false; // If true, the object can only be interacted with once for dialogue
     public bool hasDialogueOnce = false; // Tracks if the object has been interacted with for dialogue
     public bool hasDialogue;
+
+    [Header("Articy Variable Setter")]
+    [Tooltip("Path format: Section.VariableName e.g. Quests.LeaveThePale")]
+    public string articyVariablePath;
+    public VariableType articyVariableType = VariableType.Int;
+    public int articyIntValue = 0;
+    public bool articyBoolValue = false;
+    public float articyFloatValue = 0f;
+    public string articyStringValue = "";
+
+    public enum VariableType { Int, Bool, Float, String }
 
     [Header("Object Outline")]
     private Outline _outline;
@@ -235,6 +248,99 @@ public class Interactable : MonoBehaviour
 
             // Optionally destroy the text after a delay
             Destroy(textInstance, 3f); // Destroy after 3 seconds
+        }
+    }
+
+    public void SetArticyVariable()
+    {
+        if (string.IsNullOrWhiteSpace(articyVariablePath))
+        {
+            Debug.LogWarning("Articy variable path is empty.");
+            return;
+        }
+
+        // Get top-level generated global variables instance
+        var gv = Articy.Pale_Rider.GlobalVariables.ArticyGlobalVariables.Default;
+        if (gv == null)
+        {
+            Debug.LogWarning("Articy GlobalVariables not loaded (ArticyGlobalVariables.Default is null).");
+            return;
+        }
+
+        var parts = articyVariablePath.Split('.');
+        object current = gv;
+        Type currentType = current.GetType();
+
+        for (int i = 0; i < parts.Length; i++)
+        {
+            string part = parts[i];
+
+            // Try property first, then field
+            PropertyInfo prop = currentType.GetProperty(part, BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo field = currentType.GetField(part, BindingFlags.Public | BindingFlags.Instance);
+
+            if (i == parts.Length - 1)
+            {
+                // set value on last member
+                Type memberType = prop != null ? prop.PropertyType : field != null ? field.FieldType : null;
+                if (memberType == null)
+                {
+                    Debug.LogWarning($"Member '{part}' not found on type {currentType.Name}.");
+                    return;
+                }
+
+                object valueToSet = null;
+                try
+                {
+                    switch (articyVariableType)
+                    {
+                        case VariableType.Int:
+                            valueToSet = Convert.ChangeType(articyIntValue, memberType);
+                            break;
+                        case VariableType.Bool:
+                            valueToSet = Convert.ChangeType(articyBoolValue, memberType);
+                            break;
+                        case VariableType.Float:
+                            valueToSet = Convert.ChangeType(articyFloatValue, memberType);
+                            break;
+                        case VariableType.String:
+                            valueToSet = Convert.ChangeType(articyStringValue, memberType);
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"Failed to convert value to target type {memberType.Name}: {e.Message}");
+                    return;
+                }
+
+                if (prop != null) prop.SetValue(current, valueToSet);
+                else field.SetValue(current, valueToSet);
+
+                Debug.Log($"Set Articy variable '{articyVariablePath}' to {valueToSet}");
+                return;
+            }
+            else
+            {
+                // traverse to next object in path
+                object next = null;
+                if (prop != null) next = prop.GetValue(current);
+                else if (field != null) next = field.GetValue(current);
+                else
+                {
+                    Debug.LogWarning($"Member '{part}' not found on type {currentType.Name} while traversing path.");
+                    return;
+                }
+
+                if (next == null)
+                {
+                    Debug.LogWarning($"Member '{part}' is null while traversing path.");
+                    return;
+                }
+
+                current = next;
+                currentType = current.GetType();
+            }
         }
     }
 
