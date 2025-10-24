@@ -31,6 +31,7 @@ namespace StarterAssets
         public GameObject paleThoughtBubble;
 
         [Header("Player")]
+        public bool isMounted = false;
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
 
