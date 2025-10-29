@@ -399,7 +399,7 @@ namespace StarterAssets
                 }
             }
             // Movement using WASD
-            else if (_input.move != Vector2.zero && !paused && !inDialogue)
+            else if (_input.move != Vector2.zero && !paused && !inDialogue && !isMounted)
             {
                 tempInteractableObject = null;
                 targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -452,7 +452,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !inDialogue)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !inDialogue && !isMounted)
                 {
                     // Cancel click-to-move if any movement key is pressed
                     if (_isMovingToClick)
@@ -569,7 +569,7 @@ namespace StarterAssets
 
         private void HandleClickMovement()
         {
-            if (Input.GetMouseButtonDown(0) && !paused && !inDialogue) // Left mouse button
+            if (Input.GetMouseButtonDown(0) && !paused && !inDialogue && !isMounted) // Left mouse button
             {
                 float timeSinceLastClick = Time.time - _lastClickTime;
 

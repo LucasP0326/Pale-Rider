@@ -19,6 +19,10 @@ public class Interactable : MonoBehaviour
     private ArticyObject availableDialogue;
     private AudioSource aSource;
 
+    [Header("Horse")]
+    public bool isHorse = false;
+    public HorseManager horseManager;
+
     [Header("One-Time Interaction")]
     public bool oneTimeInteraction = false; // If true, the object can only be interacted with once
     public bool hasBeenInteracted = false; // Tracks if the object has been interacted with
@@ -249,6 +253,24 @@ public class Interactable : MonoBehaviour
             // Optionally destroy the text after a delay
             Destroy(textInstance, 3f); // Destroy after 3 seconds
         }
+    }
+
+    public void MountHorse()
+    {
+        Debug.Log("MountHorse called");
+        if (playerController.GetComponent<ThirdPersonController>().isMounted)
+        {
+            Dismount();
+        }
+        else
+        {
+            horseManager.Mount();
+        }
+    }
+
+    public void Dismount()
+    {
+        horseManager.Dismount();
     }
 
     public void SetArticyVariable()
