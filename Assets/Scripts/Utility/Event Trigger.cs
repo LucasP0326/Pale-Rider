@@ -15,6 +15,11 @@ public class EventTrigger : MonoBehaviour
             hasTriggered = true; // Mark the event as triggered
             onTriggerEnter?.Invoke(); // Invoke the assigned event
         }
+        else if (!hasTriggered && other.CompareTag("Interactable"))
+        {
+            hasTriggered = true; // Mark the event as triggered
+            onTriggerEnter?.Invoke(); // Invoke the assigned event
+        }
     }
 
     public void DestroySelf()
