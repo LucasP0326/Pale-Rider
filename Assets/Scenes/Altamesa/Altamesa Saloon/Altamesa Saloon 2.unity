@@ -38661,6 +38661,10 @@ PrefabInstance:
       propertyPath: pushLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
     - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: HUD
       value: 
@@ -38705,6 +38709,10 @@ PrefabInstance:
       propertyPath: resolveLossNumberText
       value: 
       objectReference: {fileID: 1674704555}
+    - target: {fileID: 8187455079231382173, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8787718027633245489, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dialogueManager
       value: 

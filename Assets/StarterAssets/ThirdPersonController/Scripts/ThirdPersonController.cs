@@ -132,10 +132,10 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
-        private Animator _animator;
-        private CharacterController _controller;
-        private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        public Animator _animator;
+        public CharacterController _controller;
+        public StarterAssetsInputs _input;
+        public GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
 
