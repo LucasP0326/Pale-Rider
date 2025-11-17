@@ -44,9 +44,12 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     AudioClip voiceOver;
     [SerializeField]
     AudioClip[] skillSFX;
-    
+
     [SerializeField]
     AudioSource aSource;
+
+    [SerializeField]
+    AudioSource sfxSource;
 
     [Header("Events")]
     [SerializeField]
@@ -55,11 +58,13 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     public bool DialogueActive { get; set; }
 
     private ArticyFlowPlayer flowPlayer;
+    private GameObject player;
 
     void Start()
     {
         flowPlayer = GetComponent<ArticyFlowPlayer>();
-        aSource = GetComponent<AudioSource> ();
+        aSource = GetComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -94,6 +99,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         // Trigger the custom event
         onDialogueClosed?.Invoke();
+        player.GetComponent<PlayerStats>().CheckDeath();
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
@@ -105,6 +111,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         //Stop Current Audio
         aSource.Stop();
+        sfxSource.Stop();
         
         //Add Dialogue Text
         var objectWithText = aObject as IObjectWithLocalizableText;
@@ -146,6 +153,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             {
                 aSource.clip = modelWithText.Text.LoadVOAssetAsAudioClip();
                 aSource.Play();
+                PlaySkillSFX();
             }   
         }
     }
@@ -222,6 +230,74 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         foreach (Transform child in branchLayoutPanel)
         {
             Destroy(child.gameObject);
+        }
+    }
+
+    public void PlaySkillSFX()
+    {
+        if (dialogueSpeaker.text == "Authority")
+        {
+            sfxSource.PlayOneShot(skillSFX[0]);
+        }
+        else if (dialogueSpeaker.text == "Conceptualization")
+        {
+            sfxSource.PlayOneShot(skillSFX[1]);
+        }
+        else if (dialogueSpeaker.text == "Empathy")
+        {
+            sfxSource.PlayOneShot(skillSFX[2]);
+        }
+        else if (dialogueSpeaker.text == "Encyclopedia")
+        {
+            sfxSource.PlayOneShot(skillSFX[3]);
+        }
+        else if (dialogueSpeaker.text == "Endurance")
+        {
+            sfxSource.PlayOneShot(skillSFX[4]);
+        }
+        else if (dialogueSpeaker.text == "Logic")
+        {
+            sfxSource.PlayOneShot(skillSFX[5]);
+        }
+        else if (dialogueSpeaker.text == "Perception")
+        {
+            sfxSource.PlayOneShot(skillSFX[6]);
+        }
+        else if (dialogueSpeaker.text == "Perspicacity")
+        {
+            sfxSource.PlayOneShot(skillSFX[7]);
+        }
+        else if (dialogueSpeaker.text == "Physicality")
+        {
+            sfxSource.PlayOneShot(skillSFX[8]);
+        }
+        else if (dialogueSpeaker.text == "Reflexivity")
+        {
+            sfxSource.PlayOneShot(skillSFX[9]);
+        }
+        else if (dialogueSpeaker.text == "Rhetoric")
+        {
+            sfxSource.PlayOneShot(skillSFX[10]);
+        }
+        else if (dialogueSpeaker.text == "Savor Faire")
+        {
+            sfxSource.PlayOneShot(skillSFX[11]);
+        }
+        else if (dialogueSpeaker.text == "Self-Actualization")
+        {
+            sfxSource.PlayOneShot(skillSFX[12]);
+        }
+        else if (dialogueSpeaker.text == "Suggestion")
+        {
+            sfxSource.PlayOneShot(skillSFX[13]);
+        }
+        else if (dialogueSpeaker.text == "Tenebrality")
+        {
+            sfxSource.PlayOneShot(skillSFX[14]);
+        }
+        else if (dialogueSpeaker.text == "Volition")
+        {
+            sfxSource.PlayOneShot(skillSFX[15]);
         }
     }
 

@@ -14,7 +14,7 @@ public class IsometricCameraZoom : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-        playerController = FindObjectOfType<ThirdPersonController>();
+        playerController = FindFirstObjectByType<ThirdPersonController>();
     }
 
     void Update()

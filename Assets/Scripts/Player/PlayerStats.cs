@@ -323,6 +323,24 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void CheckDeath()
+    {
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player has died due to health reaching zero.");
+            // Trigger death sequence or load game over scene
+            // For example:
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+        }
+        if (currentResolve <= 0)
+        {
+            Debug.Log("Player has died due to resolve reaching zero.");
+            // Trigger death sequence or load game over scene
+            // For example:
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+        }
+    }
+
     private void UpdateMoneyText()
     {
         if (moneyText != null)
@@ -367,5 +385,15 @@ public class PlayerStats : MonoBehaviour
 
         // Load the "Sucumbing to Pale" scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sucumbing to Pale");
+    }
+
+    private IEnumerator HealthDeathScene()
+    {
+        yield return null;
+    }
+    
+    private IEnumerator ResolveDeathScene()
+    {
+        yield return null;
     }
 }

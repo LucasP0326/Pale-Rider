@@ -96578,6 +96578,7 @@ MonoBehaviour:
   voiceOver: {fileID: 0}
   skillSFX: []
   aSource: {fileID: 0}
+  sfxSource: {fileID: 0}
   onDialogueClosed:
     m_PersistentCalls:
       m_Calls: []
@@ -110785,11 +110786,27 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: articyIntValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: hasDialogueOnce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: articyVariablePath
+      value: Quests.LeaveThePale
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
@@ -110797,7 +110814,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4924011997086640185}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4924011997086640185}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
@@ -110805,11 +110830,23 @@ PrefabInstance:
       value: MountHorse
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetArticyVariable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Interactable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Interactable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668470130750978756, guid: 0c4526e43b9fa4d40918ced888bb595c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
