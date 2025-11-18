@@ -6,6 +6,7 @@ using Articy.Unity.Interfaces;
 using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 using TMPro; // Import TextMeshPro namespace
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -23,7 +24,10 @@ public class PlayerStats : MonoBehaviour
     public int maxResolve;
 
     [Header("Death States")]
+    public bool alreadyDying;
     public bool sucumbingToPale;
+    public Interactable healthDeathObject;
+    public Interactable resolveDeathObject;
 
     [Header("Inventory")]
     public InventoryManager inventoryManager; // Reference to the InventoryManager
@@ -166,6 +170,24 @@ public class PlayerStats : MonoBehaviour
         UpdateHealthBar();
         UpdateResolveBar();
         UpdateMoneyText();
+
+        if (ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath)
+        {
+            SceneManager.LoadScene("End Scene");
+        }
+        if (ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath)
+        {
+            SceneManager.LoadScene("End Scene");
+        }
+        if (ArticyGlobalVariables.Default.PlayerVariables.PaleDeath)
+        {
+            SceneManager.LoadScene("End Scene");
+        }
+    }
+
+    private void LateUpdate()
+    {
+        CheckDeath();
     }
 
     public void UpdatePlayerStats()
@@ -328,16 +350,12 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player has died due to health reaching zero.");
-            // Trigger death sequence or load game over scene
-            // For example:
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+            StartCoroutine(HealthDeathScene());
         }
         if (currentResolve <= 0)
         {
             Debug.Log("Player has died due to resolve reaching zero.");
-            // Trigger death sequence or load game over scene
-            // For example:
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+            StartCoroutine(ResolveDeathScene());
         }
     }
 
@@ -389,11 +407,13 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator HealthDeathScene()
     {
+        healthDeathObject.OnInteract();
         yield return null;
     }
     
     private IEnumerator ResolveDeathScene()
     {
+        resolveDeathObject.OnInteract();
         yield return null;
     }
 }
