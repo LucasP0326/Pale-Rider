@@ -10,7 +10,7 @@ public class HorseManager : MonoBehaviour
     [Header("Horse Movement")]
     public float walkSpeed = 2.0f;
     public float trotSpeed = 4.0f;
-    public float gallopSpeed = 7.0f;
+    public float gallopSpeed = 10.0f;
     public float rotationSpeed = 10f;
     public float jumpForce = 5f;
     public float jumpCooldown = 0.5f;
@@ -19,7 +19,7 @@ public class HorseManager : MonoBehaviour
     [Header("Speed Control")]
     public float speedIncreasePerTap = 0.5f; // How much speed increases per shift tap
     public float speedDecayRate = 0.2f; // How fast speed decays per second
-    public float minimumSpeed = 2.0f; // Minimum speed (walk)
+    public float minimumSpeed = 0.0f; // Minimum speed (idle)
     private float targetSpeed; // The speed we're trying to reach
     private float currentSpeed;
     private bool wasSprintPressed; // To detect shift key press
@@ -37,6 +37,9 @@ public class HorseManager : MonoBehaviour
     private readonly float gravity = -9.81f;
     private Vector3 clickTarget;
     private bool isMovingToClick;
+
+    [Header("Animator")]
+    public Animator horseAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +61,8 @@ public class HorseManager : MonoBehaviour
         horseController.enabled = false; // Start disabled until mounted
         targetSpeed = minimumSpeed;
         currentSpeed = minimumSpeed;
+
+        horseAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -69,6 +74,17 @@ public class HorseManager : MonoBehaviour
         CheckGround();
         HandleMovement();
         HandleJump();
+
+        horseAnimator.SetFloat("Speed", currentSpeed);
+        if (currentSpeed <= 0.1f)
+        {
+            horseAnimator.SetBool("IsIdling", true);
+        }
+        else
+        {
+            horseAnimator.SetBool("IsIdling", false);
+        }
+        //Debug.Log("Horse Speed: " + currentSpeed);
     }
 
     private void CheckGround()
@@ -84,24 +100,6 @@ public class HorseManager : MonoBehaviour
         
         // Get input direction
         Vector3 inputDirection = new Vector3(playerInput.move.x, 0.0f, playerInput.move.y);
-
-        // Handle speed increase on Shift tap
-        if (playerInput.sprint && !wasSprintPressed)
-        {
-            // Increase target speed but cap it at trot speed
-            targetSpeed = Mathf.Min(targetSpeed + speedIncreasePerTap, gallopSpeed);
-        }
-        wasSprintPressed = playerInput.sprint;
-
-        // Gradually decay speed
-        if (targetSpeed > minimumSpeed)
-        {
-            targetSpeed -= speedDecayRate * Time.deltaTime;
-            targetSpeed = Mathf.Max(targetSpeed, minimumSpeed);
-        }
-
-        // Smoothly interpolate current speed to target speed
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * 5f);
 
         // Cancel click-to-move if player uses WASD
         if (inputDirection.magnitude >= 0.1f)
@@ -136,8 +134,45 @@ public class HorseManager : MonoBehaviour
             }
         }
 
+        // Determine whether the horse should be moving (walk) or idle
+        bool isMoving = inputDirection.magnitude >= 0.1f || isMovingToClick;
+
+        // Handle speed increase on Shift tap (detect taps)
+        if (playerInput.sprint && !wasSprintPressed)
+        {
+            // Increase target speed but cap it at gallop speed
+            targetSpeed = Mathf.Min(targetSpeed + speedIncreasePerTap, gallopSpeed);
+        }
+        wasSprintPressed = playerInput.sprint;
+
+        // If moving, ensure target is at least walk speed; if idle, target is minimum (idle = 0)
+        if (isMoving)
+        {
+            if (targetSpeed < walkSpeed)
+                targetSpeed = walkSpeed;
+
+            // If not sprinting, decay speed back toward walk speed
+            if (!playerInput.sprint && targetSpeed > walkSpeed)
+            {
+                targetSpeed -= speedDecayRate * Time.deltaTime;
+                targetSpeed = Mathf.Max(targetSpeed, walkSpeed);
+            }
+        }
+        else
+        {
+            // Not moving: decay toward idle minimum
+            if (targetSpeed > minimumSpeed)
+            {
+                targetSpeed -= speedDecayRate * Time.deltaTime;
+                targetSpeed = Mathf.Max(targetSpeed, minimumSpeed);
+            }
+        }
+
+        // Smoothly interpolate current speed to target speed
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * 5f);
+
         // Apply movement
-        if (inputDirection != Vector3.zero || isMovingToClick)
+        if (isMoving)
         {
             // Get the camera's forward direction, ignoring pitch
             Vector3 cameraForward = Camera.main.transform.forward;
@@ -170,9 +205,9 @@ public class HorseManager : MonoBehaviour
         else
         {
             moveDirection = Vector3.zero;
-            // Optional: Reset speed when stopping
+            // Force target to idle and snap current speed to zero so animator stays idle
             targetSpeed = minimumSpeed;
-            currentSpeed = minimumSpeed;
+            currentSpeed = 0f;
         }
 
         // Apply gravity
@@ -229,6 +264,11 @@ public class HorseManager : MonoBehaviour
         player.position = playerMountPosition.position;
         player.rotation = playerMountPosition.rotation;
         player.parent = transform; // Parent player to horse
+
+        // Ensure speeds are reset when mounting so the horse starts idle
+        targetSpeed = minimumSpeed;
+        currentSpeed = minimumSpeed;
+        wasSprintPressed = false;
     }
 
     public void Dismount()
@@ -248,5 +288,10 @@ public class HorseManager : MonoBehaviour
         player.parent = null;
         Vector3 dismountPosition = transform.position + transform.right * 2f;
         player.position = dismountPosition;
+
+        // Reset speeds to idle so animator doesn't keep walking after dismount
+        targetSpeed = minimumSpeed;
+        currentSpeed = minimumSpeed;
+        wasSprintPressed = false;
     }
 }

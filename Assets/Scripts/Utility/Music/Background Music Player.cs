@@ -66,7 +66,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
     {
         if (sceneName != "Altamesa Saloon" && sceneName != "Altamesa Saloon 2")
         {
-            if (currentClip == "Aurora - Hans Zimmer (UnityEngine.AudioClip)")
+            if (currentClip == "Aurora - Hans Zimmer")
             {
                 audioSource.Stop();
             }

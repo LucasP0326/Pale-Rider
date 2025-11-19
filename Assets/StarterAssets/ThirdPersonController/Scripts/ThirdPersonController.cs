@@ -22,6 +22,7 @@ namespace StarterAssets
         public GameObject dialogueManager;
         public GameObject thoughtCircle;
         public GameObject HUD;
+
         [Header("Thought")]
         public bool hasThought = false;
         public GameObject tempThoughtTrigger;
@@ -202,6 +203,11 @@ namespace StarterAssets
         private void Update()
         {
             inDialogue = dialogueManager.GetComponent<DialogueManager>().DialogueActive;
+
+            if (isMounted)
+                _animator.SetBool("Mounted", true);
+            else
+                _animator.SetBool("Mounted", false);
 
             if (tempInteractableObject != null)
                 interactionRange = tempInteractableObject.GetComponent<Interactable>().interactionRange;
