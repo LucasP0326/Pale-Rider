@@ -79,6 +79,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("HasEquipment", ArticyGlobalVariables.Default.PlayerVariables.HasEquipment ? 1 : 0);
         PlayerPrefs.SetInt("IdentityCrisis", ArticyGlobalVariables.Default.PlayerVariables.IdentityCrisis ? 1 : 0);
         PlayerPrefs.SetInt("SucumbingToPale", ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale ? 1 : 0);
+        PlayerPrefs.SetInt("PhysicalDeath", ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath ? 1 : 0);
+        PlayerPrefs.SetInt("ResolveDeath", ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath ? 1 : 0);
 
         //Global Variables
         PlayerPrefs.SetInt("MadeBed", ArticyGlobalVariables.Default.GlobalVariables.MadeBed ? 1 : 0);
@@ -160,6 +162,8 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.HasEquipment = PlayerPrefs.GetInt("HasEquipment", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.IdentityCrisis = PlayerPrefs.GetInt("IdentityCrisis", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale = PlayerPrefs.GetInt("SucumbingToPale", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath = PlayerPrefs.GetInt("PhysicalDeath", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath = PlayerPrefs.GetInt("ResolveDeath", 0) == 1;
 
         // Global Variables (bools)
         ArticyGlobalVariables.Default.GlobalVariables.MadeBed = PlayerPrefs.GetInt("MadeBed", 0) == 1;
