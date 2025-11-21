@@ -78,6 +78,10 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        //Reset Death
+        ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath = false;
+        ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath = false;
+
         //Initialized Inventory Manager
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         inventoryManager.LoadInventory(); // Load inventory data at the start

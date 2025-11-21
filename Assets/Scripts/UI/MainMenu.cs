@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
+using Articy.Unity;
 
 public class MainMenu : MonoBehaviour
 {
@@ -70,6 +73,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        ResetKeyVariables();
         PlayClickSound();
         SceneManager.LoadScene(sceneName);
     }
@@ -124,6 +128,20 @@ public class MainMenu : MonoBehaviour
         if (audioSource != null && clickSound != null)
         {
             audioSource.PlayOneShot(clickSound);
+        }
+    }
+
+    public void ResetKeyVariables()
+    {
+        // Access the default global variables instance and call ResetVariables()
+        if (ArticyDatabase.DefaultGlobalVariables != null)
+        {
+            ArticyDatabase.DefaultGlobalVariables.ResetVariables();
+            Debug.Log("All articy global variables have been reset to their default values.");
+        }
+        else
+        {
+            Debug.LogError("Articy database or default global variables not found!");
         }
     }
 }
