@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8552728608621614342}
   - component: {fileID: 7226604950372086530}
-  - component: {fileID: 8856290241111796018}
+  - component: {fileID: 6211023098168943223}
   m_Layer: 0
   m_Name: Background Music Player
   m_TagString: Untagged
@@ -43,8 +43,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5561247383806924388, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1b9a68239fb0c5047a064354839c57a0, type: 3}
-  m_Resource: {fileID: 8300000, guid: 1b9a68239fb0c5047a064354839c57a0, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.588
   m_Pitch: 1
@@ -130,7 +130,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8856290241111796018
+--- !u!114 &6211023098168943223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,10 +139,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4686730325406325176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d8e40d33323b94c9cb19e235155346, type: 3}
+  m_Script: {fileID: 11500000, guid: 72ba213037ecd24438fd911c5d66363d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicClips:
-  - {fileID: 8300000, guid: 60d62d37481b19c45bcb667724f68b30, type: 3}
-  currentClip: 
-  sceneName: 
+  songs:
+  - label: Aurura Sloweed
+    clip: {fileID: 8300000, guid: 1b9a68239fb0c5047a064354839c57a0, type: 3}
+    sceneNames:
+    - Altamesa Saloon
+    - Altamesa Saloon 2
+  stopWhenNoMatch: 1
