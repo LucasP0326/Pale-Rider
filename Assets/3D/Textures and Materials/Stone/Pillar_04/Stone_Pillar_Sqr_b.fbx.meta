@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 60b3702ca17b5664b9f5c8de53bcfadd
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281009
+  packageName: Occult Stone Pillars
+  packageVersion: 1.0
+  assetPath: Assets/_SVK/Packs/Stone_Pillars/Stone_Pillar_Sqr_b.fbx
+  uploadId: 661281
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +15,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stone_Pillar_Sqr_b
-    second: {fileID: 2100000, guid: af8d5f16f780b514796e689d192e6803, type: 2}
+    second: {fileID: 2100000, guid: ab1abe530d5c88a4ead2e8906b7a6033, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -21,8 +28,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -112,10 +117,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 281009
-  packageName: Occult Stone Pillars
-  packageVersion: 1.0
-  assetPath: Assets/_SVK/Packs/Stone_Pillars/Stone_Pillar_Sqr_b.fbx
-  uploadId: 661281
