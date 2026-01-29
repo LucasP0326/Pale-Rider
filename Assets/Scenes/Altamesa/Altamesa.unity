@@ -3759,7 +3759,7 @@ GameObject:
   - component: {fileID: 74271994}
   m_Layer: 3
   m_Name: Terrain_(-47.14, -0.02, -131.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -15395,7 +15395,7 @@ GameObject:
   - component: {fileID: 257702833}
   m_Layer: 3
   m_Name: Terrain_(-147.14, -0.02, 68.72)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -20946,7 +20946,7 @@ GameObject:
   - component: {fileID: 375717292}
   m_Layer: 3
   m_Name: Terrain_(52.86, -0.02, 68.72)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -54882,7 +54882,7 @@ GameObject:
   - component: {fileID: 1050989858}
   m_Layer: 3
   m_Name: Terrain_(52.86, -0.02, -131.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -69623,7 +69623,7 @@ GameObject:
   - component: {fileID: 1347151140}
   m_Layer: 3
   m_Name: Terrain_(-147.14, -0.02, -131.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -82499,7 +82499,7 @@ GameObject:
   - component: {fileID: 1566369250}
   m_Layer: 3
   m_Name: Terrain_(52.86, -0.02, -31.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -97184,7 +97184,7 @@ GameObject:
   - component: {fileID: 1818542661}
   m_Layer: 3
   m_Name: Terrain_(-147.14, -0.02, -31.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -101950,7 +101950,7 @@ GameObject:
   - component: {fileID: 1901705539}
   m_Layer: 3
   m_Name: Terrain_(-47.14, -0.02, 68.72)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -106193,7 +106193,9 @@ MonoBehaviour:
   paleRiderIntroText: {fileID: 542457845}
   fadeToBlack: {fileID: 816016679}
   saloon: {fileID: 1651227482}
-  nextSceneName: End Scene
+  playerController: {fileID: 0}
+  hasHorse: 0
+  nextSceneName: ZuretonCutscene
   hud: {fileID: 4157681237878282813}
   fadeDuration: 3
   unfadeDelayAfterText: 5
@@ -106224,7 +106226,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5561247383806924388, guid: 049382a38c9005f4aa392e2163dbc215, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9e901531426aa244492e10bec0640989, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3f0110faba3f21f408e6d15de0efca31, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -109311,7 +109313,7 @@ GameObject:
   - component: {fileID: 2055702117}
   m_Layer: 3
   m_Name: Terrain_(-47.14, -0.02, -31.28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

@@ -62,6 +62,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +85,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8507000895364639938
 BoxCollider:
@@ -275,6 +279,10 @@ PrefabInstance:
     - target: {fileID: -8424498382640924728, guid: 1f1b98d570e67894a8613c034ec66b3d, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 1f1b98d570e67894a8613c034ec66b3d, type: 3}
+      propertyPath: m_Name
+      value: Horse
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 1f1b98d570e67894a8613c034ec66b3d, type: 3}
       propertyPath: m_Layer

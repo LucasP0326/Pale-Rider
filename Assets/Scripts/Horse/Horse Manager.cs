@@ -21,7 +21,7 @@ public class HorseManager : MonoBehaviour
     public float speedDecayRate = 0.2f; // How fast speed decays per second
     public float minimumSpeed = 0.0f; // Minimum speed (idle)
     private float targetSpeed; // The speed we're trying to reach
-    private float currentSpeed;
+    public float currentSpeed;
     private bool wasSprintPressed; // To detect shift key press
 
     [Header("Ground Check")]
@@ -36,7 +36,7 @@ public class HorseManager : MonoBehaviour
     private float verticalVelocity;
     private readonly float gravity = -9.81f;
     private Vector3 clickTarget;
-    private bool isMovingToClick;
+    public bool isMovingToClick;
 
     [Header("Animator")]
     public Animator horseAnimator;
@@ -102,13 +102,13 @@ public class HorseManager : MonoBehaviour
         Vector3 inputDirection = new Vector3(playerInput.move.x, 0.0f, playerInput.move.y);
 
         // Cancel click-to-move if player uses WASD
-        if (inputDirection.magnitude >= 0.1f)
+        if (inputDirection.magnitude >= 0.1f && playerController.GetComponent<ThirdPersonController>().movementEnabled == true)
         {
             isMovingToClick = false;
         }
 
         // Handle click-to-move
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && playerController.GetComponent<ThirdPersonController>().movementEnabled == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
@@ -236,9 +236,9 @@ public class HorseManager : MonoBehaviour
 
         if (playerInput.jump)
         {
-            verticalVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
+            /*verticalVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
             canJump = false;
-            Invoke(nameof(ResetJump), jumpCooldown);
+            Invoke(nameof(ResetJump), jumpCooldown);*/
         }
     }
 
@@ -293,5 +293,11 @@ public class HorseManager : MonoBehaviour
         targetSpeed = minimumSpeed;
         currentSpeed = minimumSpeed;
         wasSprintPressed = false;
+    }
+
+    public void MoveToClick(Vector3 targetPosition)
+    {
+        clickTarget = targetPosition;
+        isMovingToClick = true;
     }
 }

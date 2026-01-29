@@ -18,6 +18,7 @@ namespace StarterAssets
         public bool paused = false;
         public bool inMenu = false;
         public bool inDialogue = false;
+        public bool movementEnabled = true;
         public GameObject pauseMenu;
         public GameObject dialogueManager;
         public GameObject thoughtCircle;
@@ -33,6 +34,7 @@ namespace StarterAssets
 
         [Header("Player")]
         public bool isMounted = false;
+        public bool isFalling = false;
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
 
@@ -105,7 +107,7 @@ namespace StarterAssets
 
         //Click Movement
         private Vector3 _targetPosition;
-        private bool _isMovingToClick = false;
+        public bool _isMovingToClick = false;
         private float _lastClickTime = 0f;
         private float _doubleClickThreshold = 0.3f;
         private bool _isSprintingToClick = false;
@@ -209,6 +211,11 @@ namespace StarterAssets
             else
                 _animator.SetBool("Mounted", false);
 
+            if (isFalling)
+                _animator.SetBool("FallingFromHorse", true);
+            else
+                _animator.SetBool("FallingFromHorse", false);
+
             if (tempInteractableObject != null)
                 interactionRange = tempInteractableObject.GetComponent<Interactable>().interactionRange;
             _hasAnimator = TryGetComponent(out _animator);
@@ -216,7 +223,8 @@ namespace StarterAssets
             HandleClickMovement(); // New function for handling click movement
             JumpAndGravity();
             GroundedCheck();
-            Move();
+            if (!isMounted)
+                Move();
             Pause();
 
             // Check if the Investigate key is being held down
@@ -233,7 +241,7 @@ namespace StarterAssets
             {
                 float distance = Vector3.Distance(transform.position, tempInteractableObject.transform.position);
 
-                if (distance <= interactionRange) // Ensure interactionRange is defined
+                if (distance <= interactionRange && tempInteractableObject.name != "Horse") // Ensure interactionRange is defined
                 {
                     _isMovingToClick = false;
                     _isSprintingToClick = false;
@@ -328,7 +336,7 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
-        private void Move()
+        public void Move()
         {
             // set target speed based on move speed, sprint speed, and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -405,7 +413,7 @@ namespace StarterAssets
                 }
             }
             // Movement using WASD
-            else if (_input.move != Vector2.zero && !paused && !inDialogue && !isMounted)
+            else if (_input.move != Vector2.zero && !paused && !inDialogue && !isMounted && movementEnabled)
             {
                 tempInteractableObject = null;
                 targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -439,7 +447,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (Grounded && !paused)
+            if (Grounded && !paused && movementEnabled && !inDialogue)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
@@ -575,9 +583,36 @@ namespace StarterAssets
 
         private void HandleClickMovement()
         {
-            if (Input.GetMouseButtonDown(0) && !paused && !inDialogue && !isMounted) // Left mouse button
+            if (Input.GetMouseButtonDown(0) && !paused && !inDialogue && !isMounted && movementEnabled) // Left mouse button
             {
-                float timeSinceLastClick = Time.time - _lastClickTime;
+                ClickMove();
+            }
+        }
+
+        //Set the tempInteractableObject to the object the player entered
+        private void OnTriggerEnter(Collider other)
+        {
+            // Check if the object has the "ThoughtTrigger" script
+            if (other.GetComponent<ThoughtTrigger>() != null)
+            {
+                // Set tempThoughtTrigger to the object the player entered
+                tempThoughtTrigger = other.gameObject;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Check if the object has the "ThoughtTrigger" script
+            if (other.GetComponent<ThoughtTrigger>() != null)
+            {
+                // Reset tempThoughtTrigger when the player exits the trigger
+                tempThoughtTrigger = null;
+            }
+        }
+        
+        public void ClickMove()
+        {
+            float timeSinceLastClick = Time.time - _lastClickTime;
 
                 if (timeSinceLastClick <= _doubleClickThreshold)
                 {
@@ -611,30 +646,24 @@ namespace StarterAssets
                         _isMovingToClick = false; // Ignore movement if not on Ground
                     }
                 }
+        }
+
+        public void MoveToInteractable()
+        {
+            if (tempInteractableObject != null)
+            {
+                _targetPosition = tempInteractableObject.transform.position;
+                _isMovingToClick = true;
+                _isSprintingToClick = false;
             }
         }
 
-        //Set the tempInteractableObject to the object the player entered
-        private void OnTriggerEnter(Collider other)
+        public void MoveToClick(Vector3 position)
         {
-            // Check if the object has the "ThoughtTrigger" script
-            if (other.GetComponent<ThoughtTrigger>() != null)
-            {
-                // Set tempThoughtTrigger to the object the player entered
-                tempThoughtTrigger = other.gameObject;
-            }
+            _targetPosition = position;
+            _isMovingToClick = true;
+            _isSprintingToClick = false;
         }
-
-        private void OnTriggerExit(Collider other)
-        {
-            // Check if the object has the "ThoughtTrigger" script
-            if (other.GetComponent<ThoughtTrigger>() != null)
-            {
-                // Reset tempThoughtTrigger when the player exits the trigger
-                tempThoughtTrigger = null;
-            }
-        }
-        
         //Set thought trigger
     }
 }

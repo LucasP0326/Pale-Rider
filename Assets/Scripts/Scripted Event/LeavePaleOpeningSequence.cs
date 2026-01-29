@@ -2,8 +2,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Articy.Unity.Interfaces;
 using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 using UnityEngine.UI;
+using StarterAssets;
 
 public class LeavePaleOpeningSequence : MonoBehaviour
 {
@@ -11,6 +14,9 @@ public class LeavePaleOpeningSequence : MonoBehaviour
     public TextMeshProUGUI paleRiderIntroText;
     public GameObject fadeToBlack;
     public GameObject saloon;
+    //public GameObject horse;
+    public ThirdPersonController playerController;
+    public bool hasHorse = false;
     public string nextSceneName;
     public GameObject hud;
 
@@ -27,19 +33,34 @@ public class LeavePaleOpeningSequence : MonoBehaviour
     private static GameObject s_persistentFade;
     private static FadeController s_persistentFadeController;
 
+    //Zureton Ride In Sequence
+    //public Transform cutsceneRideCoordinate;
+    //private bool coordinateInScene = false;
+
     void Start()
     {
+        playerController = FindObjectOfType<ThirdPersonController>();
     }
 
     void Update()
     {
         {
             string sceneName = SceneManager.GetActiveScene().name;
-            if (sceneName != "Altamesa" && sceneName != "Zureton" && sceneName != "End Scene")
+            if (sceneName != "Altamesa" && sceneName != "ZuretonCutscene" && sceneName != "End Scene")
             {
                 Destroy(gameObject);
             }
         }
+        if (playerController != null && playerController.isMounted == true)
+        {
+            hasHorse = true;
+        }
+        else if (playerController != null && playerController.isMounted == false)
+        {
+            hasHorse = false;
+        }
+        
+        //cutsceneRideCoordinate = GameObject.Find("CutsceneRideCoordinate")?.transform;
     }
 
     public void triggerIntro()
@@ -50,6 +71,7 @@ public class LeavePaleOpeningSequence : MonoBehaviour
         MakeMusicPersistent();
 
         StartCoroutine(playIntroSequence());
+        ArticyGlobalVariables.Default.GlobalVariables.KeptHorse = hasHorse;
     }
 
     private void MakeMusicPersistent()

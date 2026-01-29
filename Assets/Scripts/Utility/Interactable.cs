@@ -162,7 +162,7 @@ public class Interactable : MonoBehaviour
         _outline.enabled = false; // Disable outline when not hovered
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         //onClick?.Invoke(); // Call the assigned function(s)
         ThirdPersonController playerController = FindFirstObjectByType<ThirdPersonController>();
