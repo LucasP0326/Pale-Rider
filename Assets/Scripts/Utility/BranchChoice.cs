@@ -31,21 +31,25 @@ public class BranchChoice : MonoBehaviour
         IFlowObject target = aBranch.Target;
         buttonText.text = string.Empty;
 
-        var objectWithMenuText = target as IObjectWithMenuText;
-        if (objectWithMenuText != null)
-        {
-            buttonText.text = objectWithMenuText.MenuText;
-        }
+        if (target is IObjectWithMenuText objWithMenuText)
+            buttonText.text = objWithMenuText.MenuText;
+        else if (target is IObjectWithLocalizableMenuText objWithLocalizableMenuText)
+            buttonText.text = objWithLocalizableMenuText.MenuText;
+        else if (target is IObjectWithText objectWithText)
+            buttonText.text = objectWithText.Text;
+        else if (target is IObjectWithLocalizableText objWithLocalizableText)
+            buttonText.text = objWithLocalizableText.Text;
+        else if (target is IObjectWithDisplayName objWithDisplayName)
+            buttonText.text = objWithDisplayName.DisplayName;
+        else if (target is IObjectWithLocalizableDisplayName objWithLocalizableDisplayName)
+            buttonText.text = objWithLocalizableDisplayName.DisplayName;
+        else if (target is IArticyObject articyObject)
+            buttonText.text = articyObject.TechnicalName;
+        else
+            buttonText.text = target == null ? "null" : target.GetType().Name;
 
         if (string.IsNullOrEmpty(buttonText.text))
-        {
-            /*var objectWithText = target as IObjectWithText;
-            if (objectWithText != null)
-            {
-                buttonText.text = objectWithText.Text;
-            }*/
             buttonText.text = ">>>";
-        }
     }
 
     public void OnBranchSelected()

@@ -7,7 +7,7 @@ public class RoomEntry : MonoBehaviour
     public bool firstEntry = true;
     public bool inRoom;
     public GameObject blackBox;
-    public GameObject roomWalls;
+    public GameObject[] roomWalls; // Changed to an array
     public GameObject roomInvisibleWalls;
 
     void Start()
@@ -23,21 +23,36 @@ public class RoomEntry : MonoBehaviour
                 blackBox.SetActive(true);
         if (inRoom)
         {
-            if (roomWalls != null)
-                roomWalls.SetActive(false);
+            foreach (var wall in roomWalls) // Loop through each wall
+            {
+                if (wall != null)
+                    wall.SetActive(false);
+            }
             if (roomInvisibleWalls != null)
                 roomInvisibleWalls.SetActive(true);
         }
         else if (!inRoom)
         {
-            if (roomWalls != null)
-                roomWalls.SetActive(true);
-            if (roomInvisibleWalls != null)
-                roomInvisibleWalls.SetActive(false); 
+            // Only set walls to active if no other RoomEntry scripts are keeping them disabled
+            if (!IsAnyOtherRoomActive())
+            {
+                Debug.Log("No other rooms active, enabling walls.");
+                foreach (var wall in roomWalls) // Loop through each wall
+                {
+                    if (wall != null)
+                        wall.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.Log("Another room is still active, keeping walls disabled.");
+                if (roomInvisibleWalls != null)
+                    roomInvisibleWalls.SetActive(false);
+            } 
         }
         else
         {
-            Debug.Log("Man, I don't fucking know.");
+            Debug.Log("Man, I don't fucking know.  I was trying my best!  :,()");
         }
     }
 
@@ -74,5 +89,27 @@ public class RoomEntry : MonoBehaviour
     public void EnterExitRoom()
     {
 
+    }
+
+    /// <summary>
+    /// Checks if any other RoomEntry scripts in the scene have inRoom set to true
+    /// </summary>
+    /// <returns>True if any other RoomEntry is active in a room, false otherwise</returns>
+    private bool IsAnyOtherRoomActive()
+    {
+        RoomEntry[] allRoomEntries = FindObjectsOfType<RoomEntry>();
+        
+        foreach (var roomEntry in allRoomEntries)
+        {
+            // Skip this RoomEntry instance
+            if (roomEntry == this)
+                continue;
+            
+            // If any other RoomEntry has inRoom == true, return true
+            if (roomEntry.inRoom)
+                return true;
+        }
+        
+        return false;
     }
 }
