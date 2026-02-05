@@ -377,7 +377,7 @@ public class Interactable : MonoBehaviour
             timeManager.SaveTimeToArticy(); // Save time before changing scene
             
             // Store the spawn point ID before switching scenes
-            PlayerPrefs.SetString("SpawnPoint", spawnPointID);
+            PlayerPrefs.SetString("SpawnPoint", spawnPointID); //Try saving to Articy perchance?  Hrmmmmmm?????
             PlayerPrefs.Save(); // Ensure the value is saved immediately
             SceneManager.LoadScene(sceneName);
         }
