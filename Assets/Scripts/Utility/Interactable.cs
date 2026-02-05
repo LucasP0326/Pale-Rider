@@ -2,7 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using Articy.Unity;
+using Articy.Unity; // Import Articy namespace
+using Articy.Unity.Interfaces;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 using StarterAssets;
 using DoorScript;
 using TMPro; // Import TextMeshPro namespace
@@ -377,7 +380,8 @@ public class Interactable : MonoBehaviour
             timeManager.SaveTimeToArticy(); // Save time before changing scene
             
             // Store the spawn point ID before switching scenes
-            PlayerPrefs.SetString("SpawnPoint", spawnPointID); //Try saving to Articy perchance?  Hrmmmmmm?????
+            //PlayerPrefs.SetString("SpawnPoint", spawnPointID); //Try saving to Articy perchance?  Hrmmmmmm?????
+            ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint = spawnPointID;
             PlayerPrefs.Save(); // Ensure the value is saved immediately
             SceneManager.LoadScene(sceneName);
         }

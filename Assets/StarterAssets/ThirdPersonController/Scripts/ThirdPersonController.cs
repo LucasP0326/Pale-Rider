@@ -1,4 +1,8 @@
 ﻿using UnityEngine;
+using Articy.Unity; // Import Articy namespace
+using Articy.Unity.Interfaces;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -186,7 +190,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             // Retrieve the spawn point ID from PlayerPrefs
-            string spawnPointID = PlayerPrefs.GetString("SpawnPoint", "DefaultSpawnPoint");
+            string spawnPointID = ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint;
 
             // Find the spawn point in the scene
             Transform spawnPoint = GameObject.Find(spawnPointID)?.transform;
@@ -200,6 +204,9 @@ namespace StarterAssets
             {
                 Debug.LogWarning($"Spawn point with ID '{spawnPointID}' not found in the scene.");
             }
+            //Clear after use
+            ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint = "";
+            spawnPointID = "";
         }
 
         private void Update()
