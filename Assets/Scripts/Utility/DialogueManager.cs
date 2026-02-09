@@ -181,8 +181,6 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             chara.color = new Color(0.5f, 0.2f, 0.5f); // Purple color
         }
         dial.text = dialogueText.text;
-        // Auto-scroll to the bottom
-        StartCoroutine(ScrollToBottom());
 
         ClearAllBranches();
 
@@ -223,6 +221,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             var btnComp = btn.GetComponent<Button>();
             btnComp.onClick.AddListener(CloseDialogueBox);
         }
+        
+        // Auto-scroll to the bottom after content is updated
+        StartCoroutine(ScrollToBottom());
     }
 
     void ClearAllBranches()
