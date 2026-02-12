@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d975c5fbf0e01042ada8dd53af10680
+guid: 257a40f8f8aadc44d8d06d9afc24e2b7
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
@@ -10,6 +10,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 269542
   packageName: articy:draft X Importer
-  packageVersion: 1.1.0
+  packageVersion: 1.2.0
   assetPath: Assets/ArticyImporter/Content/ArticyPluginSettings.asset
-  uploadId: 684609
+  uploadId: 744933

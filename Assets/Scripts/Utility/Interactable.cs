@@ -219,7 +219,7 @@ public class Interactable : MonoBehaviour
     public void BeginDialogue()
     {
         Debug.Log("I am on Interactable");
-        if (availableDialogue && playerController.GetComponent<ThirdPersonController>().inDialogue == false)
+        if (availableDialogue != null && playerController.GetComponent<ThirdPersonController>().inDialogue == false)
         {
             if (oneTimeDialogue && !hasDialogueOnce)
             {

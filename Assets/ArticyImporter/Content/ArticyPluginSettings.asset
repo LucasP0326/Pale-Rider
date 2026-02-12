@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mUsedImportFile: Assets/Pale Rider.articyu3d
   mUsedLocalizationPath: 
-  mSCMIgnoreState: 1
+  mAddressablesGroupsKeys: []
+  mAddressablesGroupsValues: []
+  mAddressablesLabelsKeys: []
+  mAddressablesLabelsValues: []
+  mSCMIgnoreState: 0
+  mArticyAssetsAddressablesIgnoreState: 0
   mShowObjectsInDatabaseView: 1
-  mLastPluginVersion: 1.2.0.41909
+  mLastPluginVersion: 1.3.0.42450
   mAutomaticallyTriggerImport: 1
   mUseAssemblyDefinitions: 0
-  mGenerateStringInterpolationCode: 1

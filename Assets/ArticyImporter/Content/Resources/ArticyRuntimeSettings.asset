@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ArticyRuntimeSettings
   m_EditorClassIdentifier: 
   mAssemblyNameGeneratedContent: Assembly-CSharp
+  mUseAddressables: 0
+  mInitializeAddressablesAsync: 0
   mResolveInvalidTokensAsEmptyString: 0
   mAutomaticallyResolveStrings: 1
   mLogVerbositiesMapKeys: 

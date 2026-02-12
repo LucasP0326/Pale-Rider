@@ -168,9 +168,16 @@ public class MainMenu : MonoBehaviour
 
     public void ResetKeyVariables()
     {
-        // Reset any key variables or states here before starting a new game
-        // For example, you might want to reset player stats, inventory, etc.
-        Debug.Log("Resetting key variables for a new game.");
+        // Access the default global variables instance and call ResetVariables()
+        if (ArticyDatabase.DefaultGlobalVariables != null)
+        {
+            ArticyDatabase.DefaultGlobalVariables.ResetVariables();
+            Debug.Log("All articy global variables have been reset to their default values.");
+        }
+        else
+        {
+            Debug.LogError("Articy database or default global variables not found!");
+        }
     }
 
     public void ToggleSkillSFX()

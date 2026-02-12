@@ -26,6 +26,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 269542
   packageName: articy:draft X Importer
-  packageVersion: 1.1.0
+  packageVersion: 1.2.0
   assetPath: Assets/ArticyImporter/Plugin/Editor/ArticyImporter.Editor.dll
-  uploadId: 684609
+  uploadId: 744933
