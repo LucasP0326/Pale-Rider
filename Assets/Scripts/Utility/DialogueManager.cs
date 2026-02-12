@@ -167,18 +167,34 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         if (dialogueSpeaker.text == "Reptilian Complex" || dialogueSpeaker.text == "Endurance" || dialogueSpeaker.text == "Physicality" || dialogueSpeaker.text == "Volition" || dialogueSpeaker.text == "Reflexivity")
         {
             chara.color = new Color(0.8f, 0.2f, 0.2f); // Red color for these attributes
+            if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+            {
+                aSource.Stop(); // Skill voices are disabled, stop the voiceover
+            }
         }
         else if (dialogueSpeaker.text == "Paleomammalian Complex" || dialogueSpeaker.text == "Empathy" || dialogueSpeaker.text == "Suggestion" || dialogueSpeaker.text == "Authority" || dialogueSpeaker.text == "Rhetoric")
         {
             chara.color = new Color(0.2f, 0.8f, 0.2f); // Green color for these attributes
+            if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+            {
+                aSource.Stop(); // Skill voices are disabled, stop the voiceover
+            }
         }
         else if (dialogueSpeaker.text == "Neomammalian Complex" || dialogueSpeaker.text == "Encyclopedia" || dialogueSpeaker.text == "Logic" || dialogueSpeaker.text == "Perception" || dialogueSpeaker.text == "Conceptualization")
         {
             chara.color = new Color(0.2f, 0.2f, 0.8f); // Blue color for these attributes
+            if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+            {
+                aSource.Stop(); // Skill voices are disabled, stop the voiceover
+            }
         }
         else if (dialogueSpeaker.text == "The Pale" || dialogueSpeaker.text == "Self-Actualization" || dialogueSpeaker.text == "Perspicacity" || dialogueSpeaker.text == "Savor Faire" || dialogueSpeaker.text == "Tenebrality")
         {
             chara.color = new Color(0.5f, 0.2f, 0.5f); // Purple color
+            if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+            {
+                aSource.Stop(); // Skill voices are disabled, stop the voiceover
+            }
         }
         dial.text = dialogueText.text;
 
@@ -194,7 +210,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
 
         // Check if the current speaker is the player
-        if (dialogueSpeaker.text == "You")
+        if (dialogueSpeaker.text == "You" || dialogueSpeaker.text == "A Line Still Clung to")
         {
             // Automatically proceed to the next dialogue fragment
             foreach (var branch in aBranches)
@@ -236,6 +252,11 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void PlaySkillSFX()
     {
+        if (PlayerPrefs.GetInt("SkillSFXEnabled", 1) == 0)
+        {
+            return; // Skill SFX is disabled, do not play any sound
+        }
+
         if (dialogueSpeaker.text == "Authority")
         {
             sfxSource.PlayOneShot(skillSFX[0]);
@@ -305,6 +326,6 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     private IEnumerator ScrollToBottom()
     {
         yield return null; // Wait one frame
-        scrollRect.verticalNormalizedPosition = 0f;
+        scrollRect.verticalNormalizedPosition = -1f;
     }
 }

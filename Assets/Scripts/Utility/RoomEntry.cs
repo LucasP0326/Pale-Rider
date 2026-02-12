@@ -43,12 +43,9 @@ public class RoomEntry : MonoBehaviour
                         wall.SetActive(true);
                 }
             }
-            else
-            {
-                Debug.Log("Another room is still active, keeping walls disabled.");
-                if (roomInvisibleWalls != null)
-                    roomInvisibleWalls.SetActive(false);
-            } 
+            Debug.Log("Another room is still active, keeping walls disabled.");
+            if (roomInvisibleWalls != null)
+                roomInvisibleWalls.SetActive(false); 
         }
         else
         {
@@ -105,9 +102,24 @@ public class RoomEntry : MonoBehaviour
             if (roomEntry == this)
                 continue;
             
-            // If any other RoomEntry has inRoom == true, return true
-            if (roomEntry.inRoom)
-                return true;
+            // Only consider other RoomEntries that are currently in a room
+            if (!roomEntry.inRoom)
+                continue;
+            
+            // If any other RoomEntry is actively disabling the same wall GameObjects, treat it as blocking
+            if (roomEntry.roomWalls != null && roomWalls != null)
+            {
+                foreach (var wall in roomWalls)
+                {
+                    if (wall == null) continue;
+                    foreach (var otherWall in roomEntry.roomWalls)
+                    {
+                        if (otherWall == null) continue;
+                        if (wall == otherWall)
+                            return true;
+                    }
+                }
+            }
         }
         
         return false;

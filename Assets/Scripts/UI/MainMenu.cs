@@ -4,10 +4,15 @@ using UnityEditor;
 using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 using Articy.Unity;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private const string PREF_SKILL_SFX = "SkillSFXEnabled";
+    private const string PREF_SKILL_VOICES = "SkillVoicesEnabled";
 
     public string sceneName;
 
@@ -24,6 +29,17 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject controlsPanel;
 
+    [Header("Settings")]
+    public GameObject targettedCheckbox;
+    public Sprite emptyCheckbox;
+    public Sprite fullCheckbox;
+    public bool skillSFXEnabled = true;
+    public bool skillVoicesEnabled = true;
+    public Image skillSFXCheckbox;  // Add reference to the SFX checkbox Image
+    public Image skillVoicesCheckbox;  // Add reference to the Voices checkbox Image
+    public GameObject skillSFXButton;  // Add reference to the SFX toggle button
+    public GameObject skillVoicesButton;  // Add reference to the Voices toggle button
+
     void Start()
     {
         // Ensure the AudioSource is assigned
@@ -31,8 +47,27 @@ public class MainMenu : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
+
+        // Load saved settings from PlayerPrefs (default to current serialized values)
+        skillSFXEnabled = PlayerPrefs.GetInt(PREF_SKILL_SFX, skillSFXEnabled ? 1 : 0) == 1;
+        skillVoicesEnabled = PlayerPrefs.GetInt(PREF_SKILL_VOICES, skillVoicesEnabled ? 1 : 0) == 1;
+
+        // Update Serialized checkbox images to match loaded state
+        UpdateCheckboxSprite(skillSFXCheckbox, skillSFXEnabled);
+        UpdateCheckboxSprite(skillVoicesCheckbox, skillVoicesEnabled);
+
         mainMenuPanel.SetActive(true); // Hide the main menu panel at the start
         optionsPanel.SetActive(false);
+
+        if (skillSFXEnabled)
+            skillSFXButton.GetComponent<Image>().sprite = fullCheckbox;
+        else
+            skillSFXButton.GetComponent<Image>().sprite = emptyCheckbox;
+
+        if (skillVoicesEnabled)
+            skillVoicesButton.GetComponent<Image>().sprite = fullCheckbox;
+        else
+            skillVoicesButton.GetComponent<Image>().sprite = emptyCheckbox;
     }
 
     // Update is called once per frame
@@ -133,15 +168,64 @@ public class MainMenu : MonoBehaviour
 
     public void ResetKeyVariables()
     {
-        // Access the default global variables instance and call ResetVariables()
-        if (ArticyDatabase.DefaultGlobalVariables != null)
+        // Reset any key variables or states here before starting a new game
+        // For example, you might want to reset player stats, inventory, etc.
+        Debug.Log("Resetting key variables for a new game.");
+    }
+
+    public void ToggleSkillSFX()
+    {
+        skillSFXEnabled = !skillSFXEnabled;
+
+        // Use the UI button that was pressed as the targeted checkbox
+        GameObject selected = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+        if (selected != null)
+            targettedCheckbox = selected;
+        PlayClickSound();
+
+        // Prefer the button's Image; fall back to the serialized reference if needed
+        Image checkboxImage = null;
+        if (targettedCheckbox != null)
+            checkboxImage = targettedCheckbox.GetComponent<Image>() ?? targettedCheckbox.GetComponentInChildren<Image>();
+        if (checkboxImage == null)
+            checkboxImage = skillSFXCheckbox;
+
+        UpdateCheckboxSprite(checkboxImage, skillSFXEnabled);
+
+        // Save preference
+        PlayerPrefs.SetInt(PREF_SKILL_SFX, skillSFXEnabled ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void ToggleSkillVoices()
+    {
+        skillVoicesEnabled = !skillVoicesEnabled;
+
+        // Use the UI button that was pressed as the targeted checkbox
+        GameObject selected = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+        if (selected != null)
+            targettedCheckbox = selected;
+        PlayClickSound();
+
+        // Prefer the button's Image; fall back to the serialized reference if needed
+        Image checkboxImage = null;
+        if (targettedCheckbox != null)
+            checkboxImage = targettedCheckbox.GetComponent<Image>() ?? targettedCheckbox.GetComponentInChildren<Image>();
+        if (checkboxImage == null)
+            checkboxImage = skillVoicesCheckbox;
+
+        UpdateCheckboxSprite(checkboxImage, skillVoicesEnabled);
+
+        // Save preference
+        PlayerPrefs.SetInt(PREF_SKILL_VOICES, skillVoicesEnabled ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private void UpdateCheckboxSprite(Image checkboxImage, bool isEnabled)
+    {
+        if (checkboxImage != null)
         {
-            ArticyDatabase.DefaultGlobalVariables.ResetVariables();
-            Debug.Log("All articy global variables have been reset to their default values.");
-        }
-        else
-        {
-            Debug.LogError("Articy database or default global variables not found!");
+            checkboxImage.sprite = isEnabled ? fullCheckbox : emptyCheckbox;
         }
     }
 }

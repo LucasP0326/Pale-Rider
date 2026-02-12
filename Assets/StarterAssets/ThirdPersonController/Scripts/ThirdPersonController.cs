@@ -168,6 +168,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            dialogueManager = GameObject.FindObjectsByType<DialogueManager>(FindObjectsSortMode.None)[0].gameObject; // Find Dialogue Manager in the scene
         }
 
         private void Start()
@@ -191,6 +193,10 @@ namespace StarterAssets
 
             // Retrieve the spawn point ID from PlayerPrefs
             string spawnPointID = ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint;
+            if (!string.IsNullOrEmpty(spawnPointID))
+            {
+                Debug.Log("This bitch empty.  Yeet!");
+            }
 
             // Find the spawn point in the scene
             Transform spawnPoint = GameObject.Find(spawnPointID)?.transform;
