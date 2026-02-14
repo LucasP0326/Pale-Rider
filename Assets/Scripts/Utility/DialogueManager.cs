@@ -210,7 +210,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
 
         // Check if the current speaker is the player
-        if (dialogueSpeaker.text == "You" || dialogueSpeaker.text == "A Line Still Clung to")
+        if (dialogueSpeaker.text == "You")
         {
             // Automatically proceed to the next dialogue fragment
             foreach (var branch in aBranches)

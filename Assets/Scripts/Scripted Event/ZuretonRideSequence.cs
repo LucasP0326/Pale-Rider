@@ -29,10 +29,23 @@ public class ZuretonRideSequence : MonoBehaviour
         leavePaleOpeningScript = FindObjectOfType<LeavePaleOpeningSequence>();
         playerController = FindObjectOfType<ThirdPersonController>();
         horseController = FindObjectOfType<HorseManager>();
-        if (leavePaleOpeningScript.hasHorse == true)
-            StartCoroutine(RideInSequence());
-        else if (leavePaleOpeningScript.hasHorse == false)
+        if (leavePaleOpeningScript != null)
+        {
+            if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == true)
+                StartCoroutine(RideInSequence());
+            else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == false)
+                StartCoroutine(WalkInSequence());
+            else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == null)
+            {
+                Debug.Log("hasHorse variable is not set in LeavePaleOpeningSequence script.");
+                StartCoroutine(WalkInSequence());
+            }
+        }
+        else
+        {
+            Debug.Log("LeavePaleOpeningSequence script not found in the scene.");
             StartCoroutine(WalkInSequence());
+        }
     }
 
     // Update is called once per frame
@@ -74,6 +87,7 @@ public class ZuretonRideSequence : MonoBehaviour
 
     private IEnumerator WalkInSequence()
     {
+        fullHorse.SetActive(false);
         playerController.movementEnabled = false;
         yield return new WaitForSeconds(1f);
         playerController.movementEnabled = true;

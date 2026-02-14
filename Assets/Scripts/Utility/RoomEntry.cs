@@ -36,14 +36,14 @@ public class RoomEntry : MonoBehaviour
             // Only set walls to active if no other RoomEntry scripts are keeping them disabled
             if (!IsAnyOtherRoomActive())
             {
-                Debug.Log("No other rooms active, enabling walls.");
+                //Debug.Log("No other rooms active, enabling walls.");
                 foreach (var wall in roomWalls) // Loop through each wall
                 {
                     if (wall != null)
                         wall.SetActive(true);
                 }
             }
-            Debug.Log("Another room is still active, keeping walls disabled.");
+            //Debug.Log("Another room is still active, keeping walls disabled.");
             if (roomInvisibleWalls != null)
                 roomInvisibleWalls.SetActive(false); 
         }

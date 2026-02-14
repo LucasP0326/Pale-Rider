@@ -193,7 +193,7 @@ namespace StarterAssets
 
             // Retrieve the spawn point ID from PlayerPrefs
             string spawnPointID = ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint;
-            if (!string.IsNullOrEmpty(spawnPointID))
+            if (string.IsNullOrEmpty(spawnPointID))
             {
                 Debug.Log("This bitch empty.  Yeet!");
             }
@@ -205,6 +205,7 @@ namespace StarterAssets
             {
                 // Move the player to the spawn point
                 transform.position = spawnPoint.position;
+                Debug.Log("Teleported to spawn point: " + spawnPointID);
             }
             else
             {

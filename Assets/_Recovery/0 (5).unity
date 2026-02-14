@@ -563,8 +563,8 @@ Transform:
   m_GameObject: {fileID: 89856250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.3315, y: 1.2798, z: 10.3835}
-  m_LocalScale: {x: 5.8427806, y: 2.9396, z: 8.4469}
+  m_LocalPosition: {x: 10.001, y: 1.2798, z: 6.66}
+  m_LocalScale: {x: 4.503801, y: 2.9396, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -598,7 +598,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1440406781}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: OnInteract
+        m_MethodName: BeginDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2710,7 +2710,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
-  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -4825,7 +4824,7 @@ GameObject:
   - component: {fileID: 729786919}
   - component: {fileID: 729786918}
   m_Layer: 0
-  m_Name: Scene Changer
+  m_Name: Teleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4844,7 +4843,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
-  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -4872,8 +4870,8 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
-  changeScene: 1
-  sceneName: Zureton Inn
+  changeScene: 0
+  sceneName: ZuretonInn
   spawnPointID: InnBarStool
   teleportCooldown: 1
   interactionRange: 2
@@ -8751,7 +8749,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
-  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -9199,7 +9196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
-  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -9619,7 +9615,13 @@ PrefabInstance:
       objectReference: {fileID: 367363217}
     - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+        'mixamorig:LeftHandThumb3'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
       objectReference: {fileID: 0}
     - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: HUD
@@ -12060,34 +12062,6 @@ PrefabInstance:
     - target: {fileID: 7829844557032962738, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_Color.a
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 729786918}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryTeleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Interactable, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
-      propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7969030301297713527, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: m_AnchorMax.y

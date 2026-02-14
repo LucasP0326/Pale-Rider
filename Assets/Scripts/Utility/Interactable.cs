@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
     
     private Transform player; // Reference to the player
     private GameObject playerController;
-    private DialogueManager dialogueManager;
+    public DialogueManager dialogueManager;
     private ArticyObject availableDialogue;
     private AudioSource aSource;
 
