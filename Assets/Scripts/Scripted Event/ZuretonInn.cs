@@ -12,6 +12,7 @@ public class ZuretonInn : MonoBehaviour
 {
     public ThirdPersonController playerController;
     public GameObject pubTender;
+    public GameObject sitLocation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,6 +37,7 @@ public class ZuretonInn : MonoBehaviour
     private IEnumerator FirstTimeSequence()
     {
         yield return new WaitForSeconds(0.25f);
+        playerController.transform.position = sitLocation.transform.position;
         pubTender.GetComponent<Interactable>().OnInteract();
         playerController.isMounted = true;
     }

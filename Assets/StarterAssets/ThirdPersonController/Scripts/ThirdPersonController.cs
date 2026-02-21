@@ -680,5 +680,10 @@ namespace StarterAssets
             _isSprintingToClick = false;
         }
         //Set thought trigger
+
+        public void Dismount()
+        {
+            isMounted = false;
+        }
     }
 }

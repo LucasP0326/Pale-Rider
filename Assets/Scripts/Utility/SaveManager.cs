@@ -97,6 +97,10 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
         PlayerPrefs.SetInt("KeptHorse", ArticyGlobalVariables.Default.GlobalVariables.KeptHorse ? 1 : 0);
 
+        //Raik Variables
+        PlayerPrefs.SetInt("RaikOpinion", ArticyGlobalVariables.Default.RaikVariables.RaikOpinion);
+        PlayerPrefs.SetInt("AskedAboutAnger", ArticyGlobalVariables.Default.RaikVariables.AskedAboutAnger ? 1 : 0);
+
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
 
@@ -179,6 +183,10 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap = PlayerPrefs.GetInt("UnlockedMap", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.KeptHorse = PlayerPrefs.GetInt("KeptHorse", 0) == 1;
+
+        //Raik Variables
+        ArticyGlobalVariables.Default.RaikVariables.RaikOpinion = PlayerPrefs.GetInt("RaikOpinion", 0);
+        ArticyGlobalVariables.Default.RaikVariables.AskedAboutAnger = PlayerPrefs.GetInt("AskedAboutAnger", 0) == 1;
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);

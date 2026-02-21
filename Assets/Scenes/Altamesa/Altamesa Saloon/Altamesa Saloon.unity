@@ -3323,6 +3323,9 @@ PrefabInstance:
     - {fileID: 1085152454542240306, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     - {fileID: 2551058564450930057, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     - {fileID: 3837663348675104489, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+    - {fileID: 656215760420355596, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+    - {fileID: 859020057970535302, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+    - {fileID: 4381783012665809447, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       insertIndex: 1
@@ -12255,6 +12258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -13429,6 +13433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -21039,6 +21044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -23591,6 +23597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -23713,6 +23720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -24257,6 +24265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -30158,6 +30167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -30811,6 +30821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -31455,6 +31466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
