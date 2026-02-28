@@ -36,7 +36,7 @@ public class ZuretonInn : MonoBehaviour
 
     private IEnumerator FirstTimeSequence()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.01f);
         playerController.transform.position = sitLocation.transform.position;
         pubTender.GetComponent<Interactable>().OnInteract();
         playerController.isMounted = true;

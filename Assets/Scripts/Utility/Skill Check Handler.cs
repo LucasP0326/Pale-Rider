@@ -10,105 +10,92 @@ using StarterAssets;
 
 public class SkillCheckHandler : MonoBehaviour
 {
-    public int playerStatValue;
-    public int difficulty;
-    public int randomRoll;
-    public int finalValue;
+    //UI Elements
+    public GameObject skillCheckPanel;
+    public GameObject skillCheckResultBar;
+    public TextMeshProUGUI skillCheckResultTMP;
+    public Sprite[] diceImages; // Array to hold the dice images
+    public GameObject diceLocation1;
+    public GameObject diceLocation2;
+
+    //SFX Elements
+    public AudioSource audioSource;
+    public AudioClip diceRollSFX;
+    public AudioClip successSFX;
+    public AudioClip failureSFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if  (ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck == true)
+        if (ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck == true)
         {
-            PerformSkillCheck(ArticyGlobalVariables.Default.SkillCheckStats.CheckedSkill);
+            StartCoroutine(DiceRoll());
+            ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck = false;
         }
     }
-
-    public void PerformSkillCheck(string skill)
+    
+    private IEnumerator DiceRoll()
     {
-        playerStatValue = 0;
-        difficulty = ArticyGlobalVariables.Default.SkillCheckStats.Difficulty;
-        switch (skill)
+        skillCheckPanel.SetActive(true);
+        audioSource.PlayOneShot(diceRollSFX);
+        StartCoroutine(AnimateDiceRoll());
+        yield return new WaitForSeconds(0.5f);
+        skillCheckResultBar.SetActive(true);
+        if (ArticyGlobalVariables.Default.SkillCheckStats.FinalDice >= ArticyGlobalVariables.Default.SkillCheckStats.Difficulty)
         {
-            case "Authority":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Authority;
-                break;
-            case "Conceptualization":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Conceptualization;
-                break;
-            case "Encyclopedia":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Encyclopedia;
-                break;
-            case "Empathy":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Empathy;
-                break;
-            case "Endurance":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Endurance;
-                break;
-            case "Logic":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Logic;
-                break;
-            case "Perception":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Perception;
-                break;
-            case "Perspicacity":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Perspicacity;
-                break;
-            case "Physicality":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Physicality;
-                break;
-            case "Reflexivity":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Reflexivity;
-                break;
-            case "Rhetoric":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Rhetoric;
-                break;
-            case "Savoir Faire":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.SavoirFaire;
-                break;
-            case "Self Actualization":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.SelfActualization;
-                break;
-            case "Suggestion":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Suggestion;
-                break;
-            case "Tenebrality":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Tenebrality;
-                break;
-            case "Volition":
-                playerStatValue = ArticyGlobalVariables.Default.PlayerStats.Volition;
-                break;
-            default:
-                Debug.LogError("Invalid skill name for skill check: " + skill);
-                return;
-        }
-
-        randomRoll = Random.Range(1, 12); // Simulate a d20 roll
-
-        finalValue = playerStatValue + randomRoll;
-
-        if (finalValue >= ArticyGlobalVariables.Default.SkillCheckStats.Difficulty)
-        {
-            Debug.Log("Skill Check Passed!");
-            ArticyGlobalVariables.Default.SkillCheckStats.SkillCheckResult = 1; // Indicate success
-            // Handle success logic here
+            skillCheckResultTMP.text = "Success!";
+            skillCheckResultBar.GetComponent<Image>().color = Color.green;
+            audioSource.PlayOneShot(successSFX);
         }
         else
         {
-            Debug.Log("Skill Check Failed!");
-            ArticyGlobalVariables.Default.SkillCheckStats.SkillCheckResult = 0; // Indicate failure
-            // Handle failure logic here
+            skillCheckResultTMP.text = "Failure!";
+            skillCheckResultBar.GetComponent<Image>().color = Color.red;
+            audioSource.PlayOneShot(failureSFX);
+        }
+        yield return new WaitForSeconds(4f);
+        skillCheckResultBar.SetActive(false);
+        skillCheckPanel.SetActive(false);
+    }
+    
+    private IEnumerator AnimateDiceRoll()
+    {
+        float animationDuration = 0.75f; // Duration of the dice roll animation
+        float elapsedTime = 0f;
+
+        int displayedFinalDice1 = ArticyGlobalVariables.Default.SkillCheckStats.Dice1;
+        int displayedFinalDice2 = ArticyGlobalVariables.Default.SkillCheckStats.Dice2;
+
+        while (elapsedTime < animationDuration)
+        {
+            int randomDice1 = Random.Range(0, diceImages.Length);
+            int randomDice2 = Random.Range(0, diceImages.Length);
+
+            // Update the dice images
+            diceLocation1.GetComponent<Image>().sprite = diceImages[randomDice1];
+            diceLocation2.GetComponent<Image>().sprite = diceImages[randomDice2];
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
         }
 
-        // Reset skill check state
-        //ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck = false;
-        //ArticyGlobalVariables.Default.SkillCheckStats.CheckedSkill = "";
-        //ArticyGlobalVariables.Default.SkillCheckStats.Difficulty = 0;
+        if (elapsedTime >= animationDuration)
+        {
+            audioSource.Stop();
+        }
+
+        // Set the final dice images based on the randomRoll value
+        displayedFinalDice1 = Mathf.Clamp(displayedFinalDice1 - 1, 0, diceImages.Length - 1);
+        displayedFinalDice2 = Mathf.Clamp(displayedFinalDice2 - 1, 0, diceImages.Length - 1);
+        diceLocation1.GetComponent<Image>().sprite = diceImages[displayedFinalDice1];
+        diceLocation2.GetComponent<Image>().sprite = diceImages[displayedFinalDice2];
+
+        //rollingDice = false;
     }
 }

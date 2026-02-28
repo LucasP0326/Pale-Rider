@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
+using Articy.Pale_Rider;
+using Articy.Pale_Rider.GlobalVariables;
 using UnityEngine.UI;
 using TMPro;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
+using Articy.Pale_Rider.GlobalVariables;
 using UnityEngine;
 using UnityEngine.UI;
 using Articy.Pale_Rider;
@@ -70,7 +71,14 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     // Update is called once per frame
     void Update()
     {
-        
+        if (ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck == true)
+        {
+            scrollContent.gameObject.SetActive(false);
+        }
+        else
+        {
+            scrollContent.gameObject.SetActive(true);
+        }
     }
 
     public void StartDialogue(IArticyObject aObject)
@@ -160,6 +168,22 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
+        // Auto-skip debug SkillChecker speaker EARLY so no speaker prefab is instantiated
+        if (dialogueSpeaker.text == "SkillChecker")
+        {
+            foreach (var branch in aBranches)
+            {
+                if (branch.Target is IDialogueFragment)
+                {
+                    flowPlayer.Play(branch);
+                    return;
+                }
+            }
+            // If no fragment branches, close immediately
+            CloseDialogueBox();
+            return;
+        }
+
         TMP_Text chara = Instantiate(speakerPrefab, scrollContent);
         TMP_Text dial = Instantiate(dialoguePrefab, scrollContent);
         chara.text = dialogueSpeaker.text;
@@ -207,6 +231,22 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             {
                 dialogueIsFinished = false;
             }
+        }
+
+        // Auto-skip debug SkillChecker speaker
+        if (dialogueSpeaker.text == "SkillChecker")
+        {
+            foreach (var branch in aBranches)
+            {
+                if (branch.Target is IDialogueFragment)
+                {
+                    flowPlayer.Play(branch);
+                    return;
+                }
+            }
+            // If no fragment branches, close immediately
+            CloseDialogueBox();
+            return;
         }
 
         // Check if the current speaker is the player
