@@ -60,6 +60,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Tenebrality", ArticyGlobalVariables.Default.PlayerStats.Tenebrality);
         PlayerPrefs.SetInt("Volition", ArticyGlobalVariables.Default.PlayerStats.Volition);
         PlayerPrefs.SetString("SignatureSkill", ArticyGlobalVariables.Default.PlayerStats.SignatureSkill);
+        PlayerPrefs.SetInt("Experience", ArticyGlobalVariables.Default.PlayerStats.Experience);
 
         //Player State Stats
         PlayerPrefs.SetInt("Health", ArticyGlobalVariables.Default.PlayerStats.Health);
@@ -96,10 +97,14 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("IngoPaleRealization", ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization ? 1 : 0);
         PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
         PlayerPrefs.SetInt("KeptHorse", ArticyGlobalVariables.Default.GlobalVariables.KeptHorse ? 1 : 0);
+        PlayerPrefs.SetInt("ZuretonInnFirstTime", ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime ? 1 : 0);
 
         //Raik Variables
         PlayerPrefs.SetInt("RaikOpinion", ArticyGlobalVariables.Default.RaikVariables.RaikOpinion);
         PlayerPrefs.SetInt("AskedAboutAnger", ArticyGlobalVariables.Default.RaikVariables.AskedAboutAnger ? 1 : 0);
+        PlayerPrefs.SetInt("JobDislikeRevealed", ArticyGlobalVariables.Default.RaikVariables.JobDislikeRevealed ? 1 : 0);
+        PlayerPrefs.SetInt("OpeningQuestionsAsked", ArticyGlobalVariables.Default.RaikVariables.OpeningQuestionsAsked);
+        PlayerPrefs.SetInt("NameKnown", ArticyGlobalVariables.Default.RaikVariables.NameKnown ? 1 : 0);
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
@@ -149,6 +154,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Tenebrality = PlayerPrefs.GetInt("Tenebrality", 0);
         ArticyGlobalVariables.Default.PlayerStats.Volition = PlayerPrefs.GetInt("Volition", 0);
         ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "");
+        ArticyGlobalVariables.Default.PlayerStats.Experience = PlayerPrefs.GetInt("Experience", 0);
 
         // Player State Stats
         ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 1);
@@ -183,10 +189,14 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap = PlayerPrefs.GetInt("UnlockedMap", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.KeptHorse = PlayerPrefs.GetInt("KeptHorse", 0) == 1;
+        ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime = PlayerPrefs.GetInt("ZuretonInnFirstTime", 0) == 1;
 
         //Raik Variables
         ArticyGlobalVariables.Default.RaikVariables.RaikOpinion = PlayerPrefs.GetInt("RaikOpinion", 0);
         ArticyGlobalVariables.Default.RaikVariables.AskedAboutAnger = PlayerPrefs.GetInt("AskedAboutAnger", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.JobDislikeRevealed = PlayerPrefs.GetInt("JobDislikeRevealed", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.OpeningQuestionsAsked = PlayerPrefs.GetInt("OpeningQuestionsAsked", 0);
+        ArticyGlobalVariables.Default.RaikVariables.NameKnown = PlayerPrefs.GetInt("NameKnown", 0) == 1;
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);

@@ -3852,6 +3852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -7382,6 +7383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZuretonRideSequence
   cutsceneRideCoordinate: {fileID: 1259071779}
   playerFallCoordinate: {fileID: 619097620}
+  leavePaleOpeningScript: {fileID: 0}
   horse: {fileID: 463789824}
   fullHorse: {fileID: 1032569278}
   player: {fileID: 1970900973}
@@ -7843,6 +7845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -8887,6 +8890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -11834,6 +11838,10 @@ PrefabInstance:
     - target: {fileID: 6516411047040351980, guid: 29b7b8e06f3c28d4d8036cd9634960d4, type: 3}
       propertyPath: playerController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541328456903108347, guid: 29b7b8e06f3c28d4d8036cd9634960d4, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8592822817284877299, guid: 29b7b8e06f3c28d4d8036cd9634960d4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -22,6 +22,7 @@ public class PlayerStats : MonoBehaviour
     public int currentResolve;
     public int maxHealth;
     public int maxResolve;
+    public int experience;
 
     [Header("Death States")]
     public bool alreadyDying;
@@ -127,6 +128,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        //Sync Experience
+        experience = ArticyGlobalVariables.Default.PlayerStats.Experience;
+
         // Sync current health and resolve with Articy variables
         maxHealth = ArticyGlobalVariables.Default.PlayerStats.MaxHealth;
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;

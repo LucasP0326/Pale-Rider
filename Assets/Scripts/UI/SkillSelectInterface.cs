@@ -28,6 +28,7 @@ public class SkillSelectInterface : MonoBehaviour
     [Header("Skill Points")]
     public int startingAvailableSkillPoints = 8;
     public int availableSkillPoints = 0;
+    public int availableAttributePoints = 0;
 
     [Header("UI Elements")]
     public GameObject rowIncreasePanel;
@@ -43,6 +44,14 @@ public class SkillSelectInterface : MonoBehaviour
     public TextMeshProUGUI selectedSkillStats2;
     public TextMeshProUGUI selectedSkillStats3;
     public TextMeshProUGUI selectedSkillDescription;
+
+    //Experience and Point Tracker
+    public GameObject experiencePanel;
+    public TextMeshProUGUI experienceText;
+    public GameObject skillPointPanel;
+    public GameObject whiteStar;
+
+    //Skill Info
     public GameObject skillInfoPanel;
     public GameObject skillDescriptionPanel;
     public GameObject setSignaturePanel;
@@ -107,6 +116,7 @@ public class SkillSelectInterface : MonoBehaviour
         rowIncreasePanel.SetActive(firstTime);
         startingPointsPanel.SetActive(firstTime);
         availableSkillPointsPanel.SetActive(!firstTime);
+        experiencePanel.SetActive(!firstTime);
         if (firstTime)
         {
             if (signatureSkillSelected == false)
@@ -142,10 +152,33 @@ public class SkillSelectInterface : MonoBehaviour
         paleoScore.text = playerStats.paleoBaseScore.ToString();
         neoScore.text = playerStats.neoBaseScore.ToString();
         paleScore.text = playerStats.paleBaseScore.ToString();
+        experienceText.text = "Experience: " + playerStats.experience.ToString() + " / 100";
+
+        if (gameObject.activeSelf)
+        {
+            UpdateAvailableSkillPoints();
+        }
+
+        //Manage Number of SKill Points Available
+        if (!firstTime)
+        {
+            if (ArticyGlobalVariables.Default.PlayerStats.Experience >= 100)
+            {
+                ArticyGlobalVariables.Default.PlayerStats.AvailableSkillPoints++;
+                ArticyGlobalVariables.Default.PlayerStats.Experience -= 100;
+                playerStats.experience = ArticyGlobalVariables.Default.PlayerStats.Experience;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Close();
+        }
+
+        //Disable Level Up
+        if (selectedSkill.GetComponent<SkillPortraitInfo>().skillLevel >= selectedSkill.GetComponent<SkillPortraitInfo>().categoryLevel)
+        {
+            levelUpPanel.SetActive(false);
         }
     }
 
@@ -325,6 +358,53 @@ public class SkillSelectInterface : MonoBehaviour
             playerStats.maxResolve--;
             playerStats.InitializeResolveBar();
             startingAvailableSkillPoints++;
+        }
+    }
+
+    public void UpdateAvailableSkillPoints()
+    {
+        if (skillPointPanel == null || whiteStar == null)
+            return;
+
+        var parent = skillPointPanel.transform;
+        int current = parent.childCount;
+        int target = availableSkillPoints;
+
+        // If there are too many, remove the extras (from end to keep ordering)
+        if (current > target)
+        {
+            for (int i = current - 1; i >= target; i--)
+            {
+                var child = parent.GetChild(i);
+#if UNITY_EDITOR
+                // In editor use DestroyImmediate to remove immediately (keeps UI in sync)
+                if (!Application.isPlaying) UnityEngine.Object.DestroyImmediate(child.gameObject);
+                else UnityEngine.Object.Destroy(child.gameObject);
+#else
+                UnityEngine.Object.Destroy(child.gameObject);
+#endif
+            }
+        }
+        // If there are too few, instantiate the difference
+        else if (current < target)
+        {
+            for (int i = current; i < target; i++)
+            {
+                var star = UnityEngine.Object.Instantiate(whiteStar, parent);
+                // Normalize transform for UI prefabs
+                var rt = star.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.localScale = Vector3.one;
+                    rt.anchoredPosition = Vector2.zero;
+                }
+                else
+                {
+                    star.transform.localScale = Vector3.one;
+                    star.transform.localPosition = Vector3.zero;
+                }
+                star.name = "WhiteStar_" + i;
+            }
         }
     }
 }

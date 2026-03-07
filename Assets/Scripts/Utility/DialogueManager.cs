@@ -136,6 +136,12 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             if (speakerEntity != null)
             {
                 dialogueSpeaker.text = speakerEntity.DisplayName;
+
+                //Unknown Character Names
+                if (speakerEntity.DisplayName == "Raik" && ArticyGlobalVariables.Default.RaikVariables.NameKnown == false)
+                {
+                    dialogueSpeaker.text = "The Innkeeper";
+                }
             }
             //Add Character Portrait
             var speaker = objectWithSpeaker.Speaker;
@@ -212,7 +218,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
                 aSource.Stop(); // Skill voices are disabled, stop the voiceover
             }
         }
-        else if (dialogueSpeaker.text == "The Pale" || dialogueSpeaker.text == "Self-Actualization" || dialogueSpeaker.text == "Perspicacity" || dialogueSpeaker.text == "Savor Faire" || dialogueSpeaker.text == "Tenebrality")
+        else if (dialogueSpeaker.text == "The Pale" || dialogueSpeaker.text == "Self-Actualization" || dialogueSpeaker.text == "Perspicacity" || dialogueSpeaker.text == "Savoir Faire" || dialogueSpeaker.text == "Tenebrality")
         {
             chara.color = new Color(0.5f, 0.2f, 0.5f); // Purple color
             if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)

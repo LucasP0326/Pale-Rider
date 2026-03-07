@@ -13,11 +13,14 @@ public class Quest : MonoBehaviour
     public string questDescription;
     public string questStages;
     public int questStage;
+    public float questExperienceReward;
+    public int questExperienceRewardInt;
     public bool isComplete;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         questInterface = GameObject.FindFirstObjectByType<QuestInterface>();
+        questExperienceRewardInt = (int)questExperienceReward;
     }
 
     // Update is called once per frame
@@ -25,6 +28,10 @@ public class Quest : MonoBehaviour
     {
         if (questStage == 1000)
         {
+            if (!isComplete)
+            {
+                ArticyGlobalVariables.Default.PlayerStats.Experience += questExperienceRewardInt;
+            }
             isComplete = true;
         }
     }

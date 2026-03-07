@@ -100,6 +100,7 @@ public class QuestManager : MonoBehaviour
         newQuest.questName = articyObj.DisplayName;
         newQuest.questDescription = articyObj.Template.Description.MediumTextValue;
         newQuest.questStages = articyObj.Template.QuestStages.LargeTextValue;
+        newQuest.questExperienceReward = articyObj.Template.Experience_Reward.NumberValue;
 
         //Add New Quest to Active Quests
         var questsList = new List<Quest>(activeQuests ?? new Quest[0]);

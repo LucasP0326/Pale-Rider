@@ -6566,6 +6566,7 @@ GameObject:
   - component: {fileID: 120741212}
   - component: {fileID: 120741211}
   - component: {fileID: 120741214}
+  - component: {fileID: 120741215}
   m_Layer: 0
   m_Name: Escape Zone 1 (3)
   m_TagString: Untagged
@@ -6693,6 +6694,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &120741215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120741209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  eventOnStart: 0
+  dialogueManager: {fileID: 0}
+  isHorse: 0
+  horseManager: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetArticyVariable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+  articyVariablePath: Quests.LeaveThePale
+  articyVariableType: 0
+  articyIntValue: 1000
+  articyBoolValue: 0
+  articyFloatValue: 0
+  articyStringValue: 
 --- !u!1 &121850550
 GameObject:
   m_ObjectHideFlags: 0
@@ -11378,6 +11448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -25436,6 +25507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -27482,6 +27554,7 @@ GameObject:
   - component: {fileID: 518308457}
   - component: {fileID: 518308456}
   - component: {fileID: 518308459}
+  - component: {fileID: 518308460}
   m_Layer: 0
   m_Name: Escape Zone 1
   m_TagString: Untagged
@@ -27609,6 +27682,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &518308460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518308454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  eventOnStart: 0
+  dialogueManager: {fileID: 0}
+  isHorse: 0
+  horseManager: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetArticyVariable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+  articyVariablePath: Quests.LeaveThePale
+  articyVariableType: 0
+  articyIntValue: 1000
+  articyBoolValue: 0
+  articyFloatValue: 0
+  articyStringValue: 
 --- !u!1 &521862847
 GameObject:
   m_ObjectHideFlags: 0
@@ -28873,6 +29015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -32173,6 +32316,7 @@ GameObject:
   - component: {fileID: 620901979}
   - component: {fileID: 620901978}
   - component: {fileID: 620901981}
+  - component: {fileID: 620901982}
   m_Layer: 0
   m_Name: Escape Zone 1 (1)
   m_TagString: Untagged
@@ -32300,6 +32444,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &620901982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620901976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  eventOnStart: 0
+  dialogueManager: {fileID: 0}
+  isHorse: 0
+  horseManager: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetArticyVariable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+  articyVariablePath: Quests.LeaveThePale
+  articyVariableType: 0
+  articyIntValue: 1000
+  articyBoolValue: 0
+  articyFloatValue: 0
+  articyStringValue: 
 --- !u!1 &621683057
 GameObject:
   m_ObjectHideFlags: 0
@@ -93285,6 +93498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -113062,6 +113276,7 @@ GameObject:
   - component: {fileID: 2138456732}
   - component: {fileID: 2138456731}
   - component: {fileID: 2138456734}
+  - component: {fileID: 2138456735}
   m_Layer: 0
   m_Name: Escape Zone 1 (2)
   m_TagString: Untagged
@@ -113189,6 +113404,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2138456735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138456729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  eventOnStart: 0
+  dialogueManager: {fileID: 0}
+  isHorse: 0
+  horseManager: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 120741215}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetArticyVariable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+  articyVariablePath: Quests.LeaveThePale
+  articyVariableType: 0
+  articyIntValue: 1000
+  articyBoolValue: 0
+  articyFloatValue: 0
+  articyStringValue: 
 --- !u!1 &2138820681
 GameObject:
   m_ObjectHideFlags: 0

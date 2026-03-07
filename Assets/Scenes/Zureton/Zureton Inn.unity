@@ -9458,6 +9458,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background Music Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
+      propertyPath: songs.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bbc422b041fcaeb49b9533387f27980a, type: 3}
+    - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
+      propertyPath: songs.Array.data[0].label
+      value: Zureton Inn Day
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
+      propertyPath: songs.Array.data[0].sceneNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
+      propertyPath: 'songs.Array.data[0].sceneNames.Array.data[0]'
+      value: Zureton Inn
+      objectReference: {fileID: 0}
     - target: {fileID: 8552728608621614342, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.123391
@@ -21845,6 +21861,10 @@ PrefabInstance:
     - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: cursorInputForLook
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1240282008205145783, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_RootOrder
