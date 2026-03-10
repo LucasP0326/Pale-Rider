@@ -4,6 +4,7 @@ using Articy.Unity;
 using Articy.Unity.Interfaces;
 using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
+using UnityEditor.Rendering.LookDev;
 
 public class Quest : MonoBehaviour
 {
@@ -20,17 +21,19 @@ public class Quest : MonoBehaviour
     void Start()
     {
         questInterface = GameObject.FindFirstObjectByType<QuestInterface>();
-        questExperienceRewardInt = (int)questExperienceReward;
     }
 
     // Update is called once per frame
     void Update()
     {
+        questExperienceRewardInt = (int)questExperienceReward;
         if (questStage == 1000)
         {
             if (!isComplete)
             {
                 ArticyGlobalVariables.Default.PlayerStats.Experience += questExperienceRewardInt;
+                Debug.Log("Gained " + questExperienceRewardInt + " experience from completing quest: " + questName);
+                Debug.Log("Total Experience: " + ArticyGlobalVariables.Default.PlayerStats.Experience);
             }
             isComplete = true;
         }

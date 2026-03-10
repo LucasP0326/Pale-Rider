@@ -369,9 +369,32 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
     }
 
-    private IEnumerator ScrollToBottom()
+    public void SetDialogueView(bool isActive)
+    {
+        int childCount = scrollContent.childCount;
+        int lastDialogue = childCount - 1;
+        int lastSpeaker = childCount - 2;
+
+        Transform lastDialogueTransform = scrollContent.GetChild(lastDialogue);
+        Transform lastSpeakerTransform = scrollContent.GetChild(lastSpeaker);
+
+        if (isActive)
+        {
+            lastDialogueTransform.gameObject.SetActive(true);
+            lastSpeakerTransform.gameObject.SetActive(true);
+        }
+        else
+        {
+            lastDialogueTransform.gameObject.SetActive(false);
+            lastSpeakerTransform.gameObject.SetActive(false);
+        }
+        return;
+    }
+
+    public IEnumerator ScrollToBottom()
     {
         yield return null; // Wait one frame
         scrollRect.verticalNormalizedPosition = -1f;
     }
+    
 }

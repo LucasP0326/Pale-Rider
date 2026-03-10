@@ -67,6 +67,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("MaxHealth", ArticyGlobalVariables.Default.PlayerStats.MaxHealth);
         PlayerPrefs.SetInt("Resolve", ArticyGlobalVariables.Default.PlayerStats.Resolve);
         PlayerPrefs.SetInt("MaxResolve", ArticyGlobalVariables.Default.PlayerStats.MaxResolve);
+        PlayerPrefs.SetInt("Money", ArticyGlobalVariables.Default.PlayerStats.Money);
 
         //Skill Base Scores
         PlayerPrefs.SetInt("ReptilianBaseScore", ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore);
@@ -108,6 +109,7 @@ public class SaveManager : MonoBehaviour
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
+        PlayerPrefs.SetInt("PayInnTab", ArticyGlobalVariables.Default.Quests.PayInnTab);
 
         PlayerPrefs.Save();
         Debug.Log("Game Saved!");
@@ -161,6 +163,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.MaxHealth = PlayerPrefs.GetInt("MaxHealth", 1);
         ArticyGlobalVariables.Default.PlayerStats.Resolve = PlayerPrefs.GetInt("Resolve", 1);
         ArticyGlobalVariables.Default.PlayerStats.MaxResolve = PlayerPrefs.GetInt("MaxResolve", 1);
+        ArticyGlobalVariables.Default.PlayerStats.Money = PlayerPrefs.GetInt("Money", 0);
 
         // Skill Base Scores
         ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore = PlayerPrefs.GetInt("ReptilianBaseScore", 1);
@@ -200,6 +203,7 @@ public class SaveManager : MonoBehaviour
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);
+        ArticyGlobalVariables.Default.Quests.PayInnTab = PlayerPrefs.GetInt("PayInnTab", 0);
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);

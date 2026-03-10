@@ -56,6 +56,25 @@ public class QuestManager : MonoBehaviour
                 AddQuest("Q_LeaveThePale");
             }
         }
+
+        if (ArticyGlobalVariables.Default.Quests.PayInnTab != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_PayInnTab")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_PayInnTab");
+            }
+        }
     }
 
     public void QuestUpdater()
@@ -77,6 +96,26 @@ public class QuestManager : MonoBehaviour
                     completedList.Add(quest);
                     completedQuests = completedList.ToArray();
 
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_PayInnTab")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.PayInnTab;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
                     quest.isComplete = true;
                 }
             }
@@ -100,7 +139,7 @@ public class QuestManager : MonoBehaviour
         newQuest.questName = articyObj.DisplayName;
         newQuest.questDescription = articyObj.Template.Description.MediumTextValue;
         newQuest.questStages = articyObj.Template.QuestStages.LargeTextValue;
-        newQuest.questExperienceReward = articyObj.Template.Experience_Reward.NumberValue;
+        newQuest.questExperienceReward = articyObj.Template.ExperienceReward.NumberValue;
 
         //Add New Quest to Active Quests
         var questsList = new List<Quest>(activeQuests ?? new Quest[0]);

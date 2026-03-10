@@ -129,6 +129,8 @@ public class QuestInterface : MonoBehaviour
             questUI.questDescription = quest.questDescription;
             questUI.questStages = quest.questStages;
             questUI.questStage = quest.questStage;
+            questUI.questExperienceReward = quest.questExperienceReward;
+            questUI.questExperienceRewardInt = quest.questExperienceRewardInt;
             questUI.isComplete = quest.isComplete;
 
             // Set parent to active quests panel
@@ -140,12 +142,15 @@ public class QuestInterface : MonoBehaviour
 
             // Instantiate the UI element for the quest (assuming questLabelPrefab is a UI prefab)
             Quest questUI = Instantiate(questLabelPrefab).GetComponent<Quest>();
+            questUI.GetComponentInChildren<TextMeshProUGUI>().text = quest.questName;
             questUI.questInterface = this;
             questUI.technicalName = quest.technicalName;
             questUI.questName = quest.questName;
             questUI.questDescription = quest.questDescription;
             questUI.questStages = quest.questStages;
             questUI.questStage = quest.questStage;
+            questUI.questExperienceReward = quest.questExperienceReward;
+            questUI.questExperienceRewardInt = quest.questExperienceRewardInt;
             questUI.isComplete = quest.isComplete;
 
             // Set parent to completed quests panel

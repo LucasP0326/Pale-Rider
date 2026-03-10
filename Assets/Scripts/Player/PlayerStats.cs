@@ -58,7 +58,7 @@ public class PlayerStats : MonoBehaviour
     public int tenebrality;
 
     [Header("Player Cash")]
-    public float playerCash;
+    public int playerCash;
 
     [Header("UI")]
     public GameObject HUD;
@@ -136,6 +136,9 @@ public class PlayerStats : MonoBehaviour
         maxResolve = ArticyGlobalVariables.Default.PlayerStats.MaxResolve;
         currentHealth = ArticyGlobalVariables.Default.PlayerStats.Health;
         currentResolve = ArticyGlobalVariables.Default.PlayerStats.Resolve;
+
+        //Update Money
+        playerCash = ArticyGlobalVariables.Default.PlayerStats.Money;
 
         //Check Death States
         sucumbingToPale = ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale;
@@ -371,7 +374,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (moneyText != null)
         {
-            moneyText.text = "£" + playerCash.ToString("F2"); // Format to 2 decimal places
+            decimal displayCash = playerCash / 100m; // Assuming playerCash is in pennies, convert to pounds
+            moneyText.text = "£" + displayCash.ToString("F2"); // Format to 2 decimal places
         }
     }
 

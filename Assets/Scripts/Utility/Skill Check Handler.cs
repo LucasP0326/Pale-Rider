@@ -10,6 +10,10 @@ using StarterAssets;
 
 public class SkillCheckHandler : MonoBehaviour
 {
+    //References
+    public DialogueManager dialogueManager;
+    public bool rollingDice = false;
+
     //UI Elements
     public GameObject skillCheckPanel;
     public GameObject skillCheckResultBar;
@@ -28,6 +32,7 @@ public class SkillCheckHandler : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     // Update is called once per frame
@@ -38,6 +43,11 @@ public class SkillCheckHandler : MonoBehaviour
             StartCoroutine(DiceRoll());
             ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck = false;
         }
+
+        if (rollingDice)
+        {
+            //Pending
+        }
     }
     
     private IEnumerator DiceRoll()
@@ -45,7 +55,7 @@ public class SkillCheckHandler : MonoBehaviour
         skillCheckPanel.SetActive(true);
         audioSource.PlayOneShot(diceRollSFX);
         StartCoroutine(AnimateDiceRoll());
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         skillCheckResultBar.SetActive(true);
         if (ArticyGlobalVariables.Default.SkillCheckStats.FinalDice >= ArticyGlobalVariables.Default.SkillCheckStats.Difficulty)
         {
@@ -66,7 +76,9 @@ public class SkillCheckHandler : MonoBehaviour
     
     private IEnumerator AnimateDiceRoll()
     {
-        float animationDuration = 0.75f; // Duration of the dice roll animation
+        rollingDice = true;
+        dialogueManager.SetDialogueView(false); // Hide the dialogue view during the dice roll animation
+        float animationDuration = 1.5f; // Duration of the dice roll animation
         float elapsedTime = 0f;
 
         int displayedFinalDice1 = ArticyGlobalVariables.Default.SkillCheckStats.Dice1;
@@ -96,6 +108,8 @@ public class SkillCheckHandler : MonoBehaviour
         diceLocation1.GetComponent<Image>().sprite = diceImages[displayedFinalDice1];
         diceLocation2.GetComponent<Image>().sprite = diceImages[displayedFinalDice2];
 
-        //rollingDice = false;
+        rollingDice = false;
+        dialogueManager.SetDialogueView(true); // Show the dialogue view again after the dice roll animation
+        StartCoroutine(dialogueManager.ScrollToBottom()); // Scroll to the bottom of the dialogue view to show the latest dialogue
     }
 }
