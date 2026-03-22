@@ -7,6 +7,7 @@ using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 
 public class QuestManager : MonoBehaviour
 {
@@ -23,10 +24,15 @@ public class QuestManager : MonoBehaviour
     public GameObject activeQuestsPanel;
     public GameObject completedQuestsPanel;
 
+    [Header("UI Elements")]
+    public GameObject questPopup;
+    public TMP_Text questAddedText;
+    public TMP_Text questNamePopupText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        StartCoroutine(HideStartScenePopup());
     }
 
     // Update is called once per frame
@@ -97,6 +103,7 @@ public class QuestManager : MonoBehaviour
                     completedQuests = completedList.ToArray();
 
                     ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Leave The Pale");
                     quest.isComplete = true;
                 }
             }
@@ -116,6 +123,7 @@ public class QuestManager : MonoBehaviour
                     completedQuests = completedList.ToArray();
 
                     ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Pay Inn Tab");
                     quest.isComplete = true;
                 }
             }
@@ -145,10 +153,35 @@ public class QuestManager : MonoBehaviour
         var questsList = new List<Quest>(activeQuests ?? new Quest[0]);
         questsList.Add(newQuest);
         activeQuests = questsList.ToArray();
+
+        //Popup
+        questAddedText.text = "Quest Added";
+        questNamePopupText.text = newQuest.questName;
+        StartCoroutine(ShowQuestPopup());
+    }
+
+    public void RemoveQuest(string questName)
+    {
+        questAddedText.text = "Quest Completed";
+        questNamePopupText.text = questName;
+        StartCoroutine(ShowQuestPopup());
     }
 
     public void SaveQuests()
     {
         // Implement saving logic if needed
+    }
+
+    private IEnumerator ShowQuestPopup()
+    {
+        questPopup.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        questPopup.SetActive(false);
+    }
+
+    private IEnumerator HideStartScenePopup()
+    {
+        yield return new WaitForSeconds(0.01f);
+        questPopup.SetActive(false);
     }
 }
