@@ -64,6 +64,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,9 +87,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &7393044951806155223
 SphereCollider:
@@ -123,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -356,6 +361,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -377,9 +384,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &1739363571349913215
 SphereCollider:
@@ -415,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -587,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -725,6 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -991,6 +1003,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1012,9 +1026,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &6510173109331051869
 SphereCollider:
@@ -1050,6 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -1351,6 +1368,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!212 &335260868664277182
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1369,6 +1387,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1390,9 +1410,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 1e35da3d900c7c6469574e67684ff6f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1402,7 +1424,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8739022483187696294
 MonoBehaviour:
@@ -2046,6 +2067,7 @@ MonoBehaviour:
   currentResolve: 0
   maxHealth: 0
   maxResolve: 0
+  experience: 0
   alreadyDying: 0
   sucumbingToPale: 0
   healthDeathObject: {fileID: 86100320259648123}
@@ -2123,6 +2145,9 @@ MonoBehaviour:
   questSpace: {fileID: 1171604190703338248}
   activeQuestsPanel: {fileID: 0}
   completedQuestsPanel: {fileID: 0}
+  questPopup: {fileID: 0}
+  questAddedText: {fileID: 0}
+  questNamePopupText: {fileID: 0}
 --- !u!114 &4416926081852918490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,6 +2163,7 @@ MonoBehaviour:
   paused: 0
   inMenu: 0
   inDialogue: 0
+  movementEnabled: 1
   pauseMenu: {fileID: 0}
   dialogueManager: {fileID: 0}
   thoughtCircle: {fileID: 4381783012665809447}
@@ -2149,6 +2175,7 @@ MonoBehaviour:
   neomammalianThoughtBubble: {fileID: 113062616290283118}
   paleThoughtBubble: {fileID: 1443154812174086686}
   isMounted: 0
+  isFalling: 0
   MoveSpeed: 2
   SprintSpeed: 5
   RotationSmoothTime: 0.12
@@ -2183,6 +2210,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  _isMovingToClick: 0
   clickIndicatorPrefab: {fileID: 1715802856454806045, guid: 7cf021622f00c74419196c8a0af1bdcb, type: 3}
   _animator: {fileID: 0}
   _controller: {fileID: 0}
@@ -2582,6 +2610,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2603,9 +2633,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2007966047444743759
 SphereCollider:
@@ -2641,6 +2673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -3471,6 +3504,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3494,9 +3529,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
