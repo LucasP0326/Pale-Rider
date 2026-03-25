@@ -13,6 +13,7 @@ public class InventoryItem : MonoBehaviour
     public string itemName; // Name of the item
     public string technicalName; // Unique identifier for the item
     public string itemType; // Type of the item (Tools, Clothes, Items, Interact)
+    public string itemClothingCategory; // Clothing category (Face, Head, Eyes, Body, Legs, Feet, Hands, Neck)
     public string itemDescription; // Description of the item
     public Sprite itemIcon; // Icon of the item
     public int itemQuantity; // Quantity of the item

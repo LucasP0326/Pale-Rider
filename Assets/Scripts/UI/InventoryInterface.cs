@@ -11,6 +11,7 @@ public class InventoryInterface : MonoBehaviour
 {
     //Important References
     private GameObject playerController;
+    public GameObject inventorySpace; // The parent GameObject that holds all inventory UI elements
     private ThirdPersonController controller;
     private InventoryManager inventoryManager; // Reference to the InventoryManager script
     private PlayerStats playerStats;
@@ -45,11 +46,13 @@ public class InventoryInterface : MonoBehaviour
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
     public TextMeshProUGUI selectedItemPrice;
+    public GameObject equipButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player");
+        inventorySpace = GameObject.FindGameObjectWithTag("InventorySpace");
         controller = playerController.GetComponent<ThirdPersonController>();
         inventoryManager = playerController.GetComponent<InventoryManager>();
         playerStats = playerController.GetComponent<PlayerStats>();
@@ -74,6 +77,24 @@ public class InventoryInterface : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Close();
+        }
+
+        if (selectedItem != null && selectedItem.GetComponent<InventoryItem>().itemType == "Clothing" || selectedItem.GetComponent<InventoryItem>().itemType == "Tool")
+        {
+            equipButton.SetActive(true);
+            if (selectedItem.GetComponent<InventoryItem>().isEquipped)
+            {
+                equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
+            }
+            else
+            {
+                equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+            }
+            
+        }
+        else
+        {
+            equipButton.SetActive(false);
         }
     }
 
@@ -206,6 +227,17 @@ public class InventoryInterface : MonoBehaviour
     {
         if (selectedItem != null)
         {
+            InventoryItem[] items = inventorySpace.GetComponentsInChildren<InventoryItem>(true);
+            string itemName = selectedItem.GetComponent<InventoryItem>().itemName;
+            foreach (var inv in items)
+            {
+                if (inv != null && inv.itemName == itemName)
+                {
+                    selectedItem = inv.gameObject;
+                    SelectItem();
+                    return;
+                }
+            }
             InventoryItem item = selectedItem.GetComponent<InventoryItem>();
             if (item != null)
             {
@@ -224,6 +256,28 @@ public class InventoryInterface : MonoBehaviour
         else
         {
             Debug.LogWarning("No item selected.");
+        }
+    }
+
+    public void EquipSelectedItem()
+    {
+        if (selectedItem != null)
+        {
+            InventoryItem item = selectedItem.GetComponent<InventoryItem>();
+            if (item != null)
+            {
+                // Implement equip logic here, e.g., update player stats, change appearance, etc.
+                Debug.Log("Equipped Item: " + item.itemName);
+                selectedItem.GetComponent<InventoryItem>().isEquipped = !selectedItem.GetComponent<InventoryItem>().isEquipped; // Toggle equip state
+            }
+            else
+            {
+                Debug.LogWarning("Selected item does not have an InventoryItem component.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No item selected to equip.");
         }
     }
 }

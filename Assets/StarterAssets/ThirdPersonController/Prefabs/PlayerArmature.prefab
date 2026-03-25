@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 2055815396097116867}
   m_Layer: 0
   m_Name: InventorySpace
-  m_TagString: Untagged
+  m_TagString: InventorySpace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
