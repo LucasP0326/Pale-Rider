@@ -83,6 +83,10 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("SucumbingToPale", ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale ? 1 : 0);
         PlayerPrefs.SetInt("PhysicalDeath", ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath ? 1 : 0);
         PlayerPrefs.SetInt("ResolveDeath", ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath ? 1 : 0);
+        PlayerPrefs.SetInt("JesusComplex", ArticyGlobalVariables.Default.PlayerVariables.JesusComplex);
+        PlayerPrefs.SetInt("KnowsTheConcord", ArticyGlobalVariables.Default.PlayerVariables.KnowsTheConcord ? 1 : 0);
+        PlayerPrefs.SetInt("KnowWhoYouAre", ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre ? 1 : 0);
+        PlayerPrefs.SetInt("MistakenIdentity", ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity);
 
         //Global Variables
         PlayerPrefs.SetInt("MadeBed", ArticyGlobalVariables.Default.GlobalVariables.MadeBed ? 1 : 0);
@@ -178,6 +182,10 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.SucumbingToPale = PlayerPrefs.GetInt("SucumbingToPale", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath = PlayerPrefs.GetInt("PhysicalDeath", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath = PlayerPrefs.GetInt("ResolveDeath", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.JesusComplex = PlayerPrefs.GetInt("JesusComplex", 1);
+        ArticyGlobalVariables.Default.PlayerVariables.KnowsTheConcord = PlayerPrefs.GetInt("KnowsTheConcord", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre = PlayerPrefs.GetInt("KnowWhoYouAre", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity = PlayerPrefs.GetInt("MistakenIdentity", 1);
 
         // Global Variables (bools)
         ArticyGlobalVariables.Default.GlobalVariables.MadeBed = PlayerPrefs.GetInt("MadeBed", 0) == 1;
