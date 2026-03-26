@@ -46,6 +46,7 @@ public class InventoryInterface : MonoBehaviour
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
     public TextMeshProUGUI selectedItemPrice;
+    public TextMeshProUGUI selectedItemBonuses;
     public GameObject equipButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -145,6 +146,7 @@ public class InventoryInterface : MonoBehaviour
             itemUI.itemDescription = item.itemDescription;
             itemUI.itemIcon = item.itemIcon;
             itemUI.itemPrice = item.itemPrice;
+            itemUI.itemBonuses = item.itemBonuses;
             // ...copy any other fields as needed...
 
             // Optionally update UI visuals (icon, text, etc.)
@@ -247,6 +249,7 @@ public class InventoryInterface : MonoBehaviour
                 // Format price as pounds and pence (e.g., £12.34)
                 int price = item.GetComponent<InventoryItem>().itemPrice;
                 selectedItemPrice.text = "£" + (price / 100f).ToString("0.00");
+                selectedItemBonuses.text = "Item Bonuses: " + item.GetComponent<InventoryItem>().itemBonuses;
                 Debug.Log("Populating UI");
             }
             else
@@ -270,6 +273,7 @@ public class InventoryInterface : MonoBehaviour
                 // Implement equip logic here, e.g., update player stats, change appearance, etc.
                 Debug.Log("Equipped Item: " + item.itemName);
                 selectedItem.GetComponent<InventoryItem>().isEquipped = !selectedItem.GetComponent<InventoryItem>().isEquipped; // Toggle equip state
+                selectedItem.GetComponent<InventoryItem>().FindBonuses(); // Apply bonuses when equipping
             }
             else
             {

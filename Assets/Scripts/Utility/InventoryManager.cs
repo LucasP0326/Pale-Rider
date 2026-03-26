@@ -24,6 +24,7 @@ public class InventoryManager : MonoBehaviour
         //PlayerPrefs.DeleteKey("PlayerInventory"); // Remove saved inventory on game start
         // Optionally: PlayerPrefs.DeleteAll(); // (removes all PlayerPrefs, use with caution)
         //DontDestroyOnLoad(gameObject);
+        InitializeEquipment();
     }
 
     // Update is called once per frame
@@ -52,6 +53,7 @@ public class InventoryManager : MonoBehaviour
         newItem.itemClothingCategory = articyObj.Template.ClothingSlot.SmallTextValue;
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
         newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
+        newItem.itemBonuses = articyObj.Template.ItemBonuses.MediumTextValue;
 
         StartCoroutine(PopupCoroutine(newItem.itemName));
 
@@ -90,6 +92,7 @@ public class InventoryManager : MonoBehaviour
                 itemClothingCategory = item.itemClothingCategory,
                 itemDescription = item.itemDescription,
                 itemPrice = item.itemPrice,
+                itemBonuses = item.itemBonuses,
                 itemQuantity = item.itemQuantity,
                 isEquipped = item.isEquipped
             });
@@ -127,6 +130,7 @@ public class InventoryManager : MonoBehaviour
                     newItem.itemClothingCategory = data.itemClothingCategory;
                     newItem.itemDescription = data.itemDescription;
                     newItem.itemPrice = data.itemPrice;
+                    newItem.itemBonuses = data.itemBonuses;
                     newItem.itemQuantity = data.itemQuantity;
                     newItem.isEquipped = data.isEquipped;
 
@@ -211,6 +215,47 @@ public class InventoryManager : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayerInventory");
         PlayerPrefs.Save();
     }
+
+    public void InitializeEquipment()
+    {
+        if (inventorySpace == null)
+            inventorySpace = GameObject.FindGameObjectWithTag("InventorySpace");
+
+        if (inventorySpace == null) return;
+
+        var items = inventorySpace.GetComponentsInChildren<InventoryItem>(true);
+        var itemsList = new List<InventoryItem>();
+
+        foreach (var item in items)
+        {
+            if (item == null) continue;
+
+            string tech = item.technicalName ?? "";
+            bool equipped = false;
+
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedTool) && ArticyGlobalVariables.Default.EquippedItems.EquippedTool == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedHead) && ArticyGlobalVariables.Default.EquippedItems.EquippedHead == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedFace) && ArticyGlobalVariables.Default.EquippedItems.EquippedFace == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedNeck) && ArticyGlobalVariables.Default.EquippedItems.EquippedNeck == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedBody) && ArticyGlobalVariables.Default.EquippedItems.EquippedBody == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedHands) && ArticyGlobalVariables.Default.EquippedItems.EquippedHands == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedLegs) && ArticyGlobalVariables.Default.EquippedItems.EquippedLegs == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedFeet) && ArticyGlobalVariables.Default.EquippedItems.EquippedFeet == tech)
+                equipped = true;
+
+            item.isEquipped = equipped;
+            itemsList.Add(item);
+        }
+
+        inventoryItems = itemsList.ToArray();
+    }
 }
 
 
@@ -232,6 +277,7 @@ public class InventoryItemData
     public string itemClothingCategory;
     public string itemDescription;
     public int itemPrice;
+    public string itemBonuses;
     public int itemQuantity;
     public bool isEquipped;
     // Add other fields as needed (e.g., icon reference as a string)
