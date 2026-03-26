@@ -33,6 +33,7 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public string skillDescription;
     public int categoryLevel;
     public int skillLevel;
+    public int itemLevel;
 
     void Start()
     {
@@ -71,18 +72,23 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (skillName == "Endurance")
             {
                 skillLevel = playerStats.endurance;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.EnduranceItem;
             }
             else if (skillName == "Physicality")
             {
                 skillLevel = playerStats.physicality;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.PhysicalityItem;
+
             }
             else if (skillName == "Reflexivity")
             {
                 skillLevel = playerStats.reflexivity;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.ReflexivityItem;
             }
             else if (skillName == "Volition")
             {
                 skillLevel = playerStats.volition;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.VolitionItem;
             }
         }
         else if (skillCategory == "PaleoMammalian Complex")
@@ -91,18 +97,22 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (skillName == "Empathy")
             {
                 skillLevel = playerStats.empathy;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.EmpathyItem;
             }
             else if (skillName == "Suggestion")
             {
                 skillLevel = playerStats.suggestion;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.SuggestionItem;
             }
             else if (skillName == "Authority")
             {
                 skillLevel = playerStats.authority;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem;
             }
             else if (skillName == "Rhetoric")
             {
                 skillLevel = playerStats.rhetoric;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.RhetoricItem;
             }
         }
         else if (skillCategory == "NeoMammalian Complex")
@@ -111,18 +121,22 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (skillName == "Encyclopedia")
             {
                 skillLevel = playerStats.encyclopedia;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.EncyclopediaItem;
             }
             else if (skillName == "Logic")
             {
                 skillLevel = playerStats.logic;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.LogicItem;
             }
             else if (skillName == "Perception")
             {
                 skillLevel = playerStats.perception;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.PerceptionItem;
             }
             else if (skillName == "Conceptualization")
             {
                 skillLevel = playerStats.conceptualization;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem;
             }
         }
         else if (skillCategory == "The Pale")
@@ -131,18 +145,22 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (skillName == "Savoir-Faire")
             {
                 skillLevel = playerStats.savoirFaire;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.SavoirFaireItem;
             }
             else if (skillName == "Perspicacity")
             {
                 skillLevel = playerStats.perspicacity;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.PerspicacityItem;
             }
             else if (skillName == "Tenebrality")
             {
                 skillLevel = playerStats.tenebrality;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.TenebralityItem;
             }
             else if (skillName == "SelfActualization")
             {
                 skillLevel = playerStats.selfActualization;
+                itemLevel = ArticyGlobalVariables.Default.ItemStatVariables.SelfActualizationItem;
             }
         }
 

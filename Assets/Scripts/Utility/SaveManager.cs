@@ -62,6 +62,24 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetString("SignatureSkill", ArticyGlobalVariables.Default.PlayerStats.SignatureSkill);
         PlayerPrefs.SetInt("Experience", ArticyGlobalVariables.Default.PlayerStats.Experience);
 
+        //Player Item Stats
+        PlayerPrefs.SetInt("AuthorityItem", ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem);
+        PlayerPrefs.SetInt("ConceptualizationItem", ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem);
+        PlayerPrefs.SetInt("EncyclopediaItem", ArticyGlobalVariables.Default.ItemStatVariables.EncyclopediaItem);
+        PlayerPrefs.SetInt("EmpathyItem", ArticyGlobalVariables.Default.ItemStatVariables.EmpathyItem);
+        PlayerPrefs.SetInt("EnduranceItem", ArticyGlobalVariables.Default.ItemStatVariables.EnduranceItem);
+        PlayerPrefs.SetInt("LogicItem", ArticyGlobalVariables.Default.ItemStatVariables.LogicItem);
+        PlayerPrefs.SetInt("PerceptionItem", ArticyGlobalVariables.Default.ItemStatVariables.PerceptionItem);
+        PlayerPrefs.SetInt("PerspicacityItem", ArticyGlobalVariables.Default.ItemStatVariables.PerspicacityItem);
+        PlayerPrefs.SetInt("PhysicalityItem", ArticyGlobalVariables.Default.ItemStatVariables.PhysicalityItem);
+        PlayerPrefs.SetInt("ReflexivityItem", ArticyGlobalVariables.Default.ItemStatVariables.ReflexivityItem);
+        PlayerPrefs.SetInt("RhetoricItem", ArticyGlobalVariables.Default.ItemStatVariables.RhetoricItem);
+        PlayerPrefs.SetInt("SavoirFaireItem", ArticyGlobalVariables.Default.ItemStatVariables.SavoirFaireItem);
+        PlayerPrefs.SetInt("SelfActualizationItem", ArticyGlobalVariables.Default.ItemStatVariables.SelfActualizationItem);
+        PlayerPrefs.SetInt("SuggestionItem", ArticyGlobalVariables.Default.ItemStatVariables.SuggestionItem);
+        PlayerPrefs.SetInt("TenebralityItem", ArticyGlobalVariables.Default.ItemStatVariables.TenebralityItem);
+        PlayerPrefs.SetInt("VolitionItem", ArticyGlobalVariables.Default.ItemStatVariables.VolitionItem);
+
         //Player State Stats
         PlayerPrefs.SetInt("Health", ArticyGlobalVariables.Default.PlayerStats.Health);
         PlayerPrefs.SetInt("MaxHealth", ArticyGlobalVariables.Default.PlayerStats.MaxHealth);
@@ -171,6 +189,24 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Volition = PlayerPrefs.GetInt("Volition", 0);
         ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "");
         ArticyGlobalVariables.Default.PlayerStats.Experience = PlayerPrefs.GetInt("Experience", 0);
+
+        // Load Player Item Stats
+        ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem = PlayerPrefs.GetInt("AuthorityItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem = PlayerPrefs.GetInt("ConceptualizationItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.EncyclopediaItem = PlayerPrefs.GetInt("EncyclopediaItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.EmpathyItem = PlayerPrefs.GetInt("EmpathyItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.EnduranceItem = PlayerPrefs.GetInt("EnduranceItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.LogicItem = PlayerPrefs.GetInt("LogicItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.PerceptionItem = PlayerPrefs.GetInt("PerceptionItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.PerspicacityItem = PlayerPrefs.GetInt("PerspicacityItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.PhysicalityItem = PlayerPrefs.GetInt("PhysicalityItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.ReflexivityItem = PlayerPrefs.GetInt("ReflexivityItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.RhetoricItem = PlayerPrefs.GetInt("RhetoricItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.SavoirFaireItem = PlayerPrefs.GetInt("SavoirFaireItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.SelfActualizationItem = PlayerPrefs.GetInt("SelfActualizationItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.SuggestionItem = PlayerPrefs.GetInt("SuggestionItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.TenebralityItem = PlayerPrefs.GetInt("TenebralityItem", 0);
+        ArticyGlobalVariables.Default.ItemStatVariables.VolitionItem = PlayerPrefs.GetInt("VolitionItem", 0);
 
         // Player State Stats
         ArticyGlobalVariables.Default.PlayerStats.Health = PlayerPrefs.GetInt("Health", 1);

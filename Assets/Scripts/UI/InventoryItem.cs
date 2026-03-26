@@ -82,51 +82,67 @@ public class InventoryItem : MonoBehaviour
             {
                 case "Endurance":
                     ArticyGlobalVariables.Default.PlayerStats.Endurance += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EnduranceItem += value;
                     break;
                 case "Perception":
                     ArticyGlobalVariables.Default.PlayerStats.Perception += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PerceptionItem += value;
                     break;
                 case "Authority":
                     ArticyGlobalVariables.Default.PlayerStats.Authority += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem += value;
                     break;
                 case "Conceptualization":
                     ArticyGlobalVariables.Default.PlayerStats.Conceptualization += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem += value;
                     break;
                 case "Encyclopedia":
                     ArticyGlobalVariables.Default.PlayerStats.Encyclopedia += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EncyclopediaItem += value;
                     break;
                 case "Empathy":
                     ArticyGlobalVariables.Default.PlayerStats.Empathy += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EmpathyItem += value;
                     break;
                 case "Logic":
                     ArticyGlobalVariables.Default.PlayerStats.Logic += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.LogicItem += value;
                     break;
                 case "Perspicacity":
                     ArticyGlobalVariables.Default.PlayerStats.Perspicacity += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PerspicacityItem += value;
                     break; 
                 case "Physicality":
                     ArticyGlobalVariables.Default.PlayerStats.Physicality += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PhysicalityItem += value;
                     break;
                 case "Reflexivity":
                     ArticyGlobalVariables.Default.PlayerStats.Reflexivity += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.ReflexivityItem += value;
                     break; 
                 case "Rhetoric":
                     ArticyGlobalVariables.Default.PlayerStats.Rhetoric += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.RhetoricItem += value;
                     break; 
                 case "SavoirFaire":
                     ArticyGlobalVariables.Default.PlayerStats.SavoirFaire += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SavoirFaireItem += value;
                     break; 
                 case "SelfActualization":
                     ArticyGlobalVariables.Default.PlayerStats.SelfActualization += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SelfActualizationItem += value;
                     break; 
                 case "Suggestion":
                     ArticyGlobalVariables.Default.PlayerStats.Suggestion += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SuggestionItem += value;
                     break; 
                 case "Tenebrality":
                     ArticyGlobalVariables.Default.PlayerStats.Tenebrality += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.TenebralityItem += value;
                     break; 
                 case "Volition":
                     ArticyGlobalVariables.Default.PlayerStats.Volition += value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.VolitionItem += value;
                     break; 
                 default:
                     Debug.LogWarning("Unknown stat: " + stat);
@@ -140,51 +156,67 @@ public class InventoryItem : MonoBehaviour
             {
                 case "Endurance":
                     ArticyGlobalVariables.Default.PlayerStats.Endurance -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EnduranceItem -= value;
                     break;
                 case "Perception":
                     ArticyGlobalVariables.Default.PlayerStats.Perception -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PerceptionItem -= value;
                     break;
                 case "Authority":
                     ArticyGlobalVariables.Default.PlayerStats.Authority -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem -= value;
                     break;
                 case "Conceptualization":
                     ArticyGlobalVariables.Default.PlayerStats.Conceptualization -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem -= value;
                     break;
                 case "Encyclopedia":
                     ArticyGlobalVariables.Default.PlayerStats.Encyclopedia -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EncyclopediaItem -= value;
                     break;
                 case "Empathy":
                     ArticyGlobalVariables.Default.PlayerStats.Empathy -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.EmpathyItem -= value;
                     break;
                 case "Logic":
                     ArticyGlobalVariables.Default.PlayerStats.Logic -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.LogicItem -= value;
                     break;
                 case "Perspicacity":
                     ArticyGlobalVariables.Default.PlayerStats.Perspicacity -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PerspicacityItem -= value;
                     break; 
                 case "Physicality":
                     ArticyGlobalVariables.Default.PlayerStats.Physicality -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.PhysicalityItem -= value;
                     break;
                 case "Reflexivity":
                     ArticyGlobalVariables.Default.PlayerStats.Reflexivity -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.ReflexivityItem -= value;
                     break; 
                 case "Rhetoric":
                     ArticyGlobalVariables.Default.PlayerStats.Rhetoric -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.RhetoricItem -= value;
                     break; 
                 case "SavoirFaire":
                     ArticyGlobalVariables.Default.PlayerStats.SavoirFaire -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SavoirFaireItem -= value;
                     break; 
                 case "SelfActualization":
                     ArticyGlobalVariables.Default.PlayerStats.SelfActualization -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SelfActualizationItem -= value;
                     break; 
                 case "Suggestion":
                     ArticyGlobalVariables.Default.PlayerStats.Suggestion -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.SuggestionItem -= value;
                     break; 
                 case "Tenebrality":
                     ArticyGlobalVariables.Default.PlayerStats.Tenebrality -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.TenebralityItem -= value;
                     break; 
                 case "Volition":
                     ArticyGlobalVariables.Default.PlayerStats.Volition -= value;
+                    ArticyGlobalVariables.Default.ItemStatVariables.VolitionItem -= value;
                     break; 
                 default:
                     Debug.LogWarning("Unknown stat: " + stat);
