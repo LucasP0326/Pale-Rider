@@ -49,6 +49,7 @@ public class InventoryManager : MonoBehaviour
         newItem.technicalName = technicalName;
         newItem.itemName = articyObj.DisplayName;
         newItem.itemType = articyObj.Template.ItemCategory.SmallTextValue;
+        newItem.itemClothingCategory = articyObj.Template.ClothingSlot.SmallTextValue;
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
         newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
 
@@ -86,6 +87,7 @@ public class InventoryManager : MonoBehaviour
                 technicalName = item.technicalName,
                 itemName = item.itemName,
                 itemType = item.itemType,
+                itemClothingCategory = item.itemClothingCategory,
                 itemDescription = item.itemDescription,
                 itemPrice = item.itemPrice,
                 itemQuantity = item.itemQuantity,
@@ -122,6 +124,7 @@ public class InventoryManager : MonoBehaviour
                     newItem.technicalName = data.technicalName;
                     newItem.itemName = data.itemName;
                     newItem.itemType = data.itemType;
+                    newItem.itemClothingCategory = data.itemClothingCategory;
                     newItem.itemDescription = data.itemDescription;
                     newItem.itemPrice = data.itemPrice;
                     newItem.itemQuantity = data.itemQuantity;
@@ -226,6 +229,7 @@ public class InventoryItemData
     public string technicalName;
     public string itemName;
     public string itemType;
+    public string itemClothingCategory;
     public string itemDescription;
     public int itemPrice;
     public int itemQuantity;

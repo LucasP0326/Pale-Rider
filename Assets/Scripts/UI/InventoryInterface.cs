@@ -234,8 +234,8 @@ public class InventoryInterface : MonoBehaviour
                 if (inv != null && inv.itemName == itemName)
                 {
                     selectedItem = inv.gameObject;
-                    SelectItem();
-                    return;
+                    //SelectItem();
+                    //return;
                 }
             }
             InventoryItem item = selectedItem.GetComponent<InventoryItem>();
@@ -247,6 +247,7 @@ public class InventoryInterface : MonoBehaviour
                 // Format price as pounds and pence (e.g., £12.34)
                 int price = item.GetComponent<InventoryItem>().itemPrice;
                 selectedItemPrice.text = "£" + (price / 100f).ToString("0.00");
+                Debug.Log("Populating UI");
             }
             else
             {
@@ -278,6 +279,39 @@ public class InventoryInterface : MonoBehaviour
         else
         {
             Debug.LogWarning("No item selected to equip.");
+        }
+
+        switch (selectedItem.GetComponent<InventoryItem>().itemType)
+        {
+            case "Tool":
+                ArticyGlobalVariables.Default.EquippedItems.EquippedTool = selectedItem.GetComponent<InventoryItem>().technicalName;
+                break;
+            case "Clothing":
+                switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
+                {
+                    case "Head":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedHead = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Face":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedFace = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Neck":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedNeck = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Body":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedBody = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Legs":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedLegs = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Feet":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                    case "Hands":
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedHands = selectedItem.GetComponent<InventoryItem>().technicalName;
+                        break;
+                }
+                break;
         }
     }
 }

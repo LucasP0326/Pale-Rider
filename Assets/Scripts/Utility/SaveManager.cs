@@ -88,6 +88,16 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("KnowWhoYouAre", ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre ? 1 : 0);
         PlayerPrefs.SetInt("MistakenIdentity", ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity);
 
+        //Equipped Items
+        PlayerPrefs.SetString("EquippedHead", ArticyGlobalVariables.Default.EquippedItems.EquippedHead);
+        PlayerPrefs.SetString("EquippedFace", ArticyGlobalVariables.Default.EquippedItems.EquippedFace);
+        PlayerPrefs.SetString("EquippedNeck", ArticyGlobalVariables.Default.EquippedItems.EquippedNeck);
+        PlayerPrefs.SetString("EquippedBody", ArticyGlobalVariables.Default.EquippedItems.EquippedBody);
+        PlayerPrefs.SetString("EquippedLegs", ArticyGlobalVariables.Default.EquippedItems.EquippedLegs);
+        PlayerPrefs.SetString("EquippedFeet", ArticyGlobalVariables.Default.EquippedItems.EquippedFeet);
+        PlayerPrefs.SetString("EquippedHands", ArticyGlobalVariables.Default.EquippedItems.EquippedHands);
+        PlayerPrefs.SetString("EquippedTool", ArticyGlobalVariables.Default.EquippedItems.EquippedTool);
+
         //Global Variables
         PlayerPrefs.SetInt("MadeBed", ArticyGlobalVariables.Default.GlobalVariables.MadeBed ? 1 : 0);
         PlayerPrefs.SetInt("TalkedToIngo", ArticyGlobalVariables.Default.GlobalVariables.TalkedToIngo ? 1 : 0);
@@ -186,6 +196,16 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.KnowsTheConcord = PlayerPrefs.GetInt("KnowsTheConcord", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre = PlayerPrefs.GetInt("KnowWhoYouAre", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity = PlayerPrefs.GetInt("MistakenIdentity", 1);
+
+        //Equipped Items
+        ArticyGlobalVariables.Default.EquippedItems.EquippedHead = PlayerPrefs.GetString("EquippedHead", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedFace = PlayerPrefs.GetString("EquippedFace", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedNeck = PlayerPrefs.GetString("EquippedNeck", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedBody = PlayerPrefs.GetString("EquippedBody", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedLegs = PlayerPrefs.GetString("EquippedLegs", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = PlayerPrefs.GetString("EquippedFeet", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedHands = PlayerPrefs.GetString("EquippedHands", "");
+        ArticyGlobalVariables.Default.EquippedItems.EquippedTool = PlayerPrefs.GetString("EquippedTool", "");
 
         // Global Variables (bools)
         ArticyGlobalVariables.Default.GlobalVariables.MadeBed = PlayerPrefs.GetInt("MadeBed", 0) == 1;
