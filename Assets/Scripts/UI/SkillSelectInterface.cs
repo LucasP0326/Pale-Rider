@@ -198,7 +198,7 @@ public class SkillSelectInterface : MonoBehaviour
 
         selectedSkillInfo.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillInfo;
         selectedSkillStats1.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats1 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().categoryLevel;
-        selectedSkillStats2.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats2 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().skillLevel;
+        selectedSkillStats2.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats2 + " " + (selectedSkill.GetComponent<SkillPortraitInfo>().skillLevel - selectedSkill.GetComponent<SkillPortraitInfo>().itemLevel);
         selectedSkillStats3.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillStats3 + " " + selectedSkill.GetComponent<SkillPortraitInfo>().itemLevel;
         selectedSkillDescription.text = selectedSkill.GetComponent<SkillPortraitInfo>().skillDescription;
 

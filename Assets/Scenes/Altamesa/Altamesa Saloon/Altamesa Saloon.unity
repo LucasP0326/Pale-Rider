@@ -2992,6 +2992,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2450854198589227792, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: hat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450854198589227792, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: mask
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450854198589227792, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: rifle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450854198589227792, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: maskTube
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2551058564450930057, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3317,6 +3333,7 @@ PrefabInstance:
     - {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     - {fileID: 4887847636039713900, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     - {fileID: 6770774144591164222, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+    - {fileID: 2450854198589227792, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2704706129748351962, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     - {fileID: 1171604190703338248, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}

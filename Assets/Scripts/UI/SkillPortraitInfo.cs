@@ -174,7 +174,7 @@ public class SkillPortraitInfo : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (star.transform.childCount > 0)
             {
                 var fill = star.transform.GetChild(0).gameObject;
-                fill.SetActive(i < skillLevel);
+                fill.SetActive(i < (skillLevel - itemLevel));
             }
         }
     }

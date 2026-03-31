@@ -284,38 +284,75 @@ public class InventoryInterface : MonoBehaviour
         {
             Debug.LogWarning("No item selected to equip.");
         }
-
-        switch (selectedItem.GetComponent<InventoryItem>().itemType)
+        if (selectedItem.GetComponent<InventoryItem>().isEquipped)
         {
-            case "Tool":
-                ArticyGlobalVariables.Default.EquippedItems.EquippedTool = selectedItem.GetComponent<InventoryItem>().technicalName;
-                break;
-            case "Clothing":
-                switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
-                {
-                    case "Head":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedHead = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Face":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedFace = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Neck":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedNeck = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Body":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedBody = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Legs":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedLegs = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Feet":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                    case "Hands":
-                        ArticyGlobalVariables.Default.EquippedItems.EquippedHands = selectedItem.GetComponent<InventoryItem>().technicalName;
-                        break;
-                }
-                break;
+            switch (selectedItem.GetComponent<InventoryItem>().itemType)
+            {
+                case "Tool":
+                    ArticyGlobalVariables.Default.EquippedItems.EquippedTool = selectedItem.GetComponent<InventoryItem>().technicalName;
+                    break;
+                case "Clothing":
+                    switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
+                    {
+                        case "Head":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedHead = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Face":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedFace = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Neck":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedNeck = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Body":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedBody = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Legs":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedLegs = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Feet":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                        case "Hands":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedHands = selectedItem.GetComponent<InventoryItem>().technicalName;
+                            break;
+                    }
+                    break;
+            }
+        }
+        else if (selectedItem.GetComponent<InventoryItem>().isEquipped == false)
+        {
+            switch (selectedItem.GetComponent<InventoryItem>().itemType)
+            {
+                case "Tool":
+                    ArticyGlobalVariables.Default.EquippedItems.EquippedTool = "";
+                    break;
+                case "Clothing":
+                    switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
+                    {
+                        case "Head":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedHead = "";
+                            break;
+                        case "Face":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedFace = "";
+                            break;
+                        case "Neck":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedNeck = "";
+                            break;
+                        case "Body":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedBody = "";
+                            break;
+                        case "Legs":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedLegs = "";
+                            break;
+                        case "Feet":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = "";
+                            break;
+                        case "Hands":
+                            ArticyGlobalVariables.Default.EquippedItems.EquippedHands = "";
+                            break;
+                    }
+                    break;
+            }
         }
     }
 }

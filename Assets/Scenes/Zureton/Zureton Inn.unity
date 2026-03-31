@@ -9466,10 +9466,10 @@ PrefabInstance:
     - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
       propertyPath: songs.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: bfa705a6b3638814e8370ae5896c4536, type: 3}
+      objectReference: {fileID: 8300000, guid: 46c91012ebd6da6409ff13cee6981c65, type: 3}
     - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
       propertyPath: songs.Array.data[0].label
-      value: Last_Lit_Lantern
+      value: The Last-Lit Lantern
       objectReference: {fileID: 0}
     - target: {fileID: 6211023098168943223, guid: 34bb479aa27404243ac1e288027641bd, type: 3}
       propertyPath: songs.Array.data[0].sceneNames.Array.size
