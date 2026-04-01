@@ -5,6 +5,8 @@ using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System.Collections;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -214,6 +216,8 @@ namespace StarterAssets
             //Clear after use
             ArticyGlobalVariables.Default.GlobalVariables.SpawnPoint = "";
             spawnPointID = "";
+
+            StartCoroutine(LoadDialogue());
         }
 
         private void Update()
@@ -684,6 +688,13 @@ namespace StarterAssets
         public void Dismount()
         {
             isMounted = false;
+        }
+
+        public IEnumerator LoadDialogue()
+        {
+            yield return new WaitForSeconds(0.05f); // Small delay to ensure any previous dialogue has closed
+            //Redundant Load Dialogue
+            dialogueManager.GetComponent<DialogueManager>().LoadDialogue();
         }
     }
 }

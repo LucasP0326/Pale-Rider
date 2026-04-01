@@ -79,6 +79,8 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         {
             scrollContent.gameObject.SetActive(true);
         }
+
+        //ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
     }
 
     public void StartDialogue(IArticyObject aObject)
@@ -89,6 +91,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
         Debug.Log("I got to Dialogue Manager");
         DialogueActive = true;
+        ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
         dialogueWidget.SetActive(DialogueActive);
         flowPlayer.StartOn = aObject;
     }
@@ -96,6 +99,8 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void CloseDialogueBox()
     {
         DialogueActive = false;
+        //ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
+        ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName = "";
         dialogueWidget.SetActive(DialogueActive);
         flowPlayer.FinishCurrentPausedObject();
         foreach(Transform child in scrollContent)
@@ -120,9 +125,16 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         //Stop Current Audio
         aSource.Stop();
         sfxSource.Stop();
-        
+
+        var articyObj = aObject as IArticyObject;
+        if (articyObj != null)
+        {
+            ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName = articyObj.TechnicalName;
+        }
+
         //Add Dialogue Text
         var objectWithText = aObject as IObjectWithLocalizableText;
+        
         if (objectWithText != null)
         {
             dialogueText.text = objectWithText.Text;
@@ -389,6 +401,33 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             lastSpeakerTransform.gameObject.SetActive(false);
         }
         return;
+    }
+
+    public void LoadDialogue()
+    {
+        var tech = ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName;
+        if (string.IsNullOrEmpty(tech))
+        {
+            Debug.LogWarning("No CurrentDialogueTechnicalName set - cannot load dialogue.");
+            return;
+        }
+
+        var articyObj = ArticyDatabase.GetObject(tech) as IArticyObject;
+        if (articyObj == null)
+        {
+            Debug.LogWarning("Articy object not found for technical name: " + tech);
+            return;
+        }
+
+        if (ArticyGlobalVariables.Default.GlobalVariables.InDialogue)
+        {
+            StartDialogue(articyObj);
+        }
+        else
+        {
+            CloseDialogueBox();
+        }
+        
     }
 
     public IEnumerator ScrollToBottom()

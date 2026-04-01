@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
     private InventoryManager inventoryManager;
     private QuestManager questManager;
     private PlayerStats playerStats;
+    private DialogueManager dialogueManager;
     public string sceneName;
     public Vector3 playerPosition;
 
@@ -18,6 +19,7 @@ public class SaveManager : MonoBehaviour
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         questManager = FindFirstObjectByType<QuestManager>();
         playerStats = FindFirstObjectByType<PlayerStats>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
         if (ArticyGlobalVariables.Default.GlobalVariables.LoadingGame)
             LoadGame();
     }
@@ -61,6 +63,14 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Volition", ArticyGlobalVariables.Default.PlayerStats.Volition);
         PlayerPrefs.SetString("SignatureSkill", ArticyGlobalVariables.Default.PlayerStats.SignatureSkill);
         PlayerPrefs.SetInt("Experience", ArticyGlobalVariables.Default.PlayerStats.Experience);
+
+        //Player Moral Stats
+        PlayerPrefs.SetInt("Apocalypse_Rider", ArticyGlobalVariables.Default.PlayerStats.Apocalypse_Rider);
+        PlayerPrefs.SetInt("Hope_Rider", ArticyGlobalVariables.Default.PlayerStats.Hope_Rider);
+        PlayerPrefs.SetInt("Order_Rider", ArticyGlobalVariables.Default.PlayerStats.Order_Rider);
+        PlayerPrefs.SetInt("Anarchist_Rider", ArticyGlobalVariables.Default.PlayerStats.Anarchist_Rider);
+        PlayerPrefs.SetInt("Kindness_Rider", ArticyGlobalVariables.Default.PlayerStats.Kindness_Rider);
+        PlayerPrefs.SetInt("Ambiguity_Rider", ArticyGlobalVariables.Default.PlayerStats.Ambiguity_Rider);
 
         //Player Item Stats
         PlayerPrefs.SetInt("AuthorityItem", ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem);
@@ -131,6 +141,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
         PlayerPrefs.SetInt("KeptHorse", ArticyGlobalVariables.Default.GlobalVariables.KeptHorse ? 1 : 0);
         PlayerPrefs.SetInt("ZuretonInnFirstTime", ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime ? 1 : 0);
+        PlayerPrefs.SetInt("InDialogue", ArticyGlobalVariables.Default.GlobalVariables.InDialogue ? 1 : 0);
+        PlayerPrefs.SetString("CurrentDialogue", ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName);
 
         //Raik Variables
         PlayerPrefs.SetInt("RaikOpinion", ArticyGlobalVariables.Default.RaikVariables.RaikOpinion);
@@ -189,6 +201,14 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Volition = PlayerPrefs.GetInt("Volition", 0);
         ArticyGlobalVariables.Default.PlayerStats.SignatureSkill = PlayerPrefs.GetString("SignatureSkill", "");
         ArticyGlobalVariables.Default.PlayerStats.Experience = PlayerPrefs.GetInt("Experience", 0);
+
+        // Load Player Moral Stats
+        ArticyGlobalVariables.Default.PlayerStats.Apocalypse_Rider = PlayerPrefs.GetInt("Apocalypse_Rider", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Hope_Rider = PlayerPrefs.GetInt("Hope_Rider", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Order_Rider = PlayerPrefs.GetInt("Order_Rider", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Anarchist_Rider = PlayerPrefs.GetInt("Anarchist_Rider", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Kindness_Rider = PlayerPrefs.GetInt("Kindness_Rider", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Ambiguity_Rider = PlayerPrefs.GetInt("Ambiguity_Rider", 0);
 
         // Load Player Item Stats
         ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem = PlayerPrefs.GetInt("AuthorityItem", 0);
@@ -257,6 +277,8 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.KeptHorse = PlayerPrefs.GetInt("KeptHorse", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime = PlayerPrefs.GetInt("ZuretonInnFirstTime", 0) == 1;
+        ArticyGlobalVariables.Default.GlobalVariables.InDialogue = PlayerPrefs.GetInt("InDialogue", 0) == 1;
+        ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName = PlayerPrefs.GetString("CurrentDialogue", "");
 
         //Raik Variables
         ArticyGlobalVariables.Default.RaikVariables.RaikOpinion = PlayerPrefs.GetInt("RaikOpinion", 0);
@@ -272,7 +294,8 @@ public class SaveManager : MonoBehaviour
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
         playerStats.UpdatePlayerStats();
-        
+
+        dialogueManager.LoadDialogue();        
         Debug.Log("Game Loaded!");
     }
 
