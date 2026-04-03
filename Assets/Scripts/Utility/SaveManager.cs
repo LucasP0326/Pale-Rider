@@ -10,6 +10,7 @@ public class SaveManager : MonoBehaviour
     private QuestManager questManager;
     private PlayerStats playerStats;
     private DialogueManager dialogueManager;
+    private TimeManager TimeManager;
     public string sceneName;
     public Vector3 playerPosition;
 
@@ -22,6 +23,7 @@ public class SaveManager : MonoBehaviour
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         if (ArticyGlobalVariables.Default.GlobalVariables.LoadingGame)
             LoadGame();
+        TimeManager = FindObjectOfType<TimeManager>();
     }
 
     // Update is called once per frame
@@ -294,8 +296,8 @@ public class SaveManager : MonoBehaviour
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
         playerStats.UpdatePlayerStats();
-
-        dialogueManager.LoadDialogue();        
+        dialogueManager.LoadDialogue();  
+        TimeManager.LoadTime();      
         Debug.Log("Game Loaded!");
     }
 

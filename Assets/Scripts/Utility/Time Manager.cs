@@ -28,15 +28,15 @@ public class TimeManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Load time from Articy global variable (assumed to be in minutes)
-        int totalMinutes = ArticyGlobalVariables.Default.GlobalVariables.Time;
-        if (totalMinutes <= 0)
-            totalMinutes = startHour * 60; // fallback to startHour if not set
+        // Load time from Articy global variable (in seconds)
+        int totalSeconds = ArticyGlobalVariables.Default.GlobalVariables.Time;
+        if (totalSeconds <= 0)
+            totalSeconds = startHour * 3600; // fallback to startHour if not set
 
-        currentTime = totalMinutes * 60f; // convert minutes to seconds
+        currentTime = totalSeconds; // currentTime is in seconds
 
         // Calculate current day
-        currentDay = (totalMinutes / (24 * 60)) + 1;
+        currentDay = (totalSeconds / (24 * 3600)) + 1;
 
         if (dayDisplay != null)
             dayDisplay.text = $"Day {currentDay}";
@@ -68,6 +68,12 @@ public class TimeManager : MonoBehaviour
 
         // Update directional light rotation based on time
         UpdateLightRotation(hours, minutes);
+        SaveTimeToArticy();
+    }
+
+    public void LoadTime()
+    {
+        currentTime = ArticyGlobalVariables.Default.GlobalVariables.Time; // Load time in seconds
     }
 
     private void UpdateLightRotation(int hour, int minute)
@@ -127,10 +133,10 @@ public class TimeManager : MonoBehaviour
         Update(); // Refresh the display after adding time
     }
 
-    // Save current time (in minutes) to Articy global variable
+    // Save current time (in seconds) to Articy global variable
     public void SaveTimeToArticy()
     {
-        int totalMinutes = Mathf.FloorToInt(currentTime / 60f);
-        ArticyGlobalVariables.Default.GlobalVariables.Time = totalMinutes;
+        int currentTimeInt = Mathf.FloorToInt(currentTime); // Ensure it's an integer value in seconds
+        ArticyGlobalVariables.Default.GlobalVariables.Time = currentTimeInt;
     }
 }

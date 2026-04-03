@@ -61,11 +61,16 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     private ArticyFlowPlayer flowPlayer;
     private GameObject player;
 
+    [Header("Managers")]
+    [SerializeField]
+    TimeManager timeManager;
+
     void Start()
     {
         flowPlayer = GetComponent<ArticyFlowPlayer>();
         aSource = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
+        timeManager = FindObjectOfType<TimeManager>();
     }
 
     // Update is called once per frame
@@ -99,7 +104,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void CloseDialogueBox()
     {
         DialogueActive = false;
-        //ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
+        ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
         ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName = "";
         dialogueWidget.SetActive(DialogueActive);
         flowPlayer.FinishCurrentPausedObject();
@@ -178,8 +183,20 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             if (modelWithText.Text.VOAssetRef != null)
             {
                 aSource.clip = modelWithText.Text.LoadVOAssetAsAudioClip();
-                aSource.Play();
-                PlaySkillSFX();
+                if (ArticyGlobalVariables.Default.SkillCheckStats.PerformingSkillCheck == true)
+                {
+                    aSource.Stop();
+                    StartCoroutine(DelayedPlay());
+                }
+                else
+                {
+                    aSource.Play();
+                    PlaySkillSFX();
+                }
+                //aSource.Play();
+
+                //Pass Time
+                PassTime();
             }   
         }
     }
@@ -405,18 +422,44 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void LoadDialogue()
     {
+        StartCoroutine(DelayedLoad());
+    }
+
+    public void PassTime()
+    {
+        //script for time to pass during dialogue based on dialogue length
+        int secondsPassed = Mathf.CeilToInt(dialogueText.text.Length / 5f); // Example: 1 second per 5 characters
+        timeManager.AddTime(secondsPassed);
+    }
+
+    public IEnumerator ScrollToBottom()
+    {
+        yield return null; // Wait one frame
+        scrollRect.verticalNormalizedPosition = -1f;
+    }
+    
+    public IEnumerator DelayedPlay()
+    {
+        yield return new WaitForSeconds(1.5f); // Delay before playing the audio
+        aSource.Play();
+        PlaySkillSFX();
+    }
+
+    public IEnumerator DelayedLoad()
+    {
+        yield return new WaitForSeconds(0.05f); // Delay to ensure all systems are initialized
         var tech = ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName;
         if (string.IsNullOrEmpty(tech))
         {
             Debug.LogWarning("No CurrentDialogueTechnicalName set - cannot load dialogue.");
-            return;
+            yield return null;
         }
 
         var articyObj = ArticyDatabase.GetObject(tech) as IArticyObject;
         if (articyObj == null)
         {
             Debug.LogWarning("Articy object not found for technical name: " + tech);
-            return;
+            yield return null;
         }
 
         if (ArticyGlobalVariables.Default.GlobalVariables.InDialogue)
@@ -427,13 +470,5 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         {
             CloseDialogueBox();
         }
-        
     }
-
-    public IEnumerator ScrollToBottom()
-    {
-        yield return null; // Wait one frame
-        scrollRect.verticalNormalizedPosition = -1f;
-    }
-    
 }
