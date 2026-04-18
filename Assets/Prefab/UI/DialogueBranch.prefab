@@ -280,7 +280,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5897576782473436332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 151b693a7c4ea5943b5e7a92f44c90de, type: 3}
   m_Name: 
@@ -301,6 +301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonText: {fileID: 5947452419335462338}
+  defaultColor: {r: 1, g: 0.45490196, b: 0, a: 1}
+  seenColor: {r: 0.5188679, g: 0.23603405, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  skillCheckPerformedColor: {r: 0.5754717, g: 0, b: 0, a: 1}
 --- !u!114 &-7091718756330695319
 MonoBehaviour:
   m_ObjectHideFlags: 0

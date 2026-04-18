@@ -2,6 +2,8 @@ using UnityEngine;
 using Articy.Pale_Rider.GlobalVariables;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Reflection;
+using System;
 
 public class SaveManager : MonoBehaviour
 {
@@ -117,6 +119,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("KnowsTheConcord", ArticyGlobalVariables.Default.PlayerVariables.KnowsTheConcord ? 1 : 0);
         PlayerPrefs.SetInt("KnowWhoYouAre", ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre ? 1 : 0);
         PlayerPrefs.SetInt("MistakenIdentity", ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity);
+        PlayerPrefs.SetInt("AlcoholConsumed", ArticyGlobalVariables.Default.PlayerVariables.AlcoholConsumed);
+        PlayerPrefs.SetInt("KnowsAboutJesus", ArticyGlobalVariables.Default.PlayerVariables.KnowsAboutJesus ? 1 : 0);
 
         //Equipped Items
         PlayerPrefs.SetString("EquippedHead", ArticyGlobalVariables.Default.EquippedItems.EquippedHead);
@@ -152,11 +156,31 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("JobDislikeRevealed", ArticyGlobalVariables.Default.RaikVariables.JobDislikeRevealed ? 1 : 0);
         PlayerPrefs.SetInt("OpeningQuestionsAsked", ArticyGlobalVariables.Default.RaikVariables.OpeningQuestionsAsked);
         PlayerPrefs.SetInt("NameKnown", ArticyGlobalVariables.Default.RaikVariables.NameKnown ? 1 : 0);
+        PlayerPrefs.SetInt("FinishedAlcohol", ArticyGlobalVariables.Default.RaikVariables.FinishedAlcohol ? 1 : 0);
+        PlayerPrefs.SetInt("TabPaid", ArticyGlobalVariables.Default.RaikVariables.TabPaid ? 1 : 0);
+        PlayerPrefs.SetInt("RoomDiscount", ArticyGlobalVariables.Default.RaikVariables.RoomDiscount);
+        PlayerPrefs.SetInt("KnowsFatherSexuality", ArticyGlobalVariables.Default.RaikVariables.KnowsFatherSexuality ? 1 : 0);
+        PlayerPrefs.SetInt("HatesFather", ArticyGlobalVariables.Default.RaikVariables.HatesFather ? 1 : 0);
+        PlayerPrefs.SetInt("KnowsSchwarstein", ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein ? 1 : 0);
+
+        //Alina Variables
+        PlayerPrefs.SetInt("RaikAunt", ArticyGlobalVariables.Default.AlinaVariables.RaikAunt ? 1 : 0);
+        PlayerPrefs.SetInt("LavenderKnown", ArticyGlobalVariables.Default.AlinaVariables.LavenderKnown ? 1 : 0);
+        PlayerPrefs.SetInt("Known", ArticyGlobalVariables.Default.AlinaVariables.Known ? 1 : 0);
+
+        //Zureton Variables
+        PlayerPrefs.SetInt("MineKnown", ArticyGlobalVariables.Default.ZuretonVariables.MineKnown ? 1 : 0);
+        PlayerPrefs.SetInt("PaleDanger", ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger);
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
         PlayerPrefs.SetInt("PayInnTab", ArticyGlobalVariables.Default.Quests.PayInnTab);
+        PlayerPrefs.SetInt("GetNewOutfit", ArticyGlobalVariables.Default.Quests.GetNewOutfit);
+        PlayerPrefs.SetInt("FindBeerNewHome", ArticyGlobalVariables.Default.Quests.FindBeerNewHome);
+        PlayerPrefs.SetInt("UncoverFatherRelationship", ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship);
 
+        // Save all Articy-generated variables (ints, bools, strings) reflectively
+        SaveArticyVariables();
         PlayerPrefs.Save();
         Debug.Log("Game Saved!");
     }
@@ -254,6 +278,8 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.KnowsTheConcord = PlayerPrefs.GetInt("KnowsTheConcord", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.KnowWhoYouAre = PlayerPrefs.GetInt("KnowWhoYouAre", 0) == 1;
         ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity = PlayerPrefs.GetInt("MistakenIdentity", 1);
+        ArticyGlobalVariables.Default.PlayerVariables.AlcoholConsumed = PlayerPrefs.GetInt("AlcoholConsumed", 0);
+        ArticyGlobalVariables.Default.PlayerVariables.KnowsAboutJesus = PlayerPrefs.GetInt("KnowsAboutJesus", 0) == 1;
 
         //Equipped Items
         ArticyGlobalVariables.Default.EquippedItems.EquippedHead = PlayerPrefs.GetString("EquippedHead", "");
@@ -288,17 +314,109 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.RaikVariables.JobDislikeRevealed = PlayerPrefs.GetInt("JobDislikeRevealed", 0) == 1;
         ArticyGlobalVariables.Default.RaikVariables.OpeningQuestionsAsked = PlayerPrefs.GetInt("OpeningQuestionsAsked", 0);
         ArticyGlobalVariables.Default.RaikVariables.NameKnown = PlayerPrefs.GetInt("NameKnown", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.FinishedAlcohol = PlayerPrefs.GetInt("FinishedAlcohol", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.TabPaid = PlayerPrefs.GetInt("TabPaid", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.RoomDiscount = PlayerPrefs.GetInt("RoomDiscount", 0);
+        ArticyGlobalVariables.Default.RaikVariables.KnowsFatherSexuality = PlayerPrefs.GetInt("KnowsFatherSexuality", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.HatesFather = PlayerPrefs.GetInt("HatesFather", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein = PlayerPrefs.GetInt("KnowsSchwarstein", 0) == 1;
+
+        //Alina Variables
+        ArticyGlobalVariables.Default.AlinaVariables.RaikAunt = PlayerPrefs.GetInt("RaikAunt", 0) == 1;
+        ArticyGlobalVariables.Default.AlinaVariables.LavenderKnown = PlayerPrefs.GetInt("LavenderKnown", 0) == 1;
+        ArticyGlobalVariables.Default.AlinaVariables.Known = PlayerPrefs.GetInt("Known", 0) == 1;
+
+        //Zureton Variables
+        ArticyGlobalVariables.Default.ZuretonVariables.MineKnown = PlayerPrefs.GetInt("MineKnown", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger = PlayerPrefs.GetInt("PaleDanger", 0);
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);
         ArticyGlobalVariables.Default.Quests.PayInnTab = PlayerPrefs.GetInt("PayInnTab", 0);
+        ArticyGlobalVariables.Default.Quests.GetNewOutfit = PlayerPrefs.GetInt("GetNewOutfit", 0);
+        ArticyGlobalVariables.Default.Quests.FindBeerNewHome = PlayerPrefs.GetInt("FindBeerNewHome", 0);
+        ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship = PlayerPrefs.GetInt("UncoverFatherRelationship", 0);
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
+        // Load any remaining Articy variables saved via reflective saver
+        LoadArticyVariables();
         playerStats.UpdatePlayerStats();
         dialogueManager.LoadDialogue();  
         TimeManager.LoadTime();      
         Debug.Log("Game Loaded!");
+    }
+
+    // Reflectively save primitive fields (int, bool, string) from ArticyGlobalVariables.Default
+    private void SaveArticyVariables()
+    {
+        var root = ArticyGlobalVariables.Default;
+        if (root == null) return;
+        SaveFieldsRecursive(root, "Articy");
+    }
+
+    private void SaveFieldsRecursive(object obj, string prefix)
+    {
+        if (obj == null) return;
+        var type = obj.GetType();
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+        foreach (var f in fields)
+        {
+            var val = f.GetValue(obj);
+            var key = prefix + "." + f.Name;
+            if (val == null) continue;
+            var fType = f.FieldType;
+            if (fType == typeof(int))
+                PlayerPrefs.SetInt(key, (int)val);
+            else if (fType == typeof(bool))
+                PlayerPrefs.SetInt(key, ((bool)val) ? 1 : 0);
+            else if (fType == typeof(string))
+                PlayerPrefs.SetString(key, (string)val);
+            else if (!fType.IsPrimitive && !fType.IsEnum && !fType.IsValueType)
+                SaveFieldsRecursive(val, key);
+        }
+    }
+
+    // Reflectively load primitive fields (int, bool, string) into ArticyGlobalVariables.Default
+    private void LoadArticyVariables()
+    {
+        var root = ArticyGlobalVariables.Default;
+        if (root == null) return;
+        LoadFieldsRecursive(root, "Articy");
+    }
+
+    private void LoadFieldsRecursive(object obj, string prefix)
+    {
+        if (obj == null) return;
+        var type = obj.GetType();
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+        foreach (var f in fields)
+        {
+            var key = prefix + "." + f.Name;
+            var fType = f.FieldType;
+            var currentVal = f.GetValue(obj);
+            if (fType == typeof(int))
+            {
+                int def = currentVal is int ci ? ci : 0;
+                f.SetValue(obj, PlayerPrefs.GetInt(key, def));
+            }
+            else if (fType == typeof(bool))
+            {
+                int def = (currentVal is bool cb && cb) ? 1 : 0;
+                f.SetValue(obj, PlayerPrefs.GetInt(key, def) == 1);
+            }
+            else if (fType == typeof(string))
+            {
+                string def = currentVal as string ?? string.Empty;
+                f.SetValue(obj, PlayerPrefs.GetString(key, def));
+            }
+            else if (!fType.IsPrimitive && !fType.IsEnum && !fType.IsValueType)
+            {
+                var child = f.GetValue(obj);
+                if (child != null)
+                    LoadFieldsRecursive(child, key);
+            }
+        }
     }
 
     private IEnumerator LoadSceneAndTeleport(string targetScene, Vector3 targetPosition)

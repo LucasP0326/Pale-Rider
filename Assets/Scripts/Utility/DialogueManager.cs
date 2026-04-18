@@ -116,7 +116,11 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         aSource.Stop();
 
         // Trigger the custom event
-        onDialogueClosed?.Invoke();
+        if (ArticyGlobalVariables.Default.GlobalVariables.PerformingClosingEvent == true)
+        {
+            onDialogueClosed?.Invoke();
+            ArticyGlobalVariables.Default.GlobalVariables.PerformingClosingEvent = false; // Reset the flag after invoking the event
+        }
         player.GetComponent<PlayerStats>().CheckDeath();
     }
 

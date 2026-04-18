@@ -190,6 +190,11 @@ public class InventoryManager : MonoBehaviour
             AddItem("Item_Patch");
             ArticyGlobalVariables.Default.InventoryAddingStats.Patch = false;
         }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.RaikLockerKey)
+        {
+            AddItem("Item_FatherLockerKey");
+            ArticyGlobalVariables.Default.InventoryAddingStats.RaikLockerKey = false;
+        }
     }
 
     public IEnumerator PopupCoroutine(string itemName)

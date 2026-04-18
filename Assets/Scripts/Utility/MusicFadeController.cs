@@ -14,8 +14,12 @@ public class MusicFadeController : MonoBehaviour
     [Range(0f, 1f)]
     public float targetVolume = 1f;
 
+    [Tooltip("Array of tracks to be excluded during dialogue")]
+    public AudioSource[] excludedTracks;
+
     private Dictionary<AudioSource, Coroutine> fadeCoroutines = new Dictionary<AudioSource, Coroutine>();
     private Dictionary<AudioSource, float> originalVolumes = new Dictionary<AudioSource, float>();
+    private DialogueManager dialogueManager;
 
     void Awake()
     {
@@ -35,10 +39,17 @@ public class MusicFadeController : MonoBehaviour
             reporter.SetController(this);
             reporter.audioSource = audio;
         }
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     internal void PlayerEnteredTrigger(AudioSource source)
     {
+        if (dialogueManager != null && dialogueManager.DialogueActive)
+        {
+            // if we're in dialogue, only fade in if this track is not excluded
+            if (System.Array.IndexOf(excludedTracks, source) >= 0) return;
+        }
         if (source == null) return;
         float to = targetVolume;
         if (originalVolumes.TryGetValue(source, out var orig)) to = orig;

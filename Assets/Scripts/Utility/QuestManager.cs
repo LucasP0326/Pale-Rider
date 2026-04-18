@@ -81,6 +81,82 @@ public class QuestManager : MonoBehaviour
                 AddQuest("Q_PayInnTab");
             }
         }
+
+        if (ArticyGlobalVariables.Default.Quests.GetNewOutfit != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_GetNewOutfit")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_GetNewOutfit");
+            }
+        }
+
+        if (ArticyGlobalVariables.Default.Quests.FindBeerNewHome != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_FindBeerNewHome")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_FindBeerNewHome");
+            }
+        }
+
+        if (ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_UncoverFatherRelationship")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_UncoverFatherRelationship");
+            }
+        }
+
+        if (ArticyGlobalVariables.Default.Quests.ExploreTheMine != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_ExploreTheMine")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_ExploreTheMine");
+            }
+        }
     }
 
     public void QuestUpdater()
@@ -124,6 +200,86 @@ public class QuestManager : MonoBehaviour
 
                     ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
                     RemoveQuest("Pay Inn Tab");
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_GetNewOutfit")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.GetNewOutfit;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Get New Outfit");
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_FindBeerNewHome")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.FindBeerNewHome;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Find Beer New Home");
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_UncoverFatherRelationship")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Uncover The Father's Relationship");
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_ExploreTheMine")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.ExploreTheMine;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Explore The Zureton Mine");
                     quest.isComplete = true;
                 }
             }
