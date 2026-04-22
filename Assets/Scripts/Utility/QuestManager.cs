@@ -157,6 +157,25 @@ public class QuestManager : MonoBehaviour
                 AddQuest("Q_ExploreTheMine");
             }
         }
+
+        if (ArticyGlobalVariables.Default.Quests.LearnAboutJesus != 0)
+        {
+            bool questExists = false;
+            foreach (Transform child in questSpace.transform)
+            {
+                Quest quest = child.GetComponent<Quest>();
+                if (quest != null && quest.technicalName == "Q_LearnAboutJesus")
+                {
+                    questExists = true;
+                    break;
+                }
+            }
+
+            if (!questExists)
+            {
+                AddQuest("Q_LearnAboutJesus");
+            }
+        }
     }
 
     public void QuestUpdater()
@@ -280,6 +299,26 @@ public class QuestManager : MonoBehaviour
 
                     ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
                     RemoveQuest("Explore The Zureton Mine");
+                    quest.isComplete = true;
+                }
+            }
+
+            if (quest != null && quest.technicalName == "Q_LearnAboutJesus")
+            {
+                quest.questStage = ArticyGlobalVariables.Default.Quests.LearnAboutJesus;
+                if (quest.questStage == 1000 && !quest.isComplete)
+                {
+                    // Move to completed quests
+                    var activeList = new List<Quest>(activeQuests ?? new Quest[0]);
+                    activeList.Remove(quest);
+                    activeQuests = activeList.ToArray();
+
+                    var completedList = new List<Quest>(completedQuests ?? new Quest[0]);
+                    completedList.Add(quest);
+                    completedQuests = completedList.ToArray();
+
+                    ArticyGlobalVariables.Default.PlayerStats.Experience += quest.questExperienceRewardInt;
+                    RemoveQuest("Learn About Jesus");
                     quest.isComplete = true;
                 }
             }

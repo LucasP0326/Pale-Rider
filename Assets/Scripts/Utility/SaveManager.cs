@@ -76,6 +76,12 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Kindness_Rider", ArticyGlobalVariables.Default.PlayerStats.Kindness_Rider);
         PlayerPrefs.SetInt("Ambiguity_Rider", ArticyGlobalVariables.Default.PlayerStats.Ambiguity_Rider);
 
+        //Player Faith Stats
+        PlayerPrefs.SetInt("Faith_Apostolic", ArticyGlobalVariables.Default.PlayerStats.Faith_Apostolic);
+        PlayerPrefs.SetInt("Faith_Adventist", ArticyGlobalVariables.Default.PlayerStats.Faith_Adventist);
+        PlayerPrefs.SetInt("Faith_Iconoclast", ArticyGlobalVariables.Default.PlayerStats.Faith_Iconoclast);
+        PlayerPrefs.SetInt("Faith_Atheist", ArticyGlobalVariables.Default.PlayerStats.Faith_Atheist);
+
         //Player Item Stats
         PlayerPrefs.SetInt("AuthorityItem", ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem);
         PlayerPrefs.SetInt("ConceptualizationItem", ArticyGlobalVariables.Default.ItemStatVariables.ConceptualizationItem);
@@ -178,6 +184,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("GetNewOutfit", ArticyGlobalVariables.Default.Quests.GetNewOutfit);
         PlayerPrefs.SetInt("FindBeerNewHome", ArticyGlobalVariables.Default.Quests.FindBeerNewHome);
         PlayerPrefs.SetInt("UncoverFatherRelationship", ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship);
+        PlayerPrefs.SetInt("LearnAboutJesus", ArticyGlobalVariables.Default.Quests.LearnAboutJesus);
 
         // Save all Articy-generated variables (ints, bools, strings) reflectively
         SaveArticyVariables();
@@ -235,6 +242,12 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.Anarchist_Rider = PlayerPrefs.GetInt("Anarchist_Rider", 0);
         ArticyGlobalVariables.Default.PlayerStats.Kindness_Rider = PlayerPrefs.GetInt("Kindness_Rider", 0);
         ArticyGlobalVariables.Default.PlayerStats.Ambiguity_Rider = PlayerPrefs.GetInt("Ambiguity_Rider", 0);
+
+        // Load Player Faith Stats
+        ArticyGlobalVariables.Default.PlayerStats.Faith_Apostolic = PlayerPrefs.GetInt("Faith_Apostolic", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Faith_Adventist = PlayerPrefs.GetInt("Faith_Adventist", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Faith_Iconoclast = PlayerPrefs.GetInt("Faith_Iconoclast", 0);
+        ArticyGlobalVariables.Default.PlayerStats.Faith_Atheist = PlayerPrefs.GetInt("Faith_Atheist", 0);
 
         // Load Player Item Stats
         ArticyGlobalVariables.Default.ItemStatVariables.AuthorityItem = PlayerPrefs.GetInt("AuthorityItem", 0);
@@ -336,6 +349,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.Quests.GetNewOutfit = PlayerPrefs.GetInt("GetNewOutfit", 0);
         ArticyGlobalVariables.Default.Quests.FindBeerNewHome = PlayerPrefs.GetInt("FindBeerNewHome", 0);
         ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship = PlayerPrefs.GetInt("UncoverFatherRelationship", 0);
+        ArticyGlobalVariables.Default.Quests.LearnAboutJesus = PlayerPrefs.GetInt("LearnAboutJesus", 0);
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
