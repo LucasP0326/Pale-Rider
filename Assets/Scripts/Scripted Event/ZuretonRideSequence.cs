@@ -32,7 +32,7 @@ public class ZuretonRideSequence : MonoBehaviour
         if (leavePaleOpeningScript != null)
         {
             if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == true)
-                StartCoroutine(RideInSequence());
+                StartCoroutine(WalkInSequence()); //Change once I figure out how to fix ride sequence
             else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == false)
                 StartCoroutine(WalkInSequence());
             else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == null)
