@@ -195,6 +195,16 @@ public class InventoryManager : MonoBehaviour
             AddItem("Item_FatherLockerKey");
             ArticyGlobalVariables.Default.InventoryAddingStats.RaikLockerKey = false;
         }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.SafetyLamp)
+        {
+            AddItem("Tool_SafetyLamp");
+            ArticyGlobalVariables.Default.InventoryAddingStats.SafetyLamp = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.Crowbar)
+        {
+            AddItem("Tool_Crowbar");
+            ArticyGlobalVariables.Default.InventoryAddingStats.Crowbar = false;
+        }
     }
 
     public IEnumerator PopupCoroutine(string itemName)
@@ -253,6 +263,8 @@ public class InventoryManager : MonoBehaviour
             if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedLegs) && ArticyGlobalVariables.Default.EquippedItems.EquippedLegs == tech)
                 equipped = true;
             if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.EquippedFeet) && ArticyGlobalVariables.Default.EquippedItems.EquippedFeet == tech)
+                equipped = true;
+            if (!string.IsNullOrEmpty(ArticyGlobalVariables.Default.EquippedItems.HeldItem) && ArticyGlobalVariables.Default.EquippedItems.HeldItem == tech)
                 equipped = true;
 
             item.isEquipped = equipped;

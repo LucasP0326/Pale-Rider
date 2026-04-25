@@ -69,6 +69,13 @@ public class BranchChoice : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (string.IsNullOrEmpty(buttonText.text))
             buttonText.text = ">>>";
 
+        // If this entry is an OutputPin helper, remove the branch choice object.
+        if (buttonText != null && buttonText.text == "OutputPin")
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         // If the target has the DialogueSeen feature and it has been seen, gray out the text.
         if (target is Articy.Pale_Rider.IObjectWithFeatureDialogueSeen seenObj)
         {

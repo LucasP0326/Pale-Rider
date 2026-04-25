@@ -32,7 +32,7 @@ public class ZuretonRideSequence : MonoBehaviour
         if (leavePaleOpeningScript != null)
         {
             if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == true)
-                StartCoroutine(WalkInSequence()); //Change once I figure out how to fix ride sequence
+                StartCoroutine(RideInSequence()); //Change once I figure out how to fix ride sequence
             else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == false)
                 StartCoroutine(WalkInSequence());
             else if (ArticyGlobalVariables.Default.GlobalVariables.KeptHorse == null)
@@ -57,6 +57,7 @@ public class ZuretonRideSequence : MonoBehaviour
     private IEnumerator RideInSequence()
     {
         playerController.movementEnabled = false;
+        yield return new WaitForSeconds(0.1f);
         playerController.tempInteractableObject = horse;
         horse.GetComponent<Interactable>().OnMouseDown();
         yield return new WaitForSeconds(3f);

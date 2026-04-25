@@ -137,6 +137,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetString("EquippedFeet", ArticyGlobalVariables.Default.EquippedItems.EquippedFeet);
         PlayerPrefs.SetString("EquippedHands", ArticyGlobalVariables.Default.EquippedItems.EquippedHands);
         PlayerPrefs.SetString("EquippedTool", ArticyGlobalVariables.Default.EquippedItems.EquippedTool);
+        PlayerPrefs.SetString("HeldItem", ArticyGlobalVariables.Default.EquippedItems.HeldItem);
 
         //Global Variables
         PlayerPrefs.SetInt("MadeBed", ArticyGlobalVariables.Default.GlobalVariables.MadeBed ? 1 : 0);
@@ -168,6 +169,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("KnowsFatherSexuality", ArticyGlobalVariables.Default.RaikVariables.KnowsFatherSexuality ? 1 : 0);
         PlayerPrefs.SetInt("HatesFather", ArticyGlobalVariables.Default.RaikVariables.HatesFather ? 1 : 0);
         PlayerPrefs.SetInt("KnowsSchwarstein", ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein ? 1 : 0);
+        PlayerPrefs.SetInt("HasFatherEnvelope", ArticyGlobalVariables.Default.RaikVariables.HasFatherEnvelope ? 1 : 0);
+        PlayerPrefs.SetInt("OpenedFatherEnvelope", ArticyGlobalVariables.Default.RaikVariables.OpenedFatherEnvelope ? 1 : 0);
 
         //Alina Variables
         PlayerPrefs.SetInt("RaikAunt", ArticyGlobalVariables.Default.AlinaVariables.RaikAunt ? 1 : 0);
@@ -177,6 +180,10 @@ public class SaveManager : MonoBehaviour
         //Zureton Variables
         PlayerPrefs.SetInt("MineKnown", ArticyGlobalVariables.Default.ZuretonVariables.MineKnown ? 1 : 0);
         PlayerPrefs.SetInt("PaleDanger", ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger);
+        PlayerPrefs.SetInt("HasMineLockerKey", ArticyGlobalVariables.Default.ZuretonVariables.HasMineLockerKey ? 1 : 0);
+        PlayerPrefs.SetInt("TookHardHat", ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat ? 1 : 0);
+        PlayerPrefs.SetInt("TookMoldyLunch", ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch ? 1 : 0);
+        PlayerPrefs.SetInt("TookSafetyLamp", ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp ? 1 : 0);
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
@@ -185,6 +192,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("FindBeerNewHome", ArticyGlobalVariables.Default.Quests.FindBeerNewHome);
         PlayerPrefs.SetInt("UncoverFatherRelationship", ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship);
         PlayerPrefs.SetInt("LearnAboutJesus", ArticyGlobalVariables.Default.Quests.LearnAboutJesus);
+        PlayerPrefs.SetInt("FindOutAboutThePale", ArticyGlobalVariables.Default.Quests.ExploreTheMine);
 
         // Save all Articy-generated variables (ints, bools, strings) reflectively
         SaveArticyVariables();
@@ -303,6 +311,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.EquippedItems.EquippedFeet = PlayerPrefs.GetString("EquippedFeet", "");
         ArticyGlobalVariables.Default.EquippedItems.EquippedHands = PlayerPrefs.GetString("EquippedHands", "");
         ArticyGlobalVariables.Default.EquippedItems.EquippedTool = PlayerPrefs.GetString("EquippedTool", "");
+        ArticyGlobalVariables.Default.EquippedItems.HeldItem = PlayerPrefs.GetString("HeldItem", "");
 
         // Global Variables (bools)
         ArticyGlobalVariables.Default.GlobalVariables.MadeBed = PlayerPrefs.GetInt("MadeBed", 0) == 1;
@@ -333,6 +342,8 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.RaikVariables.KnowsFatherSexuality = PlayerPrefs.GetInt("KnowsFatherSexuality", 0) == 1;
         ArticyGlobalVariables.Default.RaikVariables.HatesFather = PlayerPrefs.GetInt("HatesFather", 0) == 1;
         ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein = PlayerPrefs.GetInt("KnowsSchwarstein", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.HasFatherEnvelope = PlayerPrefs.GetInt("HasFatherEnvelope", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.OpenedFatherEnvelope = PlayerPrefs.GetInt("OpenedFatherEnvelope", 0) == 1;
 
         //Alina Variables
         ArticyGlobalVariables.Default.AlinaVariables.RaikAunt = PlayerPrefs.GetInt("RaikAunt", 0) == 1;
@@ -342,6 +353,10 @@ public class SaveManager : MonoBehaviour
         //Zureton Variables
         ArticyGlobalVariables.Default.ZuretonVariables.MineKnown = PlayerPrefs.GetInt("MineKnown", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger = PlayerPrefs.GetInt("PaleDanger", 0);
+        ArticyGlobalVariables.Default.ZuretonVariables.HasMineLockerKey = PlayerPrefs.GetInt("HasMineLockerKey", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat = PlayerPrefs.GetInt("TookHardHat", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch = PlayerPrefs.GetInt("TookMoldyLunch", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp = PlayerPrefs.GetInt("TookSafetyLamp", 0) == 1;
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);
@@ -350,6 +365,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.Quests.FindBeerNewHome = PlayerPrefs.GetInt("FindBeerNewHome", 0);
         ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship = PlayerPrefs.GetInt("UncoverFatherRelationship", 0);
         ArticyGlobalVariables.Default.Quests.LearnAboutJesus = PlayerPrefs.GetInt("LearnAboutJesus", 0);
+        ArticyGlobalVariables.Default.Quests.ExploreTheMine = PlayerPrefs.GetInt("ExploreTheMine", 0);
 
         // Time
         ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);

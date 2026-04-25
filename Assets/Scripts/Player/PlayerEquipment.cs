@@ -12,6 +12,8 @@ public class PlayerEquipment : MonoBehaviour
     public GameObject hat;
     public GameObject mask;
     public GameObject maskTube;
+    public GameObject Lantern;
+    public GameObject crowbar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +61,23 @@ public class PlayerEquipment : MonoBehaviour
         {
             mask.SetActive(false);
             maskTube.SetActive(false);
+        }
+
+        //Holdable Items
+        if (ArticyGlobalVariables.Default.EquippedItems.HeldItem == "Tool_SafetyLamp")
+        {
+            Lantern.SetActive(true);
+            crowbar.SetActive(false);
+        }
+        else if (ArticyGlobalVariables.Default.EquippedItems.HeldItem == "Tool_Crowbar")
+        {
+            crowbar.SetActive(true);
+            Lantern.SetActive(false);
+        }
+        else
+        {
+            Lantern.SetActive(false);
+            crowbar.SetActive(false);
         }
     }  
 }

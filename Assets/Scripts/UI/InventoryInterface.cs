@@ -289,7 +289,12 @@ public class InventoryInterface : MonoBehaviour
             switch (selectedItem.GetComponent<InventoryItem>().itemType)
             {
                 case "Tool":
-                    ArticyGlobalVariables.Default.EquippedItems.EquippedTool = selectedItem.GetComponent<InventoryItem>().technicalName;
+                    if (selectedItem.GetComponent<InventoryItem>().itemClothingCategory == "HeldItem")
+                    {
+                        ArticyGlobalVariables.Default.EquippedItems.HeldItem = selectedItem.GetComponent<InventoryItem>().technicalName;
+                    }
+                    else
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedTool = selectedItem.GetComponent<InventoryItem>().technicalName;
                     break;
                 case "Clothing":
                     switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
@@ -324,7 +329,12 @@ public class InventoryInterface : MonoBehaviour
             switch (selectedItem.GetComponent<InventoryItem>().itemType)
             {
                 case "Tool":
-                    ArticyGlobalVariables.Default.EquippedItems.EquippedTool = "";
+                    if (selectedItem.GetComponent<InventoryItem>().itemClothingCategory == "HeldItem")
+                    {
+                        ArticyGlobalVariables.Default.EquippedItems.HeldItem = "";
+                    }
+                    else
+                        ArticyGlobalVariables.Default.EquippedItems.EquippedTool = "";
                     break;
                 case "Clothing":
                     switch (selectedItem.GetComponent<InventoryItem>().itemClothingCategory)
