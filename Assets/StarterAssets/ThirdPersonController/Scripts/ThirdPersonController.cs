@@ -137,6 +137,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        public Transform spawnPoint;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -201,7 +202,7 @@ namespace StarterAssets
             }
 
             // Find the spawn point in the scene
-            Transform spawnPoint = GameObject.Find(spawnPointID)?.transform;
+            spawnPoint = GameObject.Find(spawnPointID)?.transform;
 
             if (spawnPoint != null)
             {

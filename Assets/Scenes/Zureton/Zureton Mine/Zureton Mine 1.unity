@@ -16214,6 +16214,7 @@ GameObject:
   - component: {fileID: 649043182}
   - component: {fileID: 649043181}
   - component: {fileID: 649043180}
+  - component: {fileID: 649043186}
   m_Layer: 6
   m_Name: Mines Entrance
   m_TagString: Interactable
@@ -16341,8 +16342,7 @@ MeshRenderer:
   m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a823b81ffe8589441aad6e5fed41ebfb, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16389,6 +16389,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649043186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649043179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6f9b81165593438b173fa6daca359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverManager
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDistance: 100
 --- !u!1 &650351279
 GameObject:
   m_ObjectHideFlags: 0
@@ -24775,6 +24791,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -24785,6 +24805,10 @@ PrefabInstance:
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 895
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_Name
@@ -42024,6 +42048,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1589448950}
+    - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1589448955}
+    - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1589448956}
+    - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1589448957}
   m_SourcePrefab: {fileID: 100100000, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
 --- !u!4 &1589448946 stripped
 Transform:
@@ -42073,7 +42106,19 @@ MonoBehaviour:
   interactionTextLength: 3
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1589448951}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: BeginDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   inventoryManager: {fileID: 0}
   timeManager: {fileID: 0}
   targetPoint: {fileID: 0}
@@ -42086,13 +42131,67 @@ MonoBehaviour:
   soundEffect: {fileID: 0}
   oneTimeDialogue: 0
   hasDialogueOnce: 0
-  hasDialogue: 0
+  hasDialogue: 1
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
   articyBoolValue: 0
   articyFloatValue: 0
   articyStringValue: 
+--- !u!65 &1589448955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400845062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4762949, y: 0.4064722, z: 1.616569}
+  m_Center: {x: -0.07547523, y: 0.04466931, z: -0.13524885}
+--- !u!114 &1589448956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400845062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6f9b81165593438b173fa6daca359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverManager
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDistance: 100
+--- !u!114 &1589448957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400845062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 461291041, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ArticyRuntime.dll::Articy.Unity.ArticyReference
+  reference:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 33137
+    highId: 16777216
 --- !u!1001 &1594196269
 PrefabInstance:
   m_ObjectHideFlags: 0

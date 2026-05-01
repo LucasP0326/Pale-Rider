@@ -41,6 +41,7 @@ public class SaveManager : MonoBehaviour
     {
         //Misc Scripts
         inventoryManager.SaveInventory();
+        SaveDialogueStates();
 
         //Player Location
         PlayerPrefs.SetString("SceneName", sceneName);
@@ -184,6 +185,9 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("TookHardHat", ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat ? 1 : 0);
         PlayerPrefs.SetInt("TookMoldyLunch", ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch ? 1 : 0);
         PlayerPrefs.SetInt("TookSafetyLamp", ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp ? 1 : 0);
+        PlayerPrefs.SetInt("GeneratorFirstTime", ArticyGlobalVariables.Default.ZuretonVariables.GeneratorFirstTime ? 1 : 0);
+        PlayerPrefs.SetInt("UnderstandsEngine", ArticyGlobalVariables.Default.ZuretonVariables.UnderstandsEngine ? 1 : 0);
+        PlayerPrefs.SetInt("LiftActivated1", ArticyGlobalVariables.Default.ZuretonVariables.LiftActivated1 ? 1 : 0);
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
@@ -357,6 +361,9 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat = PlayerPrefs.GetInt("TookHardHat", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch = PlayerPrefs.GetInt("TookMoldyLunch", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp = PlayerPrefs.GetInt("TookSafetyLamp", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.GeneratorFirstTime = PlayerPrefs.GetInt("GeneratorFirstTime", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.UnderstandsEngine = PlayerPrefs.GetInt("UnderstandsEngine", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.LiftActivated1 = PlayerPrefs.GetInt("LiftActivated1", 0) == 1;
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);
@@ -373,7 +380,9 @@ public class SaveManager : MonoBehaviour
         LoadArticyVariables();
         playerStats.UpdatePlayerStats();
         dialogueManager.LoadDialogue();  
-        TimeManager.LoadTime();      
+        TimeManager.LoadTime();
+        ReloadCurrentScene();
+        LoadDialogueStates();      
         Debug.Log("Game Loaded!");
     }
 
@@ -488,6 +497,29 @@ public class SaveManager : MonoBehaviour
             }
         }
         ArticyGlobalVariables.Default.GlobalVariables.LoadingGame = false;
+    }
+
+    public void ReloadCurrentScene()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "Zureton" || currentScene== "Zureton Inn")
+        {
+            FindObjectOfType<ZuretonSceneManager>()?.ReloadScene();
+        }
+        else
+        {
+            return; // For other scenes, we assume the scene is already in the correct state after loading variables
+        }
+    }
+
+    public void SaveDialogueStates()
+    {
+        
+    }
+
+    public void LoadDialogueStates()
+    {
+        
     }
     
     public void ResetGame()

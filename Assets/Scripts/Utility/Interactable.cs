@@ -135,6 +135,22 @@ public class Interactable : MonoBehaviour
         {
             interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when out of range
         }
+        if (!isHorse)
+        {   
+            if (_outline.enabled)
+            {
+                Debug.Log("Hovering over " + gameObject.name);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    OnMouseDown();
+                    Debug.Log("Mouse clicked on " + gameObject.name);
+                }
+            }
+            else
+            {
+                OnMouseExit();
+            }
+        }
     }
 
     private void ShowInteractionBubble()
@@ -158,6 +174,13 @@ public class Interactable : MonoBehaviour
     private void OnMouseEnter()
     {
         _outline.enabled = true; // Enable outline when hovered over
+    }
+
+    // add near top of Interactable class (public so HoverManager can call it)
+    public void SetHover(bool hover)
+    {
+        if (_outline == null) _outline = GetComponent<Outline>() ?? gameObject.AddComponent<Outline>();
+        _outline.enabled = hover;
     }
 
     private void OnMouseExit()
