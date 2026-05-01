@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Splash Screen.unity
+    guid: 482bd226c3a8f5141b01b40d397d4a67
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: ee53629e03044524a90b5ba0212869eb
   - enabled: 0
@@ -43,7 +46,7 @@ EditorBuildSettings:
     guid: bc0658a16cf7d604980234bf4beedd6d
   - enabled: 1
     path: Assets/Scenes/Pale Hallucinations/Pale Hallucination 2.unity
-    guid: abb5c9ba2f6dcb349ac082cce0420d5d
+    guid: 24c4fb4075aaea34c8dceda82155c76f
   - enabled: 1
     path: Assets/Scenes/Zureton/Zureton Inn.unity
     guid: afb2cc3677ad0544489bc208a13b1624
