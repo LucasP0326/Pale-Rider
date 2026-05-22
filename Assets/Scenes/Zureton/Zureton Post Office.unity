@@ -4692,6 +4692,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7094510838479276031, guid: 2d41f38bf7c117644a159863ec47b83d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 422705032}
+    - targetCorrespondingSourceObject: {fileID: -7094510838479276031, guid: 2d41f38bf7c117644a159863ec47b83d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 422705035}
   m_SourcePrefab: {fileID: 100100000, guid: 2d41f38bf7c117644a159863ec47b83d, type: 3}
 --- !u!1 &422705025 stripped
 GameObject:
@@ -4809,8 +4812,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0703697, y: 2.1231146, z: 1.478898}
-  m_Center: {x: -0.10181928, y: 0.34210086, z: 0.07184374}
+  m_Size: {x: 1.7322884, y: 2.0212293, z: 1.478898}
+  m_Center: {x: -0.09074262, y: 0.2911582, z: 0.07184374}
+--- !u!114 &422705035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422705025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6f9b81165593438b173fa6daca359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverManager
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDistance: 100
 --- !u!1 &433040062
 GameObject:
   m_ObjectHideFlags: 0
@@ -10045,7 +10064,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 620261147}
-  - {fileID: 0}
 --- !u!4 &969103075
 Transform:
   m_ObjectHideFlags: 0
@@ -18798,7 +18816,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 55f2d17cb4a6c7f47a53f62daacc3809, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -8,7 +8,7 @@ using Articy.Pale_Rider.GlobalVariables;
 public class TimeManager : MonoBehaviour
 {
     public float timeScale = 1.0f; // Can be used to speed up/slow down time if desired
-    public float currentTime = 0.0f; // Current time in seconds
+    public float currentTime = 0.0f; // Current time in seconds (cumulative)
     public int startHour = 8; // Example: start at 8:00
     public TMP_Text timeDisplay; // Assign in Inspector
     public TMP_Text dayDisplay; // Assign in Inspector
@@ -16,6 +16,8 @@ public class TimeManager : MonoBehaviour
     private int hours;
     private int minutes;
     private int currentDay = 1;
+
+    private const int SECONDS_PER_DAY = 24 * 3600;
 
     public GameObject directionalLight;
     
@@ -33,13 +35,12 @@ public class TimeManager : MonoBehaviour
         if (totalSeconds <= 0)
             totalSeconds = startHour * 3600; // fallback to startHour if not set
 
-        currentTime = totalSeconds; // currentTime is in seconds
+        currentTime = totalSeconds; // currentTime is cumulative seconds since game start
 
-        // Calculate current day
-        currentDay = (totalSeconds / (24 * 3600)) + 1;
+        // Calculate current day (1-based)
+        currentDay = Mathf.FloorToInt(currentTime / (float)SECONDS_PER_DAY) + 1;
 
-        if (dayDisplay != null)
-            dayDisplay.text = $"Day {currentDay}";
+        UpdateTimeFromCurrentTime();
     }
 
     // Update is called once per frame
@@ -48,32 +49,51 @@ public class TimeManager : MonoBehaviour
         // Advance time in real time
         currentTime += Time.deltaTime * timeScale;
 
-        // Calculate hours and minutes
-        int totalMinutes = Mathf.FloorToInt(currentTime / 60f);
-        int newHours = (totalMinutes / 60) % 24;
-        minutes = totalMinutes % 60;
-
-        // Check for day rollover
-        if (newHours < hours)
-        {
-            currentDay++;
-            if (dayDisplay != null)
-                dayDisplay.text = $"Day {currentDay}";
-        }
-        hours = newHours;
-
-        // Update the UI
-        if (timeDisplay != null)
-            timeDisplay.text = $"{hours:00}:{minutes:00}";
-
-        // Update directional light rotation based on time
-        UpdateLightRotation(hours, minutes);
-        SaveTimeToArticy();
+        // Update derived values (hours, minutes, day) and visuals
+        UpdateTimeFromCurrentTime();
     }
 
     public void LoadTime()
     {
-        currentTime = ArticyGlobalVariables.Default.GlobalVariables.Time; // Load time in seconds
+        // Load cumulative seconds and day from Articy. If not set, fall back to startHour.
+        int savedSeconds = ArticyGlobalVariables.Default.GlobalVariables.Time;
+        int savedDay = ArticyGlobalVariables.Default.GlobalVariables.Day;
+
+        if (savedSeconds > 0)
+            currentTime = savedSeconds;
+        else
+            currentTime = startHour * 3600;
+
+        if (savedDay > 0)
+            currentDay = savedDay;
+        else
+            currentDay = Mathf.FloorToInt(currentTime / (float)SECONDS_PER_DAY) + 1;
+
+        UpdateTimeFromCurrentTime();
+    }
+
+    // Update hours, minutes, day and visuals based on currentTime
+    private void UpdateTimeFromCurrentTime()
+    {
+        int totalMinutes = Mathf.FloorToInt(currentTime / 60f);
+        int newHours = (totalMinutes / 60) % 24;
+        int newMinutes = totalMinutes % 60;
+
+        int newDay = Mathf.FloorToInt(currentTime / (float)SECONDS_PER_DAY) + 1;
+        if (newDay != currentDay)
+        {
+            currentDay = newDay;
+            if (dayDisplay != null)
+                dayDisplay.text = $"Day {currentDay}";
+        }
+
+        hours = newHours;
+        minutes = newMinutes;
+
+        if (timeDisplay != null)
+            timeDisplay.text = $"{hours:00}:{minutes:00}";
+
+        UpdateLightRotation(hours, minutes);
     }
 
     private void UpdateLightRotation(int hour, int minute)
@@ -130,13 +150,16 @@ public class TimeManager : MonoBehaviour
     public void AddTime(float seconds)
     {
         currentTime += seconds;
-        Update(); // Refresh the display after adding time
+        UpdateTimeFromCurrentTime(); // refresh display immediately
     }
 
     // Save current time (in seconds) to Articy global variable
     public void SaveTimeToArticy()
     {
-        int currentTimeInt = Mathf.FloorToInt(currentTime); // Ensure it's an integer value in seconds
+        // Write cumulative seconds and 1-based day to Articy globals.
+        int currentTimeInt = Mathf.FloorToInt(currentTime);
+        int currentDayInt = Mathf.FloorToInt(currentTime / (float)SECONDS_PER_DAY) + 1;
         ArticyGlobalVariables.Default.GlobalVariables.Time = currentTimeInt;
+        ArticyGlobalVariables.Default.GlobalVariables.Day = currentDayInt;
     }
 }

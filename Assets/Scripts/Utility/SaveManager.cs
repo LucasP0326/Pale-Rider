@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     private QuestManager questManager;
     private PlayerStats playerStats;
     private DialogueManager dialogueManager;
-    private TimeManager TimeManager;
+    private TimeManager timeManager;
     public string sceneName;
     public Vector3 playerPosition;
 
@@ -23,9 +23,9 @@ public class SaveManager : MonoBehaviour
         questManager = FindFirstObjectByType<QuestManager>();
         playerStats = FindFirstObjectByType<PlayerStats>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
+        timeManager = FindObjectOfType<TimeManager>();
         if (ArticyGlobalVariables.Default.GlobalVariables.LoadingGame)
             LoadGame();
-        TimeManager = FindObjectOfType<TimeManager>();
     }
 
     // Update is called once per frame
@@ -41,6 +41,8 @@ public class SaveManager : MonoBehaviour
     {
         //Misc Scripts
         inventoryManager.SaveInventory();
+        if (timeManager != null)
+            timeManager.SaveTimeToArticy();
         SaveDialogueStates();
 
         //Player Location
@@ -108,6 +110,10 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("MaxResolve", ArticyGlobalVariables.Default.PlayerStats.MaxResolve);
         PlayerPrefs.SetInt("Money", ArticyGlobalVariables.Default.PlayerStats.Money);
 
+        //Oxygen Stats
+        PlayerPrefs.SetInt("MaxOxygen", ArticyGlobalVariables.Default.PlayerStats.MaxOxygen);
+        PlayerPrefs.SetInt("CurrentOxygen", ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen);
+
         //Skill Base Scores
         PlayerPrefs.SetInt("ReptilianBaseScore", ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore);
         PlayerPrefs.SetInt("PaleoBaseScore", ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore);
@@ -151,12 +157,14 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("UnlockedSkills", ArticyGlobalVariables.Default.GlobalVariables.UnlockedSkills ? 1 : 0);
         PlayerPrefs.SetInt("UnlockedQuests", ArticyGlobalVariables.Default.GlobalVariables.UnlockedQuests ? 1 : 0);
         PlayerPrefs.SetInt("UnlockedMap", ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap ? 1 : 0);
+        PlayerPrefs.SetInt("UnlockedOxygen", ArticyGlobalVariables.Default.GlobalVariables.UnlockedOxygen ? 1 : 0);
         PlayerPrefs.SetInt("IngoPaleRealization", ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization ? 1 : 0);
-        PlayerPrefs.SetInt("Time", ArticyGlobalVariables.Default.GlobalVariables.Time);
         PlayerPrefs.SetInt("KeptHorse", ArticyGlobalVariables.Default.GlobalVariables.KeptHorse ? 1 : 0);
         PlayerPrefs.SetInt("ZuretonInnFirstTime", ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime ? 1 : 0);
         PlayerPrefs.SetInt("InDialogue", ArticyGlobalVariables.Default.GlobalVariables.InDialogue ? 1 : 0);
         PlayerPrefs.SetString("CurrentDialogue", ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName);
+        PlayerPrefs.SetInt("CurrentTime", ArticyGlobalVariables.Default.GlobalVariables.Time);
+        PlayerPrefs.SetInt("Day", ArticyGlobalVariables.Default.GlobalVariables.Day);
 
         //Raik Variables
         PlayerPrefs.SetInt("RaikOpinion", ArticyGlobalVariables.Default.RaikVariables.RaikOpinion);
@@ -286,6 +294,10 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerStats.MaxResolve = PlayerPrefs.GetInt("MaxResolve", 1);
         ArticyGlobalVariables.Default.PlayerStats.Money = PlayerPrefs.GetInt("Money", 0);
 
+        //Oxygen Stats
+        ArticyGlobalVariables.Default.PlayerStats.MaxOxygen = PlayerPrefs.GetInt("MaxOxygen", 100);
+        ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen = PlayerPrefs.GetInt("CurrentOxygen", 100);
+
         // Skill Base Scores
         ArticyGlobalVariables.Default.PlayerStats.ReptilianBaseScore = PlayerPrefs.GetInt("ReptilianBaseScore", 1);
         ArticyGlobalVariables.Default.PlayerStats.PaleoBaseScore = PlayerPrefs.GetInt("PaleoBaseScore", 1);
@@ -328,11 +340,14 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedSkills = PlayerPrefs.GetInt("UnlockedSkills", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedQuests = PlayerPrefs.GetInt("UnlockedQuests", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.UnlockedMap = PlayerPrefs.GetInt("UnlockedMap", 0) == 1;
+        ArticyGlobalVariables.Default.GlobalVariables.UnlockedOxygen = PlayerPrefs.GetInt("UnlockedOxygen", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.IngoPaleRealization = PlayerPrefs.GetInt("IngoPaleRealization", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.KeptHorse = PlayerPrefs.GetInt("KeptHorse", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.ZuretonInnFirstTime = PlayerPrefs.GetInt("ZuretonInnFirstTime", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.InDialogue = PlayerPrefs.GetInt("InDialogue", 0) == 1;
         ArticyGlobalVariables.Default.GlobalVariables.CurrentDialogueTechnicalName = PlayerPrefs.GetString("CurrentDialogue", "");
+        ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("CurrentTime", 8 * 60);
+        ArticyGlobalVariables.Default.GlobalVariables.Day = PlayerPrefs.GetInt("Day", 1);
 
         //Raik Variables
         ArticyGlobalVariables.Default.RaikVariables.RaikOpinion = PlayerPrefs.GetInt("RaikOpinion", 0);
@@ -375,12 +390,13 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.Quests.ExploreTheMine = PlayerPrefs.GetInt("ExploreTheMine", 0);
 
         // Time
-        ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
+        //ArticyGlobalVariables.Default.GlobalVariables.Time = PlayerPrefs.GetInt("Time", 8 * 60);
         // Load any remaining Articy variables saved via reflective saver
         LoadArticyVariables();
         playerStats.UpdatePlayerStats();
         dialogueManager.LoadDialogue();  
-        TimeManager.LoadTime();
+        if (timeManager != null)
+            timeManager.LoadTime();
         ReloadCurrentScene();
         LoadDialogueStates();      
         Debug.Log("Game Loaded!");

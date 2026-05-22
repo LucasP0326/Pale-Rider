@@ -759,7 +759,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36095c4cbb64bdd42bed7bd76b2bd1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZuretonSceneManager
+  playerController: {fileID: 0}
   horse: {fileID: 1886467107}
+  beer: {fileID: 0}
 --- !u!1001 &127399261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2965,7 +2967,7 @@ MonoBehaviour:
   sceneName: Zureton Inn
   spawnPointID: InnEntrance2
   teleportCooldown: 1
-  interactionRange: 2
+  interactionRange: 5
   door: {fileID: 0}
   soundEffect: {fileID: 0}
   oneTimeDialogue: 0

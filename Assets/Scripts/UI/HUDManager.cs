@@ -11,6 +11,7 @@ public class HUDManager : MonoBehaviour
     public GameObject SkillPanel;
     public GameObject QuestPanel;
     public GameObject MapPanel;
+    public GameObject OxygenPanel;
 
     public GameObject SkillMenu;
 
@@ -58,6 +59,15 @@ public class HUDManager : MonoBehaviour
         else
         {
             MapPanel.SetActive(false);
+        }
+
+        if (ArticyGlobalVariables.Default.GlobalVariables.UnlockedOxygen)
+        {
+            OxygenPanel.SetActive(true);
+        }
+        else
+        {
+            OxygenPanel.SetActive(false);
         }
 
         //Open skill menu once

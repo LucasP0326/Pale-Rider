@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Articy.Pale_Rider;
 using TMPro;
 using UnityEngine.Events;
+using StarterAssets;
 
 public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
@@ -84,6 +85,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         {
             scrollContent.gameObject.SetActive(true);
         }
+
+        //Might Cause Issues so be careful here.  Remove if needed.
+        player.GetComponent<ThirdPersonController>().inDialogue = dialogueWidget.activeSelf;
 
         //ArticyGlobalVariables.Default.GlobalVariables.InDialogue = DialogueActive;
     }

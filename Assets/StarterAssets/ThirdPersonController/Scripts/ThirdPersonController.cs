@@ -234,6 +234,7 @@ namespace StarterAssets
                 _animator.SetBool("FallingFromHorse", true);
             else
                 _animator.SetBool("FallingFromHorse", false);
+                
             if (ArticyGlobalVariables.Default.EquippedItems.HeldItem == "Tool_SafetyLamp")
             {
                 _animator.SetBool("IsHoldingLantern", true);

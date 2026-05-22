@@ -1975,6 +1975,7 @@ GameObject:
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 2450854198589227792}
+  - component: {fileID: 9173618315495551684}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -2213,6 +2214,7 @@ MonoBehaviour:
   LockCameraPosition: 0
   _isMovingToClick: 0
   clickIndicatorPrefab: {fileID: 1715802856454806045, guid: 7cf021622f00c74419196c8a0af1bdcb, type: 3}
+  spawnPoint: {fileID: 0}
   _animator: {fileID: 0}
   _controller: {fileID: 0}
   _input: {fileID: 0}
@@ -2371,6 +2373,18 @@ MonoBehaviour:
   maskTube: {fileID: 4930880238683947006}
   Lantern: {fileID: 7053571068119963096}
   crowbar: {fileID: 8939909201883223268}
+--- !u!114 &9173618315495551684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111ad5db2402d80439c80693c0ceabe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OxygenHandler
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
