@@ -22,6 +22,10 @@ public class OxygenHandler : MonoBehaviour
     public int oxygenDepletionRate = 1; // Oxygen depletion rate per second
     public bool gasMaskEquipped = false; // Track if the gas mask is equipped
     public bool inPale = false;
+    public bool paleDeathEnabled = true; // Flag to enable or disable the Pale death scene
+    [Header("Resolve Damage")]
+    public int resolveDamageIntervalSeconds = 20; // Seconds between resolve hits
+    private int resolveSecondsCounter = 0; // Counter to track seconds without protection
 
     [Header("UI Elements")]
     public Image hudOxygenTank; // Reference to the UI Image that represents the HUD oxygen tank
@@ -54,7 +58,7 @@ public class OxygenHandler : MonoBehaviour
             gasMaskEquipped = true;
             //oxygenBarFill.gameObject.SetActive(true); // Show oxygen bar when gas mask is equipped
             hudOxygenFill.gameObject.SetActive(true); // Show HUD oxygen bar when gas mask is equipped
-            hudOxygenTank.color = Color.black; // Set the HUD oxygen tank color to white when the gas mask is equipped
+            hudOxygenTank.color = Color.white; // Set the HUD oxygen tank color to white when the gas mask is equipped
         }
         else
         {
@@ -101,6 +105,34 @@ public class OxygenHandler : MonoBehaviour
                 int newOxygen = ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen - oxygenDepletionRate;
                 ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen = Mathf.Max(0, newOxygen);
                 currentOxygen = ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen;
+            }
+            else
+            {
+                // Ensure currentOxygen variable is kept in sync even when not depleting here
+                currentOxygen = ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen;
+            }
+
+            // Resolve damage: when player is in the Pale and either not wearing a gas mask
+            // OR their oxygen is at 0, count seconds and apply a resolve hit every interval.
+            if (paleDeathEnabled)
+            {
+                if (inPale && (!gasMaskEquipped || ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen <= 0))
+                {
+                    resolveSecondsCounter++;
+                    if (resolveSecondsCounter >= resolveDamageIntervalSeconds)
+                    {
+                        // Subtract one resolve point and clamp
+                        int newResolve = ArticyGlobalVariables.Default.PlayerStats.Resolve - 1;
+                        ArticyGlobalVariables.Default.PlayerStats.Resolve = Mathf.Max(0, newResolve);
+                        // Reset counter after applying damage
+                        resolveSecondsCounter = 0;
+                    }
+                }
+                else
+                {
+                    // Reset counter when condition no longer holds
+                    resolveSecondsCounter = 0;
+                }
             }
         }
     }

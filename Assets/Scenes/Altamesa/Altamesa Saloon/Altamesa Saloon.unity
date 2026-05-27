@@ -17228,6 +17228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaleManager
   oxygenHandler: {fileID: 0}
+  playerController: {fileID: 0}
+  PaleDeathEnabled: 0
 --- !u!1 &1077353635
 GameObject:
   m_ObjectHideFlags: 0

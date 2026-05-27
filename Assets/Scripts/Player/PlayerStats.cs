@@ -7,6 +7,7 @@ using Articy.Pale_Rider;
 using Articy.Pale_Rider.GlobalVariables;
 using TMPro; // Import TextMeshPro namespace
 using UnityEngine.SceneManagement;
+using StarterAssets;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerStats : MonoBehaviour
     private int resolveChange;
     private bool healthChanging = false;
     private bool resolveChanging = false;
+
+    [Header("References")]
+    public ThirdPersonController playerController; // Reference to the ThirdPersonController script
+    public OxygenHandler oxygenHandler; // Reference to the OxygenHandler script
 
     [Header("Health Stats")]
     public int currentHealth;
@@ -79,6 +84,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        playerController = GetComponent<ThirdPersonController>(); // Get the ThirdPersonController component from the Player GameObject
+        oxygenHandler = GetComponent<OxygenHandler>(); // Get the OxygenHandler component from the Player GameObject
+
         //Reset Death
         ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath = false;
         ArticyGlobalVariables.Default.PlayerVariables.ResolveDeath = false;
@@ -366,7 +374,14 @@ public class PlayerStats : MonoBehaviour
         if (currentResolve <= 0)
         {
             Debug.Log("Player has died due to resolve reaching zero.");
-            StartCoroutine(ResolveDeathScene());
+            if (!oxygenHandler.inPale)
+            {
+                StartCoroutine(ResolveDeathScene());
+            }
+            else
+            {
+                StartCoroutine(PaleDeathScene());
+            }
         }
     }
 
