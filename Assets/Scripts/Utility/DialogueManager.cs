@@ -199,7 +199,14 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
                 else
                 {
                     aSource.Play();
-                    PlaySkillSFX();
+                    if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+                    {
+                        aSource.Stop(); // Skill voices are disabled, stop the voiceover
+                    }
+                    if (PlayerPrefs.GetInt("SkillSFXEnabled", 1) == 1)
+                    {
+                        PlaySkillSFX();
+                    }
                 }
                 //aSource.Play();
 
@@ -450,7 +457,14 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         yield return new WaitForSeconds(1.5f); // Delay before playing the audio
         aSource.Play();
-        PlaySkillSFX();
+        if (PlayerPrefs.GetInt("SkillVoicesEnabled", 1) == 0)
+        {
+            aSource.Stop(); // Skill voices are disabled, stop the voiceover
+        }
+        if (PlayerPrefs.GetInt("SkillSFXEnabled", 1) == 1)
+        {
+            PlaySkillSFX();
+        }
     }
 
     public IEnumerator DelayedLoad()

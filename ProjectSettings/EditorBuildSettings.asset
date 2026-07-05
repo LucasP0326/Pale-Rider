@@ -45,11 +45,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Zureton/ZuretonCutscene.unity
     guid: bc0658a16cf7d604980234bf4beedd6d
   - enabled: 1
-    path: Assets/Scenes/Pale Hallucinations/Pale Hallucination 2.unity
-    guid: 24c4fb4075aaea34c8dceda82155c76f
-  - enabled: 1
     path: Assets/Scenes/Zureton/Zureton Inn.unity
     guid: afb2cc3677ad0544489bc208a13b1624
+  - enabled: 1
+    path: Assets/Scenes/Pale Hallucinations/Pale Hallucination 2.unity
+    guid: 24c4fb4075aaea34c8dceda82155c76f
   - enabled: 1
     path: Assets/Scenes/Zureton/Zureton Mine/Zureton Mine 1.unity
     guid: 6c7099df88e329745bac5c84f2da3249

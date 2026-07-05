@@ -64,8 +64,14 @@ public class OxygenHandler : MonoBehaviour
         {
             gasMaskEquipped = false;
             //oxygenBarFill.gameObject.SetActive(false); // Hide oxygen bar when gas mask is not equipped
-            hudOxygenFill.gameObject.SetActive(false); // Hide HUD oxygen bar when gas mask is not equipped
-            hudOxygenTank.color = Color.white; // Set the HUD oxygen tank color to gray when the gas mask is not equipped
+            if (hudOxygenFill != null)
+            {
+                hudOxygenFill.gameObject.SetActive(false); // Hide HUD oxygen bar when gas mask is not equipped
+            }
+            if (hudOxygenTank != null)
+            {
+                hudOxygenTank.color = Color.white; // Set the HUD oxygen tank color to white when the gas mask is not equipped
+            }
         }
 
         currentOxygen = ArticyGlobalVariables.Default.PlayerStats.CurrentOxygen; // Update current oxygen from global variables

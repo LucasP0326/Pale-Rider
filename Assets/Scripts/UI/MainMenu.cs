@@ -148,14 +148,26 @@ public class MainMenu : MonoBehaviour
 
     public void Settings()
     {
-        settingsPanel.SetActive(!settingsPanel.activeSelf); // Toggle the settings panel visibility
+        PlayClickSound();
+        if (!settingsPanel.activeSelf)
+        {
+            settingsPanel.SetActive(true); // Show the settings panel
+        }
         controlsPanel.SetActive(false); // Hide the controls panel
+        //settingsPanel.SetActive(!settingsPanel.activeSelf); // Toggle the settings panel visibility
+        //controlsPanel.SetActive(false); // Hide the controls panel
     }
 
     public void Controls()
     {
-        controlsPanel.SetActive(!controlsPanel.activeSelf); // Toggle the controls panel visibility
+        PlayClickSound();
+        if (!controlsPanel.activeSelf)
+        {
+            controlsPanel.SetActive(true); // Show the controls panel
+        }
         settingsPanel.SetActive(false); // Hide the settings panel
+        //controlsPanel.SetActive(!controlsPanel.activeSelf); // Toggle the controls panel visibility
+        //ssettingsPanel.SetActive(false); // Hide the settings panel
     }
 
     public void PlayClickSound()
