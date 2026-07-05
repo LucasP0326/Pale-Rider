@@ -40715,8 +40715,8 @@ MonoBehaviour:
   fullCheckbox: {fileID: 21300000, guid: 35ffd2f63d611b342840b75fa5693500, type: 3}
   skillSFXEnabled: 1
   skillVoicesEnabled: 1
-  skillSFXCheckbox: {fileID: 0}
-  skillVoicesCheckbox: {fileID: 0}
+  skillSFXCheckbox: {fileID: 6522755263064534229}
+  skillVoicesCheckbox: {fileID: 5361059813986730865}
   skillSFXButton: {fileID: 0}
   skillVoicesButton: {fileID: 0}
 --- !u!82 &8009746755035689164

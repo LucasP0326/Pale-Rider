@@ -62,6 +62,15 @@ public class Interactable : MonoBehaviour
     public bool hasDialogueOnce = false; // Tracks if the object has been interacted with for dialogue
     public bool hasDialogue;
 
+    [Header("Articy Variable Checker")]
+    public bool ArticyVariableConditionMet = true; // Default to true, will be set to false if condition is not met
+    public string articyVariableToCheckPath;
+    public VariableType articyVariableToCheckType = VariableType.Int;
+    public int articyIntValueToCheck = 0;
+    public bool articyBoolValueToCheck = false;
+    public float articyFloatValueToCheck = 0f;
+    public string articyStringValueToCheck = "";
+
     [Header("Articy Variable Setter")]
     [Tooltip("Path format: Section.VariableName e.g. Quests.LeaveThePale")]
     public string articyVariablePath;
@@ -151,6 +160,7 @@ public class Interactable : MonoBehaviour
                 OnMouseExit();
             }
         }
+        CheckArticyVariable();
     }
 
     private void ShowInteractionBubble()
@@ -220,7 +230,10 @@ public class Interactable : MonoBehaviour
             aSource.clip = soundEffect;
             aSource.Play();
         }
-        onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
+        if (ArticyVariableConditionMet)
+        {
+            onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
+        }
     }
 
     //Possible Interaction Functions
@@ -389,6 +402,121 @@ public class Interactable : MonoBehaviour
                 current = next;
                 currentType = current.GetType();
             }
+        }
+    }
+    
+    private bool IsVariableValueMatch(Type memberType, object valueToCheck)
+    {
+        if (valueToCheck == null)
+        {
+            return false;
+        }
+
+        switch (articyVariableToCheckType)
+        {
+            case VariableType.Int:
+                if (!IsSupportedIntegerType(memberType))
+                {
+                    return false;
+                }
+                return Convert.ToInt32(valueToCheck) == articyIntValueToCheck;
+
+            case VariableType.Bool:
+                if (memberType != typeof(bool))
+                {
+                    return false;
+                }
+                return Convert.ToBoolean(valueToCheck) == articyBoolValueToCheck;
+
+            case VariableType.Float:
+                if (!IsSupportedFloatType(memberType))
+                {
+                    return false;
+                }
+                return Math.Abs(Convert.ToSingle(valueToCheck) - articyFloatValueToCheck) < 0.0001f;
+
+            case VariableType.String:
+                if (memberType != typeof(string))
+                {
+                    return false;
+                }
+                return Convert.ToString(valueToCheck) == articyStringValueToCheck;
+        }
+
+        return false;
+    }
+
+    private bool IsSupportedIntegerType(Type memberType)
+    {
+        return memberType == typeof(int) ||
+               memberType == typeof(short) ||
+               memberType == typeof(long) ||
+               memberType == typeof(byte) ||
+               memberType == typeof(uint) ||
+               memberType == typeof(ushort) ||
+               memberType == typeof(ulong);
+    }
+
+    private bool IsSupportedFloatType(Type memberType)
+    {
+        return memberType == typeof(float) ||
+               memberType == typeof(double) ||
+               memberType == typeof(decimal);
+    }
+
+    public void CheckArticyVariable()
+    {
+        if (string.IsNullOrWhiteSpace(articyVariableToCheckPath))
+        {
+            Debug.LogWarning("Articy variable path to check is empty.");
+            return;
+        }
+
+        // Get top-level generated global variables instance
+        var gv = Articy.Pale_Rider.GlobalVariables.ArticyGlobalVariables.Default;
+        if (gv == null)
+        {
+            Debug.LogWarning("Articy GlobalVariables not loaded (ArticyGlobalVariables.Default is null).");
+            return;
+        }
+
+        var parts = articyVariableToCheckPath.Split('.');
+        object current = gv;
+        Type currentType = current.GetType();
+
+        for (int i = 0; i < parts.Length; i++)
+        {
+            string part = parts[i];
+
+            // Try property first, then field
+            PropertyInfo prop = currentType.GetProperty(part, BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo field = currentType.GetField(part, BindingFlags.Public | BindingFlags.Instance);
+
+            if (prop == null && field == null)
+            {
+                Debug.LogWarning($"Member '{part}' not found on type {currentType.Name} while traversing path.");
+                return;
+            }
+
+            if (i == parts.Length - 1)
+            {
+                object valueToCheck = prop != null ? prop.GetValue(current) : field.GetValue(current);
+                Type memberType = prop != null ? prop.PropertyType : field.FieldType;
+                bool conditionMet = IsVariableValueMatch(memberType, valueToCheck);
+
+                ArticyVariableConditionMet = conditionMet;
+                Debug.Log($"Checked Articy variable '{articyVariableToCheckPath}': condition met = {conditionMet}");
+                return;
+            }
+
+            current = prop != null ? prop.GetValue(current) : field.GetValue(current);
+            if (current == null)
+            {
+                Debug.LogWarning($"Member '{part}' is null while traversing path.");
+                return;
+            }
+
+            currentType = current.GetType();
         }
     }
 

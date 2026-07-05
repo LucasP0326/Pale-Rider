@@ -2094,6 +2094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -2132,6 +2133,13 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -4514,6 +4522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 1
@@ -4552,6 +4561,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -5409,6 +5425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -5446,6 +5463,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -11426,6 +11450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -11463,6 +11488,13 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -25822,6 +25854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -25859,6 +25892,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -26155,6 +26195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 1
@@ -26193,6 +26234,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -26975,6 +27023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -27012,6 +27061,13 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -30476,6 +30532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -30513,6 +30570,13 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -40074,6 +40138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -40111,6 +40176,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: GlobalVariables.WokeUp
+  articyVariableToCheckType: 1
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -46063,6 +46135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 1
@@ -46101,6 +46174,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -51488,6 +51568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventOnStart: 0
+  dialogueManager: {fileID: 0}
   isHorse: 0
   horseManager: {fileID: 0}
   oneTimeInteraction: 0
@@ -51525,6 +51606,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
