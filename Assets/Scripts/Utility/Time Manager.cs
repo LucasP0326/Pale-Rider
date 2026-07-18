@@ -51,6 +51,9 @@ public class TimeManager : MonoBehaviour
 
         // Update derived values (hours, minutes, day) and visuals
         UpdateTimeFromCurrentTime();
+
+        if (ArticyGlobalVariables.Default.GlobalVariables.TimeChange != 0)
+            CheckTimeChange();
     }
 
     public void LoadTime()
@@ -161,5 +164,15 @@ public class TimeManager : MonoBehaviour
         int currentDayInt = Mathf.FloorToInt(currentTime / (float)SECONDS_PER_DAY) + 1;
         ArticyGlobalVariables.Default.GlobalVariables.Time = currentTimeInt;
         ArticyGlobalVariables.Default.GlobalVariables.Day = currentDayInt;
+    }
+
+    public void CheckTimeChange()
+    {
+        if (ArticyGlobalVariables.Default.GlobalVariables.TimeChange != 0)
+        {
+            // Time change has been triggered, apply it
+            AddTime(ArticyGlobalVariables.Default.GlobalVariables.TimeChange);
+            ArticyGlobalVariables.Default.GlobalVariables.TimeChange = 0; // reset after applying
+        }
     }
 }

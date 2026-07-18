@@ -186,6 +186,13 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("LavenderKnown", ArticyGlobalVariables.Default.AlinaVariables.LavenderKnown ? 1 : 0);
         PlayerPrefs.SetInt("Known", ArticyGlobalVariables.Default.AlinaVariables.Known ? 1 : 0);
 
+        //Edythe Variables
+        PlayerPrefs.SetInt("KnowsAboutEdythe", ArticyGlobalVariables.Default.EdytheVariables.KnowsAboutEdythe ? 1 : 0);
+        PlayerPrefs.SetInt("MetEdythe", ArticyGlobalVariables.Default.EdytheVariables.MetEdythe ? 1 : 0);
+        PlayerPrefs.SetInt("BelievesCanReadMines", ArticyGlobalVariables.Default.EdytheVariables.BelievesCanReadMines ? 1 : 0);
+        PlayerPrefs.SetInt("UsedOxygenCompressor", ArticyGlobalVariables.Default.EdytheVariables.UsedOxygenCompressor ? 1 : 0);
+        PlayerPrefs.SetInt("CompressorRate", ArticyGlobalVariables.Default.EdytheVariables.CompressorRate);
+
         //Zureton Variables
         PlayerPrefs.SetInt("MineKnown", ArticyGlobalVariables.Default.ZuretonVariables.MineKnown ? 1 : 0);
         PlayerPrefs.SetInt("PaleDanger", ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger);
@@ -368,6 +375,13 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.AlinaVariables.RaikAunt = PlayerPrefs.GetInt("RaikAunt", 0) == 1;
         ArticyGlobalVariables.Default.AlinaVariables.LavenderKnown = PlayerPrefs.GetInt("LavenderKnown", 0) == 1;
         ArticyGlobalVariables.Default.AlinaVariables.Known = PlayerPrefs.GetInt("Known", 0) == 1;
+
+        //Edythe Variables
+        ArticyGlobalVariables.Default.EdytheVariables.KnowsAboutEdythe = PlayerPrefs.GetInt("KnowsAboutEdythe", 0) == 1;
+        ArticyGlobalVariables.Default.EdytheVariables.MetEdythe = PlayerPrefs.GetInt("MetEdythe", 0) == 1;
+        ArticyGlobalVariables.Default.EdytheVariables.BelievesCanReadMines = PlayerPrefs.GetInt("BelievesCanReadMines", 0) == 1;
+        ArticyGlobalVariables.Default.EdytheVariables.UsedOxygenCompressor = PlayerPrefs.GetInt("UsedOxygenCompressor", 0) == 1;
+        ArticyGlobalVariables.Default.EdytheVariables.CompressorRate = PlayerPrefs.GetInt("CompressorRate", 0);
 
         //Zureton Variables
         ArticyGlobalVariables.Default.ZuretonVariables.MineKnown = PlayerPrefs.GetInt("MineKnown", 0) == 1;

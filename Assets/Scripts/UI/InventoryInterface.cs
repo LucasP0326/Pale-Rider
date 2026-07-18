@@ -14,6 +14,7 @@ public class InventoryInterface : MonoBehaviour
     public GameObject inventorySpace; // The parent GameObject that holds all inventory UI elements
     private ThirdPersonController controller;
     private InventoryManager inventoryManager; // Reference to the InventoryManager script
+    private OxygenHandler oxygenHandler; // Reference to the OxygenHandler script
     private PlayerStats playerStats;
 
     [Header("UI Elements")]
@@ -57,7 +58,9 @@ public class InventoryInterface : MonoBehaviour
         controller = playerController.GetComponent<ThirdPersonController>();
         inventoryManager = playerController.GetComponent<InventoryManager>();
         playerStats = playerController.GetComponent<PlayerStats>();
+        oxygenHandler = playerController.GetComponent<OxygenHandler>();
         UpdateInventory();
+        UpdateOxygen();
     }
 
     // Update is called once per frame
@@ -208,6 +211,14 @@ public class InventoryInterface : MonoBehaviour
         // Update health and resolve text
         healthText.GetComponent<TextMeshProUGUI>().text = $"{playerStats.currentHealth}/{playerStats.maxHealth}";
         resolveText.GetComponent<TextMeshProUGUI>().text = $"{playerStats.currentResolve}/{playerStats.maxResolve}";
+    }
+
+    public void UpdateOxygen()
+    {
+        if (oxygenHandler != null)
+        {
+            oxygenHandler.instantAssignUIElements(); // Ensure UI elements are assigned
+        }
     }
 
     public void Close()

@@ -15,6 +15,7 @@ public class PlayerStats : MonoBehaviour
     private int previousResolve;
     private int healthChange;
     private int resolveChange;
+    public bool deathEnabled = true;
     private bool healthChanging = false;
     private bool resolveChanging = false;
 
@@ -128,10 +129,13 @@ public class PlayerStats : MonoBehaviour
         previousResolve = currentResolve;
 
         // Populate the health and resolve bars
-        InitializeHealthBar();
-        InitializeResolveBar();
-        UpdateHealthBar();
-        UpdateResolveBar();
+        if (deathEnabled)
+        {
+            InitializeHealthBar();
+            InitializeResolveBar();
+            UpdateHealthBar();
+            UpdateResolveBar();
+        }
     }
 
     private void Update()
@@ -186,9 +190,13 @@ public class PlayerStats : MonoBehaviour
         // Update the health and resolve bars
         //InitializeHealthBar();
         //InitializeResolveBar();
-        UpdateHealthBar();
-        UpdateResolveBar();
-        UpdateMoneyText();
+        if (deathEnabled)
+        {
+            UpdateHealthBar();
+            UpdateResolveBar();
+            UpdateMoneyText();
+        }
+        
 
         if (ArticyGlobalVariables.Default.PlayerVariables.PhysicalDeath)
         {
@@ -206,7 +214,10 @@ public class PlayerStats : MonoBehaviour
 
     private void LateUpdate()
     {
-        CheckDeath();
+        if (deathEnabled)
+        {
+            CheckDeath();
+        }
     }
 
     public void UpdatePlayerStats()

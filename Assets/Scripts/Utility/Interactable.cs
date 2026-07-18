@@ -230,9 +230,16 @@ public class Interactable : MonoBehaviour
             aSource.clip = soundEffect;
             aSource.Play();
         }
-        if (ArticyVariableConditionMet)
+        if (!player.GetComponent<ThirdPersonController>().inMenu && !player.GetComponent<ThirdPersonController>().paused && !isTeleporting && !player.GetComponent<ThirdPersonController>().inDialogue)
         {
-            onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
+            if (ArticyVariableConditionMet)
+            {
+                onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
+            }
+            else
+            {
+                Debug.Log("Articy variable condition not met. Interaction aborted.");
+            }
         }
     }
 

@@ -143,6 +143,12 @@ public class OxygenHandler : MonoBehaviour
         }
     }
 
+    public void instantAssignUIElements()
+    {
+        oxygenBarFill = GameObject.Find("OxygenBarFill").GetComponent<Image>(); // Ensure this matches the name of your UI Image
+        oxygenText = GameObject.Find("OxygenText").GetComponent<TMP_Text>(); // Ensure this matches the name of your TextMeshPro text
+    }
+
     public IEnumerator assignUIElements()
     {
         yield return new WaitForSeconds(0.1f);

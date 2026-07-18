@@ -4770,6 +4770,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -5810,6 +5817,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519209701}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &520273658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4358093762179502084, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
+  m_PrefabInstance: {fileID: 1771915936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &530312815
 GameObject:
   m_ObjectHideFlags: 0
@@ -15882,6 +15900,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1571968707}
+    - targetCorrespondingSourceObject: {fileID: 174579796573890671, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1571968708}
   m_SourcePrefab: {fileID: 100100000, guid: a7deda9b2515f5e4f8ef79521fb063e8, type: 3}
 --- !u!4 &1571968703 stripped
 Transform:
@@ -15959,7 +15980,14 @@ MonoBehaviour:
   soundEffect: {fileID: 0}
   oneTimeDialogue: 0
   hasDialogueOnce: 0
-  hasDialogue: 0
+  hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -15984,6 +16012,23 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1571968708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571968704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 461291041, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ArticyRuntime.dll::Articy.Unity.ArticyReference
+  reference:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 41465
+    highId: 16777216
 --- !u!1001 &1575032791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16693,7 +16738,7 @@ PrefabInstance:
     - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: moneyText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 520273658}
     - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: fadeCanvas
       value: 
@@ -19089,7 +19134,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 55f2d17cb4a6c7f47a53f62daacc3809, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.125
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19891,6 +19936,13 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -20332,6 +20384,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0

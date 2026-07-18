@@ -40717,8 +40717,8 @@ MonoBehaviour:
   skillVoicesEnabled: 1
   skillSFXCheckbox: {fileID: 6522755263064534229}
   skillVoicesCheckbox: {fileID: 5361059813986730865}
-  skillSFXButton: {fileID: 0}
-  skillVoicesButton: {fileID: 0}
+  skillSFXButton: {fileID: 2884119823063406315}
+  skillVoicesButton: {fileID: 6885199606476859542}
 --- !u!82 &8009746755035689164
 AudioSource:
   m_ObjectHideFlags: 0
@@ -69645,6 +69645,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 308019174577236451}
+        m_TargetAssemblyTypeName: InventoryInterface, Assembly-CSharp
+        m_MethodName: UpdateOxygen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

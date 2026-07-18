@@ -125,7 +125,10 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             onDialogueClosed?.Invoke();
             ArticyGlobalVariables.Default.GlobalVariables.PerformingClosingEvent = false; // Reset the flag after invoking the event
         }
-        player.GetComponent<PlayerStats>().CheckDeath();
+        if (player.GetComponent<PlayerStats>().deathEnabled)
+        {
+            player.GetComponent<PlayerStats>().CheckDeath();
+        }
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)

@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnInteract
+      value: TryTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 7967263044557858504, guid: 8f926ba14bbfe8843a2360a7ef373cd7, type: 3}
       propertyPath: onDialogueClosed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1080,6 +1080,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: healthDeathObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299142118477806650, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: resolveDeathObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9173618315495551684, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1409,6 +1417,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -1627,6 +1642,13 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
