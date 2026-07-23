@@ -211,7 +211,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("FindBeerNewHome", ArticyGlobalVariables.Default.Quests.FindBeerNewHome);
         PlayerPrefs.SetInt("UncoverFatherRelationship", ArticyGlobalVariables.Default.Quests.UncoverFatherRelationship);
         PlayerPrefs.SetInt("LearnAboutJesus", ArticyGlobalVariables.Default.Quests.LearnAboutJesus);
-        PlayerPrefs.SetInt("FindOutAboutThePale", ArticyGlobalVariables.Default.Quests.ExploreTheMine);
+        PlayerPrefs.SetInt("ExploreTheMine", ArticyGlobalVariables.Default.Quests.ExploreTheMine);
 
         // Save all Articy-generated variables (ints, bools, strings) reflectively
         SaveArticyVariables();

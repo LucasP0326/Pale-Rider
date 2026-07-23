@@ -54,6 +54,7 @@ public class InventoryManager : MonoBehaviour
         newItem.itemDescription = articyObj.Template.Description.MediumTextValue;
         newItem.itemPrice = (int)articyObj.Template.Price.NumberValue;
         newItem.itemBonuses = articyObj.Template.ItemBonuses.MediumTextValue;
+        newItem.availableDialogue = articyObj.Template.DialogueConnector.ReferenceSlot;
 
         StartCoroutine(PopupCoroutine(newItem.itemName));
 
@@ -94,7 +95,8 @@ public class InventoryManager : MonoBehaviour
                 itemPrice = item.itemPrice,
                 itemBonuses = item.itemBonuses,
                 itemQuantity = item.itemQuantity,
-                isEquipped = item.isEquipped
+                isEquipped = item.isEquipped,
+                //availableDialogue = item.availableDialogue
             });
         }
         string json = JsonUtility.ToJson(new SerializationWrapper<InventoryItemData>(dataList));
@@ -133,6 +135,7 @@ public class InventoryManager : MonoBehaviour
                     newItem.itemBonuses = data.itemBonuses;
                     newItem.itemQuantity = data.itemQuantity;
                     newItem.isEquipped = data.isEquipped;
+                    //newItem.availableDialogue = data.availableDialogue;
 
                     // Optionally, reload icon from Articy if needed
                     var articyObj = ArticyDatabase.GetObject(data.technicalName) as Articy.Pale_Rider.Item;
@@ -204,6 +207,11 @@ public class InventoryManager : MonoBehaviour
         {
             AddItem("Tool_Crowbar");
             ArticyGlobalVariables.Default.InventoryAddingStats.Crowbar = false;
+        }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.RaikFatherEnvelope)
+        {
+            AddItem("Interactable_FatherEnvelope");
+            ArticyGlobalVariables.Default.InventoryAddingStats.RaikFatherEnvelope = false;
         }
     }
 

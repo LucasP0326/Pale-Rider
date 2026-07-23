@@ -16,6 +16,8 @@ public class InventoryInterface : MonoBehaviour
     private InventoryManager inventoryManager; // Reference to the InventoryManager script
     private OxygenHandler oxygenHandler; // Reference to the OxygenHandler script
     private PlayerStats playerStats;
+    public DialogueManager dialogueManager;
+    public ArticyReference aObject; // Reference to the Articy object for dialogue
 
     [Header("UI Elements")]
     //Stats
@@ -49,6 +51,8 @@ public class InventoryInterface : MonoBehaviour
     public TextMeshProUGUI selectedItemPrice;
     public TextMeshProUGUI selectedItemBonuses;
     public GameObject equipButton;
+    public GameObject interactButton;
+    public ArticyObject availableDialogue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +63,8 @@ public class InventoryInterface : MonoBehaviour
         inventoryManager = playerController.GetComponent<InventoryManager>();
         playerStats = playerController.GetComponent<PlayerStats>();
         oxygenHandler = playerController.GetComponent<OxygenHandler>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        //aObject = gameObject.GetComponent<ArticyReference>();
         UpdateInventory();
         UpdateOxygen();
     }
@@ -94,11 +100,15 @@ public class InventoryInterface : MonoBehaviour
             {
                 equipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
             }
-            
+        }
+        else if (selectedItem != null && selectedItem.GetComponent<InventoryItem>().itemType == "Interactable")
+        {
+            interactButton.SetActive(true);
         }
         else
         {
             equipButton.SetActive(false);
+            interactButton.SetActive(false);
         }
     }
 
@@ -134,7 +144,7 @@ public class InventoryInterface : MonoBehaviour
                 case "Item":
                     itemUI.transform.SetParent(ItemsinventoryGrid.transform, false);
                     break;
-                case "Interact":
+                case "Interactable":
                     itemUI.transform.SetParent(InteractinventoryGrid.transform, false);
                     break;
                 default:
@@ -262,6 +272,7 @@ public class InventoryInterface : MonoBehaviour
                 selectedItemPrice.text = "£" + (price / 100f).ToString("0.00");
                 selectedItemBonuses.text = "Item Bonuses: " + item.GetComponent<InventoryItem>().itemBonuses;
                 Debug.Log("Populating UI");
+                //aObject.reference = ArticyDatabase.GetObject(item.technicalName);
             }
             else
             {
@@ -375,6 +386,37 @@ public class InventoryInterface : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void InteractWithSelectedItem()
+    {
+        if (selectedItem == null)
+        {
+            Debug.LogWarning("No item selected.");
+            return;
+        }
+
+        var item = selectedItem.GetComponent<InventoryItem>();
+        if (item == null)
+        {
+            Debug.LogWarning("Selected item does not have an InventoryItem component.");
+            return;
+        }
+
+        if (item.availableDialogue == null || string.IsNullOrEmpty(item.availableDialogue.TechnicalName))
+        {
+            Debug.LogWarning("Selected item has no available dialogue reference.");
+            return;
+        }
+
+        var dialogueObj = ArticyDatabase.GetObject(item.availableDialogue.TechnicalName) as IArticyObject;
+        if (dialogueObj == null)
+        {
+            Debug.LogWarning("Dialogue object not found for technical name: " + item.availableDialogue.TechnicalName);
+            return;
+        }
+
+        dialogueManager.StartDialogue(dialogueObj);
     }
 }
 

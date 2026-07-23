@@ -9,10 +9,11 @@ public class InventoryItem : MonoBehaviour
 {
     //Important References
     public InventoryInterface inventoryInterface; // Reference to the InventoryInterface script
+    private DialogueManager dialogueManager;
 
     public string itemName; // Name of the item
     public string technicalName; // Unique identifier for the item
-    public string itemType; // Type of the item (Tools, Clothes, Items, Interact)
+    public string itemType; // Type of the item (Tools, Clothes, Items, Interactable)
     public string itemClothingCategory; // Clothing category (Face, Head, Eyes, Body, Legs, Feet, Hands, Neck)
     public string itemDescription; // Description of the item
     public Sprite itemIcon; // Icon of the item
@@ -23,11 +24,13 @@ public class InventoryItem : MonoBehaviour
     //Bonuses
     public string[] bonuses;
     public string[] parts;
+    public ArticyObject availableDialogue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inventoryInterface = GameObject.FindFirstObjectByType<InventoryInterface>();
+        dialogueManager = GameObject.FindFirstObjectByType<DialogueManager>();
     }
 
     // Update is called once per frame

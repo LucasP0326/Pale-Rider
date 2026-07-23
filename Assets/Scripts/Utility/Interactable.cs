@@ -30,7 +30,9 @@ public class Interactable : MonoBehaviour
     public bool oneTimeInteraction = false; // If true, the object can only be interacted with once
     public bool hasBeenInteracted = false; // Tracks if the object has been interacted with
     public GameObject oneTimeInteractionBubble; // The prefab bubble to show when object can be interacted with once.
+    public GameObject oneTimeMoneyInteractionBubble; // The prefab bubble to show when object can be interacted with once.
     public float interactionBubbleRange = 5f;
+    public float distanceAbove = 1.5f; // Distance above the object to place the bubble
 
     [Header("Interaction Bubble Text")]
     public GameObject interactionTextPrefab; // Prefab for the 3D TextMeshPro object
@@ -41,6 +43,8 @@ public class Interactable : MonoBehaviour
     [Header("Event Manager")]
     public UnityEvent onInteract; // Assignable event in the Inspector
     private GameObject interactionBubbleInstance;
+    private GameObject moneyInteractionBubbleInstance;
+    private GameObject lootMenuInstance;
 
     [Header("Teleporting")]
     public InventoryManager inventoryManager;
@@ -61,6 +65,16 @@ public class Interactable : MonoBehaviour
     public bool oneTimeDialogue = false; // If true, the object can only be interacted with once for dialogue
     public bool hasDialogueOnce = false; // Tracks if the object has been interacted with for dialogue
     public bool hasDialogue;
+
+    [Header("Loot")]
+    public bool lootMenuOpen = false; // Tracks if the loot menu is currently open
+    public bool hasLoot = false; // If true, the object can be looted
+    public bool hasbeenLooted = false; // Tracks if the object has been looted
+    public bool hasMoney = false; // If true, the object can give money
+    public int moneyAmount = 0; // Amount of money to give
+    public GameObject lootMenuPrefab; // Prefab for the loot menu
+    public LootableItem[] lootItems; // Array of lootable items
+    public AudioClip moneySFX; // Sound effect for money interaction
 
     [Header("Articy Variable Checker")]
     public bool ArticyVariableConditionMet = true; // Default to true, will be set to false if condition is not met
@@ -110,6 +124,11 @@ public class Interactable : MonoBehaviour
         {
             ShowInteractionBubble();
         }
+
+        if (hasLoot && !hasbeenLooted)
+        {
+            ShowLootMenu();
+        }
         OnLateStart();
     }
 
@@ -132,18 +151,37 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(transform.position, player.position);
-        if (oneTimeInteraction && !hasBeenInteracted && distance <= interactionBubbleRange)
+        if (hasMoney)
         {
-            interactionBubbleInstance.SetActive(true); // Show the interaction bubble when in range
+            if (oneTimeMoneyInteractionBubble != null && !hasBeenInteracted && distance <= interactionBubbleRange)
+            {
+                moneyInteractionBubbleInstance.SetActive(true); // Show the money interaction bubble when in range
+            }
+            else if (oneTimeMoneyInteractionBubble != null && hasBeenInteracted)
+            {
+                moneyInteractionBubbleInstance.SetActive(false); // Hide the money interaction bubble when already interacted
+            }
+            else if (oneTimeMoneyInteractionBubble != null && distance > interactionBubbleRange)
+            {
+                moneyInteractionBubbleInstance.SetActive(false); // Hide the money interaction bubble when out of range
+            }
         }
-        else if (oneTimeInteraction && hasBeenInteracted)
+        else
         {
-            interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when already interacted
+            if (oneTimeInteraction && !hasBeenInteracted && distance <= interactionBubbleRange)
+            {
+                interactionBubbleInstance.SetActive(true); // Show the interaction bubble when in range
+            }
+            else if (oneTimeInteraction && hasBeenInteracted)
+            {
+                interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when already interacted
+            }
+            else if (oneTimeInteraction && distance > interactionBubbleRange)
+            {
+                interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when out of range
+            }
         }
-        else if (oneTimeInteraction && distance > interactionBubbleRange)
-        {
-            interactionBubbleInstance.SetActive(false); // Hide the interaction bubble when out of range
-        }
+
         if (!isHorse)
         {   
             if (_outline.enabled)
@@ -165,19 +203,39 @@ public class Interactable : MonoBehaviour
 
     private void ShowInteractionBubble()
     {
-        if (oneTimeInteractionBubble != null)
+        if (hasMoney)
         {
-            // Instantiate the interaction bubble slightly above the object
-            interactionBubbleInstance = Instantiate(oneTimeInteractionBubble, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+            if (oneTimeMoneyInteractionBubble != null)
+            {
+                // Instantiate the money interaction bubble slightly above the object
+                moneyInteractionBubbleInstance = Instantiate(oneTimeMoneyInteractionBubble, transform.position + Vector3.up * distanceAbove, Quaternion.identity);
 
-            // Parent the bubble to this object for better organization
-            interactionBubbleInstance.transform.SetParent(transform);
+                // Parent the bubble to this object for better organization
+                moneyInteractionBubbleInstance.transform.SetParent(transform);
 
-            // Ensure the bubble always faces the camera
-            //interactionBubbleInstance.AddComponent<Billboard>();
+                // Ensure the bubble always faces the camera
+                //moneyInteractionBubbleInstance.AddComponent<Billboard>();
 
-            // Set up the interaction logic
-            interactionBubbleInstance.GetComponent<InteractionBubble>().Setup(this);
+                // Set up the interaction logic
+                moneyInteractionBubbleInstance.GetComponent<InteractionBubble>().Setup(this);
+            }
+        }
+        else
+        {
+            if (oneTimeInteractionBubble != null)
+            {
+                // Instantiate the interaction bubble slightly above the object
+                interactionBubbleInstance = Instantiate(oneTimeInteractionBubble, transform.position + Vector3.up * distanceAbove, Quaternion.identity);
+
+                // Parent the bubble to this object for better organization
+                interactionBubbleInstance.transform.SetParent(transform);
+
+                // Ensure the bubble always faces the camera
+                //interactionBubbleInstance.AddComponent<Billboard>();
+
+                // Set up the interaction logic
+                interactionBubbleInstance.GetComponent<InteractionBubble>().Setup(this);
+            }
         }
     }
 
@@ -225,6 +283,11 @@ public class Interactable : MonoBehaviour
 
     public void OnInteract()
     {
+        if (oneTimeInteraction && hasBeenInteracted)
+        {
+            Debug.Log("This object can only be interacted with once and has already been interacted with.");
+            return; // Exit if the object can only be interacted with once and has already been interacted with
+        }
         if (soundEffect != null)
         {
             aSource.clip = soundEffect;
@@ -235,6 +298,10 @@ public class Interactable : MonoBehaviour
             if (ArticyVariableConditionMet)
             {
                 onInteract?.Invoke(); // Calls the function(s) assigned in the Inspector
+                if (oneTimeInteraction)
+                {
+                    hasBeenInteracted = true; // Set the flag to true after interaction
+                }
             }
             else
             {
@@ -469,6 +536,52 @@ public class Interactable : MonoBehaviour
         return memberType == typeof(float) ||
                memberType == typeof(double) ||
                memberType == typeof(decimal);
+    }
+
+    public void LootObject()
+    {
+        hasbeenLooted = true;
+    }
+
+    public void ShowLootMenu()
+    {
+        if (lootMenuOpen)
+        {
+            CloseLootMenu();
+            lootMenuOpen = false;
+        }
+        else
+        {
+            if (lootMenuPrefab != null && !hasbeenLooted)
+            {
+                // Instantiate the interaction bubble slightly above the object
+                lootMenuInstance = Instantiate(lootMenuPrefab, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+
+                // Parent the bubble to this object for better organization
+                lootMenuInstance.transform.SetParent(transform);
+
+                // Ensure the bubble always faces the camera
+                //lootMenuInstance.AddComponent<Billboard>();
+
+                // Set up the interaction logic
+                lootMenuInstance.GetComponent<LootMenu>().Setup(this);
+            }
+            lootMenuOpen = true;
+        }
+    }
+
+    public void AddMoney()
+    {
+        ArticyGlobalVariables.Default.PlayerStats.Money += moneyAmount;
+        AudioSource.PlayClipAtPoint(moneySFX, transform.position);
+    }
+
+    public void CloseLootMenu()
+    {
+        if (lootMenuInstance != null)
+        {
+            Destroy(lootMenuInstance);
+        }
     }
 
     public void CheckArticyVariable()

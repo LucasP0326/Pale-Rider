@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4154962644191627817}
   - component: {fileID: -8345487444715140597}
   - component: {fileID: -9056891385016452371}
+  - component: {fileID: -34470003115048535}
+  - component: {fileID: 5348598478194567870}
   m_Layer: 5
   m_Name: Inventory Item
   m_TagString: Untagged
@@ -89,14 +91,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19560428523151f41a6175cece4ea7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryInterface: {fileID: 0}
   itemName: 
   technicalName: 
   itemType: 
+  itemClothingCategory: 
   itemDescription: 
   itemIcon: {fileID: 0}
   itemQuantity: 0
   itemPrice: 0
+  itemBonuses: 
   isEquipped: 0
+  bonuses: []
+  parts: []
+  availableDialogue:
+    id: 0
+    technicalName: 
+    parentId: 0
+    childrenIds: 
 --- !u!114 &-9056891385016452371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +165,94 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-34470003115048535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751433163774494146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d165418ccd9a46b48dd69fe8bd8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  eventOnStart: 0
+  dialogueManager: {fileID: 0}
+  isHorse: 0
+  horseManager: {fileID: 0}
+  oneTimeInteraction: 0
+  hasBeenInteracted: 0
+  oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
+  interactionBubbleRange: 5
+  distanceAbove: 1.5
+  interactionTextPrefab: {fileID: 0}
+  interactionText: Default Interaction Text
+  interactionTextLength: 3
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -34470003115048535}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: BeginDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  inventoryManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  targetPoint: {fileID: 0}
+  changeScene: 0
+  sceneName: 
+  spawnPointID: 
+  teleportCooldown: 1
+  interactionRange: 2
+  door: {fileID: 0}
+  soundEffect: {fileID: 0}
+  oneTimeDialogue: 0
+  hasDialogueOnce: 0
+  hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
+  articyVariablePath: 
+  articyVariableType: 0
+  articyIntValue: 0
+  articyBoolValue: 0
+  articyFloatValue: 0
+  articyStringValue: 
+--- !u!114 &5348598478194567870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751433163774494146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 461291041, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ArticyRuntime.dll::Articy.Unity.ArticyReference
+  reference:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 0
+    highId: 0
