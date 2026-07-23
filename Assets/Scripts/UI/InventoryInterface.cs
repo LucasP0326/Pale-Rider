@@ -417,6 +417,7 @@ public class InventoryInterface : MonoBehaviour
         }
 
         dialogueManager.StartDialogue(dialogueObj);
+        Close();
     }
 }
 

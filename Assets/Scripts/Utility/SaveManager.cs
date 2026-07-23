@@ -197,6 +197,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("MineKnown", ArticyGlobalVariables.Default.ZuretonVariables.MineKnown ? 1 : 0);
         PlayerPrefs.SetInt("PaleDanger", ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger);
         PlayerPrefs.SetInt("HasMineLockerKey", ArticyGlobalVariables.Default.ZuretonVariables.HasMineLockerKey ? 1 : 0);
+        PlayerPrefs.SetInt("UnlockedLocker", ArticyGlobalVariables.Default.ZuretonVariables.UnlockedLocker ? 1 : 0);
         PlayerPrefs.SetInt("TookHardHat", ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat ? 1 : 0);
         PlayerPrefs.SetInt("TookMoldyLunch", ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch ? 1 : 0);
         PlayerPrefs.SetInt("TookSafetyLamp", ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp ? 1 : 0);
@@ -387,6 +388,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.ZuretonVariables.MineKnown = PlayerPrefs.GetInt("MineKnown", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.PaleDanger = PlayerPrefs.GetInt("PaleDanger", 0);
         ArticyGlobalVariables.Default.ZuretonVariables.HasMineLockerKey = PlayerPrefs.GetInt("HasMineLockerKey", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.UnlockedLocker = PlayerPrefs.GetInt("UnlockedLocker", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.TookHardHat = PlayerPrefs.GetInt("TookHardHat", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.TookMoldyLunch = PlayerPrefs.GetInt("TookMoldyLunch", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.TookSafetyLamp = PlayerPrefs.GetInt("TookSafetyLamp", 0) == 1;

@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour
                 itemBonuses = item.itemBonuses,
                 itemQuantity = item.itemQuantity,
                 isEquipped = item.isEquipped,
-                //availableDialogue = item.availableDialogue
+                availableDialogueTechnicalName = item.availableDialogue != null ? item.availableDialogue.TechnicalName : string.Empty
             });
         }
         string json = JsonUtility.ToJson(new SerializationWrapper<InventoryItemData>(dataList));
@@ -135,7 +135,9 @@ public class InventoryManager : MonoBehaviour
                     newItem.itemBonuses = data.itemBonuses;
                     newItem.itemQuantity = data.itemQuantity;
                     newItem.isEquipped = data.isEquipped;
-                    //newItem.availableDialogue = data.availableDialogue;
+                    newItem.availableDialogue = string.IsNullOrEmpty(data.availableDialogueTechnicalName)
+                        ? null
+                        : ArticyDatabase.GetObject(data.availableDialogueTechnicalName) as ArticyObject;
 
                     // Optionally, reload icon from Articy if needed
                     var articyObj = ArticyDatabase.GetObject(data.technicalName) as Articy.Pale_Rider.Item;
@@ -305,5 +307,6 @@ public class InventoryItemData
     public string itemBonuses;
     public int itemQuantity;
     public bool isEquipped;
+    public string availableDialogueTechnicalName;
     // Add other fields as needed (e.g., icon reference as a string)
 }
