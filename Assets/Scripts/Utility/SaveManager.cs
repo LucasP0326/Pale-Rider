@@ -134,6 +134,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("MistakenIdentity", ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity);
         PlayerPrefs.SetInt("AlcoholConsumed", ArticyGlobalVariables.Default.PlayerVariables.AlcoholConsumed);
         PlayerPrefs.SetInt("KnowsAboutJesus", ArticyGlobalVariables.Default.PlayerVariables.KnowsAboutJesus ? 1 : 0);
+        PlayerPrefs.SetInt("ReadBible", ArticyGlobalVariables.Default.PlayerVariables.ReadBible ? 1 : 0);
+        PlayerPrefs.SetInt("TheExpression", ArticyGlobalVariables.Default.PlayerVariables.TheExpression ? 1 : 0);
 
         //Equipped Items
         PlayerPrefs.SetString("EquippedHead", ArticyGlobalVariables.Default.EquippedItems.EquippedHead);
@@ -180,6 +182,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("KnowsSchwarstein", ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein ? 1 : 0);
         PlayerPrefs.SetInt("HasFatherEnvelope", ArticyGlobalVariables.Default.RaikVariables.HasFatherEnvelope ? 1 : 0);
         PlayerPrefs.SetInt("OpenedFatherEnvelope", ArticyGlobalVariables.Default.RaikVariables.OpenedFatherEnvelope ? 1 : 0);
+        PlayerPrefs.SetInt("DisapprovedLaurienRomance", ArticyGlobalVariables.Default.RaikVariables.DisapprovedLaurienRomance ? 1 : 0);
 
         //Alina Variables
         PlayerPrefs.SetInt("RaikAunt", ArticyGlobalVariables.Default.AlinaVariables.RaikAunt ? 1 : 0);
@@ -204,6 +207,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("GeneratorFirstTime", ArticyGlobalVariables.Default.ZuretonVariables.GeneratorFirstTime ? 1 : 0);
         PlayerPrefs.SetInt("UnderstandsEngine", ArticyGlobalVariables.Default.ZuretonVariables.UnderstandsEngine ? 1 : 0);
         PlayerPrefs.SetInt("LiftActivated1", ArticyGlobalVariables.Default.ZuretonVariables.LiftActivated1 ? 1 : 0);
+        PlayerPrefs.SetInt("MinePowerOn", ArticyGlobalVariables.Default.ZuretonVariables.MinePowerOn ? 1 : 0);
 
         //Quests
         PlayerPrefs.SetInt("LeaveThePale", ArticyGlobalVariables.Default.Quests.LeaveThePale);
@@ -325,6 +329,8 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.PlayerVariables.MistakenIdentity = PlayerPrefs.GetInt("MistakenIdentity", 1);
         ArticyGlobalVariables.Default.PlayerVariables.AlcoholConsumed = PlayerPrefs.GetInt("AlcoholConsumed", 0);
         ArticyGlobalVariables.Default.PlayerVariables.KnowsAboutJesus = PlayerPrefs.GetInt("KnowsAboutJesus", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.ReadBible = PlayerPrefs.GetInt("ReadBible", 0) == 1;
+        ArticyGlobalVariables.Default.PlayerVariables.TheExpression = PlayerPrefs.GetInt("TheExpression", 0) == 1;
 
         //Equipped Items
         ArticyGlobalVariables.Default.EquippedItems.EquippedHead = PlayerPrefs.GetString("EquippedHead", "");
@@ -371,6 +377,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.RaikVariables.KnowsSchwarstein = PlayerPrefs.GetInt("KnowsSchwarstein", 0) == 1;
         ArticyGlobalVariables.Default.RaikVariables.HasFatherEnvelope = PlayerPrefs.GetInt("HasFatherEnvelope", 0) == 1;
         ArticyGlobalVariables.Default.RaikVariables.OpenedFatherEnvelope = PlayerPrefs.GetInt("OpenedFatherEnvelope", 0) == 1;
+        ArticyGlobalVariables.Default.RaikVariables.DisapprovedLaurienRomance = PlayerPrefs.GetInt("DisapprovedLaurienRomance", 0) == 1;
 
         //Alina Variables
         ArticyGlobalVariables.Default.AlinaVariables.RaikAunt = PlayerPrefs.GetInt("RaikAunt", 0) == 1;
@@ -395,6 +402,7 @@ public class SaveManager : MonoBehaviour
         ArticyGlobalVariables.Default.ZuretonVariables.GeneratorFirstTime = PlayerPrefs.GetInt("GeneratorFirstTime", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.UnderstandsEngine = PlayerPrefs.GetInt("UnderstandsEngine", 0) == 1;
         ArticyGlobalVariables.Default.ZuretonVariables.LiftActivated1 = PlayerPrefs.GetInt("LiftActivated1", 0) == 1;
+        ArticyGlobalVariables.Default.ZuretonVariables.MinePowerOn = PlayerPrefs.GetInt("MinePowerOn", 0) == 1;
 
         //Quests
         ArticyGlobalVariables.Default.Quests.LeaveThePale = PlayerPrefs.GetInt("LeaveThePale", 0);

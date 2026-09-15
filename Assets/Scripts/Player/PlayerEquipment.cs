@@ -10,6 +10,7 @@ public class PlayerEquipment : MonoBehaviour
     public GameObject rifle;
     //public GameObject pistol;
     public GameObject hat;
+    public GameObject leatherHardHat;
     public GameObject mask;
     public GameObject maskTube;
     public GameObject Lantern;
@@ -44,11 +45,18 @@ public class PlayerEquipment : MonoBehaviour
         //Hats
         if (ArticyGlobalVariables.Default.EquippedItems.EquippedHead == "Clothing_HisperianRancherHat")
         {
+            leatherHardHat.SetActive(false);
             hat.SetActive(true);
+        }
+        else if (ArticyGlobalVariables.Default.EquippedItems.EquippedHead == "Clothing_LeatherHardHat")
+        {
+            hat.SetActive(false);
+            leatherHardHat.SetActive(true);
         }
         else
         {
             hat.SetActive(false);
+            leatherHardHat.SetActive(false);
         }
 
         //Masks

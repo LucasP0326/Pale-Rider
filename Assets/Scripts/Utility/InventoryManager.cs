@@ -175,6 +175,11 @@ public class InventoryManager : MonoBehaviour
             AddItem("Clothing_HisperianRancherHat");
             ArticyGlobalVariables.Default.InventoryAddingStats.RancherHat = false;
         }
+        if (ArticyGlobalVariables.Default.InventoryAddingStats.HardHat)
+        {
+            AddItem("Clothing_LeatherHardHat");
+            ArticyGlobalVariables.Default.InventoryAddingStats.HardHat = false;
+        }
         if (ArticyGlobalVariables.Default.InventoryAddingStats.Canister)
         {
             AddItem("Item_OxygenCanister");

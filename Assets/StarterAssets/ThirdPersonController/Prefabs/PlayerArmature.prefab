@@ -133,7 +133,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -153,6 +155,21 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -430,7 +447,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -450,6 +469,21 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -603,7 +637,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -635,6 +671,21 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -742,7 +793,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -774,6 +827,21 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -1072,7 +1140,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -1092,6 +1162,21 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -2065,6 +2150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552999ce01b83934ab622479aa6f84b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEnabled: 1
+  playerController: {fileID: 0}
+  oxygenHandler: {fileID: 0}
   currentHealth: 0
   currentResolve: 0
   maxHealth: 0
@@ -2369,6 +2457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
   rifle: {fileID: 9074047344997394188}
   hat: {fileID: 682923080797977287}
+  leatherHardHat: {fileID: 1979378799936400455}
   mask: {fileID: 6736768670849660179}
   maskTube: {fileID: 4930880238683947006}
   Lantern: {fileID: 7053571068119963096}
@@ -2385,6 +2474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111ad5db2402d80439c80693c0ceabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OxygenHandler
+  playerEquipment: {fileID: 0}
+  maxOxygen: 1000
+  currentOxygen: 0
+  oxygenDepletionRate: 1
+  gasMaskEquipped: 0
+  inPale: 0
+  paleDeathEnabled: 1
+  resolveDamageIntervalSeconds: 20
+  hudOxygenTank: {fileID: 0}
+  oxygenBarFill: {fileID: 0}
+  hudOxygenFill: {fileID: 0}
+  oxygenText: {fileID: 0}
+  hudOxygenText: {fileID: 0}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2712,7 +2814,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -2732,6 +2836,21 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
+  ArticyVariableConditionMet: 1
+  articyVariableToCheckPath: 
+  articyVariableToCheckType: 0
+  articyIntValueToCheck: 0
+  articyBoolValueToCheck: 0
+  articyFloatValueToCheck: 0
+  articyStringValueToCheck: 
   articyVariablePath: 
   articyVariableType: 0
   articyIntValue: 0
@@ -3967,6 +4086,117 @@ Transform:
   - {fileID: 6256634600695244910}
   m_Father: {fileID: 4372607808223944788}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1979378799936301799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2894968568173074227}
+    m_Modifications:
+    - target: {fileID: 100000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_Name
+      value: MinerHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000029488904
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000009529531
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9994783
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.032298796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.702
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a9c372c4be066a42a7c7a7a63a408e0, type: 2}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36acfee689bb13544911a563c7c2e179, type: 2}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36acfee689bb13544911a563c7c2e179, type: 2}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36acfee689bb13544911a563c7c2e179, type: 2}
+    - target: {fileID: 2300000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36acfee689bb13544911a563c7c2e179, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+--- !u!4 &1979378799936172135 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+  m_PrefabInstance: {fileID: 1979378799936301799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1979378799936400455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
+  m_PrefabInstance: {fileID: 1979378799936301799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3433510855245689048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4047,6 +4277,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c04ffaae9ddef8e4d84256369c3b52c6, type: 2}
+    - target: {fileID: 2800250516343163423, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4059,6 +4293,9 @@ PrefabInstance:
     - {fileID: 5866666021909216657, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1979378799936172135}
     - targetCorrespondingSourceObject: {fileID: 2412161367050800168, guid: 26050c8beb2e7fa4ab9255757626711b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7053571068120209258}
