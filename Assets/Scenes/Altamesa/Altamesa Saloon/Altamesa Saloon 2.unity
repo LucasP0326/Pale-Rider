@@ -2100,7 +2100,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
   interactionText: Your head pounds with each thought that rushes through as though
     not your own.
@@ -2133,6 +2135,14 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -3268,6 +3278,40 @@ MonoBehaviour:
   roomWalls:
   - {fileID: 1318382991}
   roomInvisibleWalls: {fileID: 0}
+--- !u!1 &82871413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82871414}
+  m_Layer: 0
+  m_Name: ---Managers---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &82871414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82871413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.69935, y: 3.47167, z: 14.58969}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 969103075}
+  - {fileID: 1551881024}
+  - {fileID: 652894144}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &85786876
 GameObject:
   m_ObjectHideFlags: 0
@@ -4528,7 +4572,9 @@ MonoBehaviour:
   oneTimeInteraction: 1
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 1807361461611000984, guid: a125e7deb2ded14438c067dec216d49d, type: 3}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
   interactionText: Not a book lies on this dusted-over shelf.  Today is not its first
     day gone ignored.
@@ -4561,6 +4607,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -5431,7 +5485,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -5463,6 +5519,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -11456,7 +11520,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -11488,6 +11554,14 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -15279,6 +15353,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648701766}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &652894143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652894144}
+  - component: {fileID: 652894145}
+  m_Layer: 0
+  m_Name: AltamesaSaloon2Manager
+  m_TagString: SceneManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652894144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652894143}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0021896362, y: -0.31851983, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82871414}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &652894145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652894143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debbbb15e99822d4b9e3d854aadfbddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AltamesaSaloon2Manager
+  dialogueStarter: {fileID: 1603074314}
+  roomDoor: {fileID: 0}
 --- !u!1 &663553132
 GameObject:
   m_ObjectHideFlags: 0
@@ -23208,12 +23328,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969103073}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.096249, y: 3.9222202, z: 6.6143355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.6031017, y: 0.45055032, z: -7.9753547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 82871414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970085253
 GameObject:
@@ -25860,7 +25980,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -25892,6 +26014,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -26201,7 +26331,9 @@ MonoBehaviour:
   oneTimeInteraction: 1
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 1807361461611000984, guid: a125e7deb2ded14438c067dec216d49d, type: 3}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
   interactionText: A thick fog covers the land ahead of you, strong enough you can
     hardly even make out the adjacent road
@@ -26234,6 +26366,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -27029,7 +27169,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -27061,6 +27203,14 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -30538,7 +30688,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -30570,6 +30722,14 @@ MonoBehaviour:
   oneTimeDialogue: 1
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -39119,12 +39279,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551881022}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.878452, y: 6.1176353, z: 11.397606}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.820898, y: 2.6459653, z: -3.1920843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 82871414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1556883729
 GameObject:
@@ -40144,7 +40304,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -40176,6 +40338,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: GlobalVariables.WokeUp
   articyVariableToCheckType: 1
@@ -46141,7 +46311,9 @@ MonoBehaviour:
   oneTimeInteraction: 1
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 1807361461611000984, guid: a125e7deb2ded14438c067dec216d49d, type: 3}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 6936299399414514667, guid: 69d85c6531cec414a9a5008e53aa10bb, type: 3}
   interactionText: The cabinet is empty of all possessions.  There is nothing here
     for you.
@@ -46174,6 +46346,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 0
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -50308,7 +50488,7 @@ PrefabInstance:
     - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 2021071510}
+      objectReference: {fileID: 2021071518}
     - target: {fileID: 3014183188981120788, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -50354,7 +50534,7 @@ PrefabInstance:
       addedObject: {fileID: 2021071508}
     - targetCorrespondingSourceObject: {fileID: 1889589370831100, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2021071510}
+      addedObject: {fileID: 2021071518}
   m_SourcePrefab: {fileID: 100100000, guid: 83b0e1aa6fd302d48bf48b1a30f9031c, type: 3}
 --- !u!1 &2021071507 stripped
 GameObject:
@@ -50378,7 +50558,7 @@ MonoBehaviour:
     referencingMode: 0
     lowId: 5231
     highId: 16777216
---- !u!114 &2021071510
+--- !u!114 &2021071518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50389,7 +50569,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da26f58f0c9cd264b99658bb1ef5308e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLeaveRoom
 --- !u!1 &2022746500
 GameObject:
   m_ObjectHideFlags: 0
@@ -51574,7 +51754,9 @@ MonoBehaviour:
   oneTimeInteraction: 0
   hasBeenInteracted: 0
   oneTimeInteractionBubble: {fileID: 0}
+  oneTimeMoneyInteractionBubble: {fileID: 0}
   interactionBubbleRange: 5
+  distanceAbove: 1.5
   interactionTextPrefab: {fileID: 0}
   interactionText: Default Interaction Text
   interactionTextLength: 3
@@ -51606,6 +51788,14 @@ MonoBehaviour:
   oneTimeDialogue: 0
   hasDialogueOnce: 0
   hasDialogue: 1
+  lootMenuOpen: 0
+  hasLoot: 0
+  hasbeenLooted: 0
+  hasMoney: 0
+  moneyAmount: 0
+  lootMenuPrefab: {fileID: 0}
+  lootItems: []
+  moneySFX: {fileID: 0}
   ArticyVariableConditionMet: 1
   articyVariableToCheckPath: 
   articyVariableToCheckType: 0
@@ -55255,8 +55445,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 969103075}
-  - {fileID: 1551881024}
+  - {fileID: 82871414}
   - {fileID: 746329221}
   - {fileID: 1788044065}
   - {fileID: 982550602}
